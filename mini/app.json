@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/courses/courses",
+    "pages/home/home",
+    "pages/daren/daren",
+    "pages/lesson/lesson",
+    "pages/my/my",
+    "pages/my/contact/contact",
+    "pages/personal/personal",
+    "pages/dialog/dialog",
+    "pages/setting/setting",
+    "pages/readHistory/readHistory",
+    "pages/infoCenter/infoCenter",
+    "pages/entry/entry",
+    "pages/miniqrcode/miniqrcode"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#3281ff",
+    "navigationBarTitleText": "微移英语",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#abb4bf",
+    "selectedColor": "#3281ff",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/courses/courses",
+        "text": "课程",
+        "iconPath": "img/tab_course_normal.png",
+        "selectedIconPath": "img/tab_course.png"
+      },
+      {
+        "pagePath": "pages/daren/daren",
+        "text": "教师",
+        "iconPath": "img/tab_daren_normal.png",
+        "selectedIconPath": "img/tab_daren.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "img/tab_profile_normal.png",
+        "selectedIconPath": "img/tab_profile.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}
