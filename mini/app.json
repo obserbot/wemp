@@ -12,7 +12,8 @@
     "pages/readHistory/readHistory",
     "pages/infoCenter/infoCenter",
     "pages/entry/entry",
-    "pages/miniqrcode/miniqrcode"
+    "pages/miniqrcode/miniqrcode",
+    "pages/weoa/weoa"
   ],
   "window": {
     "backgroundTextStyle": "dark",

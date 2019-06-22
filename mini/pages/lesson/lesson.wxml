@@ -1,0 +1,88 @@
+<view class='container'>
+
+  <view class="page-title-wrap">
+    <view class='course-title'>
+      {{ courseTitle[localeCode] }}
+    </view>
+    <view class='tutor-wrap' hover-class='hover-class' bindtap='toPersonal' data-uid='{{ courseTutor.uid }}'>
+      <view class='profile'>
+        <view class='info'>
+          <image class='avatar' mode='aspectFill' src='{{ courseTutor.avatar }}'></image>
+        </view>
+      </view>
+      <view class='tutor-name'>
+        <text class="tutor-name">{{ courseTutor.name }}</text>
+      </view>
+      <view class='nationality-wrap'>
+        <view class='nationality'>
+          {{ courseTutor.nationality }}
+        </view>
+      </view>
+      <!--
+      <view class='price'>
+        {{ coursePrice }} / 1h
+      </view>
+      -->
+    </view>
+  </view>
+
+  <view class='time-wrap' wx:if='{{ courseTime3[ languageCode ] }}'>
+    <view class='time-item time-label'>{{ localeStrings.time }}</view>:
+    <view class='time-item time1'>{{ courseTime1[ languageCode ] }}</view>
+    <view class='time-item time2'>({{ courseTime2[ languageCode ] }})</view>
+    <view class='time-item time3'>{{ courseTime3[ languageCode ] }}</view>
+  </view>
+
+  <view class="syllabus-wrap">
+
+    <!-- 课程介绍 -->
+
+    <view class='syllabus-label' wx:if='{{ courseDesc[localeCode] }}'>
+      {{ localeStrings.courseIntroduction }}
+    </view>
+    <view class='course-description' wx:if='{{ courseDesc[localeCode] }}'>
+      {{ courseDesc[localeCode] }}
+    </view>
+
+    <!-- 课程目标 -->
+
+    <view class='syllabus-label' wx:if='{{ switchs.hasObjectiveMain && switchs.hasObjectiveItems }}'>
+      {{ localeStrings.objectives }}
+    </view>
+    <view class='objective-main' wx:if="{{ switchs.hasObjectiveMain }}">
+      {{ courseObjective[localeCode] }}
+    </view>
+    <view class='objective-items' wx:if="{{ switchs.hasObjectiveItems }}">
+      <view class='objective-item-wrap' wx:for='{{ courseObjectiveItems[localeCode] }}' wx:key='{{ index }}'>
+        <view class='list-dot-wrap'>
+          <image class='list-dot' src='/img/list-dot.png'></image>
+        </view>
+        <view class='list-content-wrap'>
+           {{ item }}
+        </view>
+      </view>
+    </view>
+  </view> <!-- End of syllabus -->
+
+  <view class='goto-weoa' hover-class='hover-class' bindtap='toWEOA' wx:if='{{ weoa_url }}'>
+    {{ localeStrings.courseMaterial }} >
+  </view>
+
+  <view class="qrcode-wrap" wx:if='{{ groupQrUrl }}'>
+    <view class='qrcode-title'>
+      {{ localeStrings.enterClass }}
+    </view>
+    <view class='qrcode'>
+      <image src="{{ groupQrUrl }}" mode="widthFix" bindtap="previewImage"></image>
+    </view>
+  </view>
+
+
+<!--
+  <view class="contact-wrap">
+    <button class="cs_button" open-type="contact" session-from="weapp">
+      {{ localeStrings.customerService }}
+    </button>
+  </view>
+-->
+</view>
