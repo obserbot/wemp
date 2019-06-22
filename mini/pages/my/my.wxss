@@ -7,6 +7,23 @@
 .wechat-user-wrap {
   text-align: center;
 }
+.profile-info .wechat-login2 {
+  margin: 0 auto;
+  padding-top: 70rpx;
+}
+.profile-info .wechat-login2 .login-text {
+  height: 55rpx;
+  line-height: 55rpx;
+  width: 170rpx;
+  background: none;
+  color: #FFF;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  font-size: 28rpx;
+  top: -3px;
+}
+
+/*
 .profile-info .wechat-login {
   position: absolute;
   right: 20rpx;
@@ -30,6 +47,7 @@
   width: 148rpx;
   border-radius: 50%;
 }
+*/
 
 .profile-info .wechat-wid {
   position: absolute;
