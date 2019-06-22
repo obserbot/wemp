@@ -1,0 +1,163 @@
+
+<view class="profile-info">
+  <view class="personal-image-outside">
+  <block wx:if="{{ isLogged }}">
+    <image class="avatar" src="{{ userInfo.avatarUrl }}"></image>
+    <view class="info">
+      <text class="name">{{ userInfo.nickName }}</text>
+    </view>
+    <view class="logout" bindtap="userLogout">
+      {{ localeStrings.logout }}
+    </view>
+
+    <!--
+    <view class="wechat-wid">
+      ID: {{ wid }}
+    </view>
+    -->
+  </block>
+
+  <block wx:else>
+    <view class="wechat-user-wrap">
+      <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" class='get-user-info'></button>
+    </view>
+    <view class="info">
+    </view>
+    <view class="wechat-login">
+      <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" class='login-text'>
+        {{ localeStrings.login }}
+      </button>
+    </view>
+  </block>
+  </view>
+
+  <view class="detailed-items">
+    <view class="detailed-item guanzhu">
+        <view class="item-number">
+          {{ 0 }}
+        </view>
+        <view class="item-title">
+          {{ localeStrings.following }}
+        </view>
+    </view>
+    <view class="detailed-item points">
+        <view class="item-number">
+          {{ isLogged ? 10 : 0 }}
+        </view>
+        <view class="item-title">
+          {{ localeStrings.points }}
+        </view>
+    </view>
+    <view class="detailed-item lessons">
+        <view class="item-number">
+          {{ '0 / 0' }}
+        </view>
+        <view class="item-title">
+          {{ localeStrings.courses }}
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='msg-wrapper' wx:if="{{ isLogged }}">
+  <view class="msg-item" wx:for="{{ message_summary }}" wx:key="{{ item.id }}">
+    <view class="msg-item-content">
+      {{ item.latest_words }}
+    </view>
+  </view>
+</view>
+
+<view class='wrapper'>
+
+  <view class='card items'>
+<!--
+    <view class='item' hover-class='hover-class' catchtap='navigateItem' data-url='/pages/infoCenter/infoCenter'>
+      <view class='title'>
+        <image src='/img/ic_notification.png'></image>
+        <view>消息中心</view>
+      </view>
+      <view class='count reddot' wx:if='{{userNotificationNum}}'>{{userNotificationNum}}</view>
+    </view>
+    <view class='item' hover-class='hover-class' catchtap='navigateItem' data-url='/pages/following/following'>
+      <view class='title'>
+        <image src='/img/ic_heart_entry_bottom_full.png'></image>
+        <view>我关注的</view>
+      </view>
+      <view class='count'>{{userInfo.collectedEntriesCount || 0}} 达人</view>
+    </view>
+-->
+<!--
+    <view class='item' hover-class='hover-class' catchtap='navigatItem' data-url='/pages/favorate/favorate'>
+      <view class='title'>
+        <image src='/img/ic_heart_entry_bottom_full.png'></image>
+        <view>我喜欢的</view>
+      </view>
+      <view class='count'>{{userInfo.collectedEntriesCount || 0}} 篇</view>
+    </view>
+    <view class='item' hover-class='hover-class' catchtap='navigatItem' data-url='/pages/collectionSet/collectionSet'>
+      <view class='title'>
+        <image src='/img/ic_collection_set.png'></image>
+        <view>收藏集</view>
+      </view>
+      <view class='count'>{{userInfo.collectionSetCount || 0}}个</view>
+    </view>
+    <view class='item' hover-class='hover-class' catchtap='navigatItem' data-url='/pages/purchasedXiaoce/purchasedXiaoce'>
+      <view class='title'>
+        <image src='/img/user_buy.png'></image>
+        <view>已购小册</view>
+      </view>
+      <view class='count'>{{userInfo.purchasedBookletCount
+ || 0}}本</view>
+    </view>
+    <view class='item' hover-class='hover-class' catchtap='navigatItem' data-url='/pages/readHistory/readHistory'>
+      <view class='title'>
+        <image src='/img/view.png'></image>
+        <view>阅读过的文章</view>
+      </view>
+      <view class='count'>{{userInfo.viewedEntriesCount || 0}}篇</view>
+    </view>
+    <view class='item' hover-class='hover-class' catchtap='navigatItem' data-url='/pages/manageTag/manageTag'>
+      <view class='title'>
+        <image src='/img/tag.png'></image>
+        <view>标签管理</view>
+      </view>
+      <view class='count'>{{userInfo.subscribedTagsCount || 0}}个</view>
+    </view>
+-->
+  </view>
+
+  <view class='card items'>
+    <picker bindchange="changeLanguage" value="{{ langIndex }}" range="{{ languages }}">
+      <view class='item' hover-class='hover-class' data-open='true'>
+        <view class='title'>
+          <image src='/img/ic_language.png'></image>
+          <view>{{ localeStrings.setLanguage }}</view>
+        </view>
+      </view>
+    </picker>
+    <view class='item' hover-class='hover-class' bindtap='gotoFeedback'>
+      <view class='title'>
+        <image src='/img/ic_feedback.png'></image>
+        <view>{{ localeStrings.contact }}</view>
+      </view>
+    </view>
+
+<!--
+    <view class='item' hover-class='hover-class' catchtap='navigatItem' data-url='/pages/miniqrcode/miniqrcode' data-open='true'>
+      <view class='title'>
+        <image src='/img/qrcode.png' style='width:28rpx;height:28rpx;padding:10rpx'></image>
+        <view>小程序码</view>
+      </view>
+    </view>
+-->
+  </view>
+
+  <view class='version-info'>
+    <view class='app-name'>{{ localeStrings.appName }}</view>
+    <view class='version-code'>1.1</view>
+  </view>
+
+</view>
+
+
+

@@ -1,0 +1,22 @@
+<view class='feedback-container'>
+
+<!--
+  <form bindsubmit="submitForm">
+    <view class="feedback-content-wrap">
+      <textarea auto-height auto-focus name='myfeedback' placeholder='{{ localeStrings.iFeedback }}' />
+    </view>
+    <view class='tijiao-wrap'>
+      <button formType="submit" disabled="{{ disabled }}" class="weui-btn submit" type="primary">
+        {{ localeStrings.submit }}
+      </button>
+    </view>
+  </form>
+-->
+
+  <view class="contact-wrap">
+    <button class="cs_button" open-type="contact" session-from="weapp">
+      {{ localeStrings.customerService }}
+    </button>
+  </view>
+
+</view>

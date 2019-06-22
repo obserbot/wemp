@@ -1,0 +1,44 @@
+
+.feedback-content-wrap {
+  padding: 20px;
+}
+.feedback-content-wrap textarea {
+  padding: 10px;
+  box-sizing: border-box;
+  min-height: 110px;
+  width: 100%;
+  border: 1px solid #666;
+  border-radius: 5px;
+}
+
+button
+{
+  width: 400rpx;
+  position: relative;
+  display: block;
+  padding: 0 28rpx;
+  box-sizing: border-box;
+  font-size: 18px;
+  text-align: center;
+  text-decoration: none;
+  line-height: 2.55556;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+
+/** Contact service **/
+
+.contact-wrap {
+  margin-top: 280rpx;
+  padding: 10px 0 62px;
+}
+.contact-wrap button {
+  width: 179px;
+  font-size: 18px;
+  font-weight: 400;
+  border-radius: 5px;
+  background-color: #3281ff;
+  color: #fff;
+}
+
