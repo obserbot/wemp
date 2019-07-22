@@ -19,7 +19,9 @@ Page({
     currentCategory: CONSTS.CATE_OPEN_CLASS,
 
     navTabs: [],
-    tabTermId: [CONSTS.CATE_OPEN_CLASS, CONSTS.CATE_SMALL_CLASS],
+    tabTermId: [CONSTS.CATE_OPEN_CLASS, CONSTS.CATE_OPEN_CLASS, CONSTS.REAL_COURSE],
+    tabId: [CONSTS.TAB_LESSONS, CONSTS.TAB_COURSES],
+    tabNow: CONSTS.TAB_LESSONS,
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 1,
@@ -34,11 +36,15 @@ Page({
 
     courses: [],
     courses_now: [],
+    lessons_now: [],
+
+    isAdmin: false,
   },
 
 
   onLoad (options)
   {
+    const that = this
     // Clicked shared link.
     const course_nid = options.course_nid
     console.log('course nid', course_nid)
@@ -51,8 +57,32 @@ Page({
     utils.setLocaleStrings(this)
     event.on("languageChanged", this, utils.setLocaleStrings) // UI
     event.on("languageChanged", this, this.setLocaleCourses)  // Content
+    //event.on("languageChanged", this, this.setLocaleLessons)  // Content
 
-    this.getEntries()
+    let initCount = 0
+    const initData = function() {
+      if (app.globalData.status === 1) {
+        that.setLocaleCourses( app.globalData.allCourses )
+        that.setLocaleLessons()
+      }
+      else {
+        if (initCount++ > 300) {
+          console.log('long time')
+        }
+        else {
+          setTimeout(initData, 200)
+        }
+      }
+    }
+    initData()
+    //this.getEntries()
+
+
+
+    const admin = wx.getStorageSync('admin', 'iiii')
+    if (admin === 'hu') {
+      this.setData({ isAdmin: true })
+    }
   },
 
 
@@ -77,6 +107,29 @@ Page({
     this.setData({
       courses,
       courses_now
+    })
+  },
+
+
+  /**
+   * Localize lesson info.
+   */
+  setLocaleLessons ()
+  {
+    const lessons = app.globalData.allLessons
+    //const lang_code = wx.T.getLanguageCode()
+    //const localeCountryNames = utils.getCountryNames()
+    let lessons_now = []
+    for (let ix in lessons) {
+    /*
+      lessons[ix].nid = lessons[ix]['nid']
+      lessons[ix].title = lessons[ix]['course_title'][lang_code]
+      lessons[ix].author.nationality = localeCountryNames[courses[ix].author.iso2][lang_code]
+    */
+      lessons_now.push(lessons[ix])
+    }
+    this.setData({
+      lessons_now
     })
   },
 
@@ -206,7 +259,7 @@ Page({
         console.log('!!***resul')
         console.log(res)
         that.setLocaleCourses( res.data.courses )
-        app.globalData.allCourses = res.data.courses
+        //app.globalData.allCourses = res.data.courses
       },
       fail: () => {
         utils.showToastError()
@@ -217,6 +270,18 @@ Page({
           wx.stopPullDownRefresh()
         }
       }
+    })
+  },
+
+
+  /*
+   * Goto 一节课的详细介绍
+   */
+  toLessonDetail (ev)
+  {
+    let nid = ev.currentTarget.dataset.nid
+    wx.navigateTo({
+      url: `/pages/lessonote/lessonote?nid=${nid}`,
     })
   },
 
@@ -238,6 +303,7 @@ Page({
    */
   tabClick (ev)
   {
+    // Old:
     const currentCategory = ev.currentTarget.dataset.category
     const sliderOffset = ev.currentTarget.offsetLeft
     const activeIndex = ev.currentTarget.id
@@ -249,8 +315,68 @@ Page({
     });
 
     this.setLocaleCourses()
+
+
+    // New: Switch lessons/courses
+    const tabNow = ev.currentTarget.dataset.which
+    this.setData({
+      tabNow
+    });
+    /*
+    if (which === CONSTS.TAB_LESSONS) {
+      console.log('lwons 38383')
+    }
+    else {
+      console.log('course sffff38383')
+    }
+    */
   },
 
+
+  /*
+   * xia dan
+   */
+  xiadan ()
+  {
+    console.log('xxxx')
+    wx.request({
+      url: 'https://weiyishijie.com/en_edu/api/v1/payment',
+      data:{
+        id: 'app.globalData.openid',//获取用户 openid
+        fee:100 //商品价格
+      },
+      header: {'Content-Type': 'application/x-www-form-urlencoded'},
+      method: 'POST',
+      success: function (res) {
+        console.log(res.data);
+        console.log('调起支付');
+        wx.requestPayment({
+          'timeStamp': res.data.timeStamp,
+          'nonceStr': res.data.nonceStr,
+          'package': res.data.package,
+          'signType': 'MD5',
+          'paySign': res.data.paySign,
+          'success': function (res) {
+            console.log('success');
+            wx.showToast({
+              title: '支付成功',
+              icon: 'success',
+              duration: 3000
+            });
+          },
+          'fail': function (res) {
+            console.log(res);
+          },
+          'complete': function (res) {
+            console.log('complete');
+          }
+        });
+      },
+      fail: function (res) {
+        console.log(res.data)
+      }
+    });
+  },
 
   /**
    * https://www.wangjiankai.com/2018/07/01/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9B%91%E5%90%AC%E9%A1%B5%E9%9D%A2%E6%BB%91%E5%8A%A8%E8%B7%9D%E9%A1%B6%E9%83%A8%E8%B7%9D%E7%A6%BB%EF%BC%88%E8%BF%94%E5%9B%9E%E9%A1%B6%E9%83%A8%EF%BC%89/<Paste>

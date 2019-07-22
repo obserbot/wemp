@@ -43,8 +43,9 @@ Page({
     })
   },
 
-  onShow() {
 
+  onShow ()
+  {
     const userInfo = wx.getStorageSync('userInfo') || false
     if (userInfo) {
       this.setData({

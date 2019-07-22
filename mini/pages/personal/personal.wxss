@@ -1,0 +1,153 @@
+@import "/components/weuiStyle/weui-loading.wxss";
+@import "/components/weuiStyle/weui-button.wxss";
+.wrapper {
+  padding-top: 20rpx;
+}
+.profile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 18rpx 40rpx 0;
+}
+.profile .avatar {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  margin-right: 40rpx;
+}
+.profile .info {
+  min-height: 90rpx;
+  padding: 20rpx 0;
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #abb4bf;
+}
+.profile .info .text {
+  flex: 1;
+  min-height: 90rpx;
+  /*
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  */
+}
+.profile .info .text .line-first {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.profile .info .text .line-first .name {
+  font-size: 30rpx;
+  color: #333;
+  margin-right: 30rpx;
+}
+.profile .info .text .line-first .nationality {
+  color: #abb4bf;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 300;
+  border: 1px solid #dcdcdc;
+  border-radius: 10rpx;
+  padding: 1px 3px;
+}
+.profile .others {
+/*
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  */
+  overflow: hidden;
+}
+.profile .bottom {
+  height: 99rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.profile .bottom .l {
+  display: flex;
+}
+.profile .bottom .action {
+  margin-right: 100rpx;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+}
+.profile .bottom .action .number {
+  margin-right: 20rpx;
+}
+.profile .bottom .key {
+  color: #abb4bf;
+  font-size: 24rpx;
+  padding-right: 10rpx;
+}
+.profile .bottom .edit {
+  color: #3281ff;
+  height: 60rpx;
+  padding: 0 30rpx;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius: 8rpx;
+  border: 1px solid #3281ff;
+}
+.profile .follow-outside {
+  position: absolute;
+  display: flex;
+  right: 12px;
+  bottom: 12px;
+}
+.trend {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.myself-description {
+  margin: 60rpx 45rpx;
+  background: #fff;
+  padding: 22rpx;
+  border-radius: 10rpx;
+  font-size: 30rpx;
+  font-weight: 300;
+  line-height: 48rpx;
+}
+.myself-description .para {
+  margin-top: 20rpx;
+}
+
+.wechat-login {
+  width: 170rpx;
+}
+.follow-wrap .login-text {
+  background: none;
+  color: #3281ff;
+  font-size: 28rpx;
+  top: -3px;
+  height: 55rpx;
+  line-height: 55rpx;
+}
+
+.message-wrap {
+  width: 40%;
+  margin: 48px auto;
+}
+
+
+
+.contact-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contact-wrap .contact-title {
+  font-size: 120%;
+  font-weight: 400;
+  height: 94rpx;
+  line-height: 94rpx;
+}
+.contact-wrap .qrcode-wrap image {
+  width: 230rpx;
+  height: 230rpx;
+}
+
+

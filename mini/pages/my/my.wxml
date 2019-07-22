@@ -1,42 +1,35 @@
 
 <view class="profile-info">
   <view class="personal-image-outside">
-  <block wx:if="{{ isLogged }}">
-    <image class="avatar" src="{{ userInfo.avatarUrl }}"></image>
-    <view class="info">
-      <text class="name">{{ userInfo.nickName }}</text>
-    </view>
-    <!--
-    <view class="logout" bindtap="userLogout">
-      {{ localeStrings.logout }}
-    </view>
-    -->
-
-    <!--
-    <view class="wechat-wid">
-      ID: {{ wid }}
-    </view>
-    -->
-  </block>
-
-  <block wx:else>
-    <view class="wechat-user-wrap">
-      <view class="wechat-login2">
-        <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" class='login-text'>
-          {{ localeStrings.login }}
-        </button>
+    <block wx:if="{{ isLogged }}">
+      <image class="avatar" src="{{ userInfo.avatarUrl }}"></image>
+      <view class="info">
+        <text class="name">{{ userInfo.nickName }}</text>
       </view>
-    </view>
-    <view class="info">
-    </view>
-    <!--
-    <view class="wechat-login">
-      <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" class='login-text'>
-        {{ localeStrings.login }}
-      </button>
-    </view>
-    -->
-  </block>
+      <!--
+      <view class="logout" bindtap="userLogout">
+        {{ localeStrings.logout }}
+      </view>
+      -->
+
+      <!--
+      <view class="wechat-wid">
+        ID: {{ wid }}
+      </view>
+      -->
+    </block>
+
+    <block wx:else>
+      <view class="wechat-user-wrap">
+        <view class="wechat-login2">
+          <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" class='login-text'>
+            {{ localeStrings.login }}
+          </button>
+        </view>
+      </view>
+      <view class="info">
+      </view>
+    </block>
   </view>
 
   <view class="detailed-items">
@@ -162,7 +155,7 @@
 
   <view class='version-info'>
     <view class='app-name'>{{ localeStrings.appName }}</view>
-    <view class='version-code'>1.2</view>
+    <view class='version-code'>1.3.5</view>
   </view>
 
 </view>

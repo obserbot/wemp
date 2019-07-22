@@ -40,6 +40,7 @@ App({
     T.setTabBarTitles()
     wx.T = T
 
+
       /*
     wx.getSystemInfo({
       success: function (res) {
@@ -48,10 +49,7 @@ App({
     })
     */
 
-    me.setTmpSession()
-    //me.wysjLog('launch', '冷启动11 - lang Index: ' + langIndex);
 
-    //wx.setStorageSync('session3rd', '')
     let session3rd = wx.getStorageSync('session3rd') || '';
     //session3rd = ''
 
@@ -63,24 +61,46 @@ App({
 
       // Request initial data with the CODE
 
-      if (session3rd.length > 20) {
-        this.globalData.myStatus = 1
+      //if (session3rd.length > 20) {
+        //this.globalData.myStatus = 1
 
-        me.initInfo(code, session3rd).then( res => {
+        // Login, refresh session, get initial info, create a new user if necessary.
+        // Loading...
+        const lang_code = langIndex === 0 ? 'zh_hans' : 'en'
+        wx.showLoading({ title: locales[lang_code].isLoading })
+
+        me.initInfo(code, session3rd).then( data => {
           //that.connectSocket(session3rd)
-        }).catch( res => {
+          wx.setStorageSync('wid', data.wid)
+
+          // Initiate global data
+          that.globalData.allCourses = JSON.parse(data.all_courses)
+          const lessons_json = JSON.parse(data.all_lessons)
+          if (lessons_json.pstat === 'ok') {
+            that.globalData.allLessons = lessons_json.lessons
+          }
+          that.globalData.status = 1
+
+          if (data.uid === 689) {
+            console.log('admin is you')
+            wx.setStorageSync('admin', 'hu')
+          }
+          else {
+            wx.setStorageSync('admin', 'kkkhu')
+          }
+
+          wx.hideLoading();
+        }).catch( all_courses => {
+          wx.hideLoading();
           wx.setStorageSync('session3rd', '')
-          me.loginWechat().then((session3rd) => {
-            //that.connectSocket(session3rd)
-          }).catch((res) => {
-            //console.log('fai')
-          })
         })
+      /*
       }
       else {
         that.globalData.myStatus = 0
         that.loginWechat()
       }
+      */
 
     }).catch( err => {
       console.log('catch', err)
@@ -219,7 +239,9 @@ App({
 
   globalData:
   {
+    status: 0,
     allCourses: [],
+    allLessons: [],
     enSocket: {},
     myMessageSummary: [],
     myStatus: 0,

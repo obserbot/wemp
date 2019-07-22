@@ -4,6 +4,7 @@
     "pages/home/home",
     "pages/daren/daren",
     "pages/lesson/lesson",
+    "pages/lessonote/lessonote",
     "pages/my/my",
     "pages/my/contact/contact",
     "pages/personal/personal",

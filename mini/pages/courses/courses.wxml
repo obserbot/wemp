@@ -3,6 +3,7 @@
   <block wx:for="{{ localeStrings.coursesTabs }}" wx:key="*this">
     <view id="{{ index }}" class="weui-navbar__item {{ activeIndex == index ? 'weui-bar__item_on' : '' }}"
       data-category='{{ tabTermId[index] }}'
+      data-which='{{ tabId[index] }}'
       bindtap="tabClick"
     >
       <view class="weui-navbar__title">{{ item }}</view>
@@ -39,6 +40,53 @@
 -->
 
     <view class='course-item card' hover-class='hover-class'
+      wx:if='{{ tabNow === "LESSONS" }}'
+      wx:for='{{ lessons_now }}' wx:key='{{ index }}' data-nid='{{ item.nid }}'
+      catchtap='toLessonDetail'
+    >
+
+      <view class='header'>
+        <block wx:if="{{item.author.name !== 'anonymous'}}">
+        <view class='name' data-item='{{ item }}' catchtap='toPersonal'>
+          <image class="tutor-avatar" mode='aspectFill' src='{{ item.author.avatar || "/img/default_avatar.png" }}'></image>
+        </view>
+        </block>
+      </view>
+      <view class='content course-title-wrap'>
+        <view class='course-title'>
+          <view class='title'>{{ item.title }}</view>
+        </view>
+        <view class='name-nationality'>
+          <view class="tutor-name">
+            {{ item.author.names[ languageCode ] ? item.author.names[ languageCode ] : item.author.name }}
+          </view>
+          <view class="tutor-nationality">{{ item.author.nationality }}</view>
+        </view>
+      </view>
+
+    <!--
+      <view class='price'>
+        <view class="course-price" wx:if='{{ item.price === "0" }}'>
+          {{ localeStrings.free }} / {{ item.duration }}
+        </view>
+        <view class="course-price" wx:if='{{ item.price !== "0" }}'>
+          {{ item.price }} / {{ item.duration }}
+        </view>
+        <view class="course-time" wx:if='{{ item.time1[ languageCode ] }}'>
+          {{ item.time1[ languageCode ] }}
+        </view>
+        <view class="course-time" wx:if='{{ item.time2[ languageCode ] }}'>
+          {{ item.time2[ languageCode ] }}
+        </view>
+        <view class="course-time" wx:if='{{ item.time3[ languageCode ] }}'>
+          {{ item.time3[ languageCode ] }}
+        </view>
+      </view>
+      -->
+    </view>
+
+    <view class='course-item card' hover-class='hover-class'
+      wx:if='{{ tabNow === "COURSES" }}'
       wx:for='{{ courses_now }}' wx:key='{{ index }}' data-nid='{{ item.nid }}'
       catchtap='toCourseDetail'
     >
@@ -78,8 +126,6 @@
           {{ item.time3[ languageCode ] }}
         </view>
       </view>
-      <!--
-      -->
 
     <!--
       <view class='footer'>
@@ -97,6 +143,9 @@
 
 </view>
 
+        <view class='login-text' bindtap='xiadan' wx:if='{{ isAdmin }}'>
+        xia dan
+        </view>
 
 
 <!--

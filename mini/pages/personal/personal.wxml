@@ -1,0 +1,63 @@
+<view class='wrapper'>
+  <view class='card profile'>
+    <view class='info'>
+      <image class='avatar' mode='aspectFill' src='{{ thirdavatar }}' wx:if='{{ thirdavatar }}'></image>
+      <image class='avatar' src='/img/empty_avatar_user.png' wx:else></image>
+      <view class='text'>
+        <view class='line-first'>
+          <view class='name'>{{ thirdname }}</view>
+          <view class='nationality'>{{ theTutor.nationality[ languageCode ] }}</view>
+        </view>
+        <view class='others'>{{ briefDesc[ languageCode ] }}</view>
+      </view>
+    </view>
+    <view class='bottom'>
+      <view class='l'>
+        <view class='action'>
+          <view class='number'>{{ follower_num }}</view>
+          <view class='key'>{{ localeStrings.followers }}</view>
+        </view>
+      </view>
+    </view>
+    <view class="follow-outside">
+      <view class="{{ loading_class }}"></view>
+      <view class="follow-wrap" wx:if="{{ isLogged }}">
+        <button bindtap="toggleFollow" class='login-text'>
+          {{ isFollowing ? localeStrings.unfollow : localeStrings.follow }}
+        </button>
+      </view>
+      <view class="follow-wrap" wx:else>
+        <button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" class='login-text'>
+          {{ localeStrings.follow }}
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <view class='myself-description' wx:if='{{ tutorDesc[ languageCode ] }}'>
+    {{ tutorDesc[ languageCode ] }}
+    <view wx:if='{{ languageCode === "zh_hans" }}' class='para'>
+      {{ tutorDesc['en'] }}
+    </view>
+  </view>
+  <!--
+  <view class='contact-wrap'>
+    <view class='contact-title'>
+      {{ localeStrings.contact }}
+    </view>
+    <view class='qrcode-wrap'>
+      <image src="/img/qrcode.png" mode="widthFix" bindtap="previewImage"></image>
+    </view>
+  </view>
+  -->
+
+<!--
+  <view class="message-wrap" wx:if="{{ isLogged }}">
+    <button class="weui-btn" type="primary" plain="true" bindtap="goDialog">发消息</button>
+  </view>
+  <view class="message-wrap" wx:else>
+    <button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" class='weui-btn' type='primary' plain="true">发消息</button>
+  </view>
+-->
+
+</view>

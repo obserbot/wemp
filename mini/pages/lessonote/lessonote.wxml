@@ -1,0 +1,59 @@
+<view class='container'>
+
+
+  <view wx:for='{{ messages }}' wx:key='{{ index }}'>
+    <view class='talker'>
+      {{ item.talker }}:
+    </view>
+    <view class='material material-text' wx:if='{{ item.type == "text" }}'>
+      <view class='item-word' wx:for='{{ item.text_array }}' wx:key='{{ iindex }}' wx:for-item='iitem'>
+        <block wx:if='{{ iitem === "qqemoji39" }}'>
+          <view class='item-word qqemoji39'></view>
+        </block>
+        <block wx:elif='{{ iitem === "qqemoji106" }}'>
+          <view class='item-word qqemoji106'></view>
+        </block>
+        <block wx:elif='{{ iitem === "qqemoji79" }}'>
+          <view class='item-word qqemoji79'></view>
+        </block>
+        <block wx:elif='{{ iitem === "qqemoji12" }}'>
+          <view class='item-word qqemoji12'></view>
+        </block>
+        <block wx:elif='{{ iitem === "qqemoji13" }}'>
+          <view class='item-word qqemoji13'></view>
+        </block>
+        <block wx:elif='{{ iitem === "qqemoji20" }}'>
+          <view class='item-word qqemoji20'></view>
+        </block>
+        <block wx:elif='{{ iitem === "emoji1f639" }}'>
+          <view class='item-word emoji1f639'></view>
+        </block>
+        <block wx:elif='{{ iitem === "emoji1f37a" }}'>
+          <view class='item-word emoji1f37a'></view>
+        </block>
+        <block wx:else>
+          {{ iitem }}
+        </block>
+      </view>
+    </view>
+
+    <view class='material material-image' wx:if='{{ item.type == "image" }}'>
+      <image src='{{ item.src }}' mode='aspectFit'></image>
+    </view>
+
+    <view class='material material-audio' wx:if='{{ item.type == "audio" }}'>
+      <view class='speech-bubble speech-bubble-left' data-index='{{ index }}' bindtouchend='switchPlaying'>
+        <view class="box">
+          <view class='wifi-symbol'>
+            <view class="wifi-circle first {{ item.paused }}"></view>
+            <view class="wifi-circle second {{ item.paused }} {{ item.running2 }}" ></view>
+            <view class="wifi-circle third {{ item.paused }} {{ item.running3 }}"></view>
+          </view>
+        </view>
+      </view>
+
+    </view>
+
+  </view>
+
+</view>
