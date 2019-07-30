@@ -4,21 +4,14 @@ const serverAPI = require('../../server.api.js')
 const utils = require('../../utils/utils.js')
 import event from '../../utils/event'
 
-const app = getApp()
+//const app = getApp()
 
 Page({
 
-  data: {
+  data:
+  {
     localeStrings: {},
     darens: [],
-
-    COUNT: 20,
-    timeline: [],
-    hotRecomment: [],
-    hotRrecommendShow: true,
-    auth: {},
-    logined: true,
-    rotate: '',
   },
 
 
@@ -39,42 +32,20 @@ Page({
     this.getDarens()
   },
 
-  onShow() {
 
+  onShow ()
+  {
     if (this.data.flagNavigationBarTitle) {
       wx.T.setNavigationBarTitle()
       this.data.flagNavigationBarTitle = false
     }
   },
 
-  /*
-  init() {
-    this.setData({
-      auth: {},
-      rotate: '',
-    })
-    let auth = utils.ifLogined()
-    this.setData({
-      auth,
-      logined: auth,
-    })
 
-    this.getBannerImgList()
-    this.getEntryByTimeline(true)
-    if (auth) {
-      this.getEntryByHotRecomment()
-    }
-  },
-  */
-
-  onReachBottom () {
-    //this.getEntryByTimeline()
-  },
-
-  onShareAppMessage(res) {
-
+  onShareAppMessage (res)
+  {
     return {
-      title: '英语达人圈',
+      title: '微移英语',
       path: '/pages/daren/daren'
     }
   },
@@ -98,10 +69,15 @@ Page({
   },
 
 
-  getDarens(isPullDown = false) {
-
+  /**
+   * Get teacher list
+   */
+  getDarens (isPullDown = false)
+  {
     const that = this
-    wx.showLoading({ title: "加载中" })
+
+    wx.showLoading({ title: that.data.localeStrings.isLoading })
+
     wx.request({
       url: serverAPI.getDarens,
       data: {},
@@ -112,12 +88,12 @@ Page({
       },
       fail: () => {
         wx.showToast({
-          title: '网路开小差，请稍后再试',
+          title: that.data.localeStrings.networkError,
           icon: 'none',
         })
       },
       complete: () => {
-        wx.hideLoading();
+        wx.hideLoading()
         if (isPullDown) {
           wx.stopPullDownRefresh()
         }

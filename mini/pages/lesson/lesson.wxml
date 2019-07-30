@@ -1,5 +1,6 @@
 <view class='container'>
 
+
   <view class="page-title-wrap">
     <view class='course-title'>
       {{ courseTitle[localeCode] }}
@@ -67,6 +68,32 @@
   <view class='goto-weoa' hover-class='hover-class' bindtap='toWEOA' wx:if='{{ weoa_url }}'>
     {{ localeStrings.courseMaterial }} >
   </view>
+
+  <block wx:if="{{ isLogged }}">
+    <image class="avatar" src="{{ userInfo.avatarUrl }}"></image>
+    <view class="info">
+      <text class="name">{{ userInfo.nickName }}</text>
+    </view>
+    <!--
+    <view class="logout" bindtap="userLogout">
+      {{ localeStrings.logout }}
+    </view>
+    -->
+  </block>
+
+  <block wx:else>
+  <!--
+    <view class="wechat-user-wrap">
+      <view class="wechat-login2">
+        <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" class='login-text'>
+          {{ localeStrings.enroll }}
+        </button>
+      </view>
+    </view>
+    <view class="info">
+    </view>
+    -->
+  </block>
 
   <view class="qrcode-wrap" wx:if='{{ groupQrUrl }}'>
     <view class='qrcode-title'>

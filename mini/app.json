@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/courses/courses",
-    "pages/home/home",
+    "pages/list/list",
+    "pages/home2/home",
     "pages/daren/daren",
     "pages/lesson/lesson",
     "pages/lessonote/lessonote",
@@ -29,7 +29,7 @@
     "backgroundColor": "#fff",
     "list": [
       {
-        "pagePath": "pages/courses/courses",
+        "pagePath": "pages/list/list",
         "text": "课程",
         "iconPath": "img/tab_course_normal.png",
         "selectedIconPath": "img/tab_course.png"

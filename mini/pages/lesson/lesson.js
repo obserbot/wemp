@@ -14,6 +14,8 @@ Page({
 
   data:
   {
+    isLogged: false,
+
     localeCode: 'zh_hans',
     localeStrings: {},
     //courseId: '0',
@@ -37,12 +39,15 @@ Page({
     //this.getCourseDetails(course_nid) // 不要每次都重新抓取, 只有在landing pages, 才需要
 
     if (course_nid) {
+      console.log('alllllll')
+      console.log(app.globalData.allCourses)
+      //app.globalData.allCourses = []
       let theCourse = app.globalData.allCourses.filter( item => {
-        return course_nid == item.nid ? true : false
+        return course_nid == item.nid
       })
       console.log('ttt cour', theCourse)
 
-      if (theCourse) {
+      if (theCourse.length > 0) {
         const lang_code = wx.T.getLanguageCode()
         const localeCountryNames = utils.getCountryNames()
         //let courseId = theCourse[0].nid

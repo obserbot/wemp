@@ -1,5 +1,6 @@
 @import "/components/weuiStyle/weui-loading.wxss";
 @import "/components/weuiStyle/weui-button.wxss";
+
 .wrapper {
   padding-top: 20rpx;
 }
@@ -52,11 +53,7 @@
   padding: 1px 3px;
 }
 .profile .others {
-/*
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  */
+  color: #696969;
   overflow: hidden;
 }
 .profile .bottom {

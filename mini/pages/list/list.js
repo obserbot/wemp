@@ -44,7 +44,7 @@ Page({
 
   onLoad (options)
   {
-    const that = this
+    //const that = this
     // Clicked shared link.
     const course_nid = options.course_nid
     console.log('course nid', course_nid)
@@ -59,6 +59,7 @@ Page({
     event.on("languageChanged", this, this.setLocaleCourses)  // Content
     //event.on("languageChanged", this, this.setLocaleLessons)  // Content
 
+    /*
     let initCount = 0
     const initData = function() {
       if (app.globalData.status === 1) {
@@ -75,6 +76,8 @@ Page({
       }
     }
     initData()
+    */
+    this.initData()
     //this.getEntries()
 
 
@@ -151,7 +154,10 @@ Page({
 
   onPullDownRefresh ()
   {
-    this.getEntries(true)
+    wx.stopPullDownRefresh()
+    // Todo: get new data from server!
+    //this.initData()
+    //this.getEntries(true)
   },
 
 
@@ -241,6 +247,32 @@ Page({
       title: slogan,
       path: '/pages/courses/courses?lang=' + lang
     }
+  },
+
+
+  /**
+   * Init data
+   */
+  initData ()
+  {
+    const that = this
+    let initCount = 0
+
+    const init = function() {
+      if (app.globalData.status === 1) {
+        that.setLocaleCourses( app.globalData.allCourses )
+        that.setLocaleLessons()
+      }
+      else {
+        if (initCount++ > 300) {
+          console.log('long time')
+        }
+        else {
+          setTimeout(init, 200)
+        }
+      }
+    }
+    init()
   },
 
 
