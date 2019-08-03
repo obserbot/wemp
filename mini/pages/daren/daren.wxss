@@ -1,24 +1,9 @@
 /* pages/daren/daren.wxss */
 
 .daren-container {
-  padding-bottom: 60px;
+  padding-bottom: 99rpx;
   position: relative;
 }
-
-/*
-.daren-container:after {
-  content: "";
-  background-image: url(https://weiyishijie.com/en_edu/sites/default/files/sky5.jpg);
-  background-size: cover;
-  opacity: 0.5;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 94px;
-  position: absolute;
-  z-index: -1;
-}
-*/
 
 .darens-wrap {
   display: flex;
@@ -27,36 +12,30 @@
 .darens-wrap .one-daren-wrap {
   width: 46%;
   text-align: center;
-  padding: 30px 0;
+  padding: 60rpx 0;
   background-color: #fff;
   margin: 2%;
-  border-radius: 6px;
-  box-shadow: 0px 2px 2px 0 grey;
+  border-radius: 12rpx;
+  box-shadow: 0 4rpx 4rpx 0 grey;
 }
 .darens-wrap .one-daren-wrap .dr-avatar image {
-  width: 60px;
-  height: 60px;
+  width: 120rpx;
+  height: 120rpx;
   border-radius: 50%;
 }
 .darens-wrap .one-daren-wrap .dr-nickname {
-  margin-top: 8px;
+  margin-top: 16rpx;
 }
 .darens-wrap .one-daren-wrap .dr-description {
-  margin-top: 12px;
+  margin-top: 24rpx;
 }
 .darens-wrap .one-daren-wrap .dr-description text {
-  font-size: 12px;
+  font-size: 24rpx;
   font-weight: 300;
-  border: 1px solid #dcdcdc;
+  border: 1rpx solid #dcdcdc;
   border-radius: 10rpx;
-  padding: 1px 3px;
+  padding: 2rpx 6rpx;
   color: #778899;
 }
 
-.page-title-wrap {
-  font-size: 28px;
-  font-weight: 500;
-  text-align: center;
-  padding: 30px 0;
-}
 
