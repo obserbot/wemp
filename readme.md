@@ -1,7 +1,8 @@
 # Weiyi English Mini Program (WEMP)
 
+## Teachers and profiles
 
-Teachers and profiles (Chinese)
+### (Chinese)
 
 <p align="center">
   <img src="images/teachers-cn.jpeg" width="300">
@@ -21,7 +22,7 @@ Todo:
 
 
 
-Teachers and profiles (English)
+### (English)
 
 <p align="center">
   <img src="images/teachers-en.jpeg" width="300">

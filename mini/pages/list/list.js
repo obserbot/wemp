@@ -131,6 +131,7 @@ Page({
     */
       lessons_now.push(lessons[ix])
     }
+
     this.setData({
       lessons_now
     })
@@ -313,7 +314,8 @@ Page({
   {
     let nid = ev.currentTarget.dataset.nid
     wx.navigateTo({
-      url: `/pages/lessonote/lessonote?nid=${nid}`,
+      url: `/pages/lesson/lesson?nid=${nid}`,
+      //url: `/pages/lessonote/lessonote?nid=${nid}`,
     })
   },
 
@@ -325,7 +327,7 @@ Page({
   {
     let nid = ev.currentTarget.dataset.nid
     wx.navigateTo({
-      url: `/pages/lesson/lesson?nid=${nid}`,
+      url: `/pages/course/course?nid=${nid}`,
     })
   },
 
