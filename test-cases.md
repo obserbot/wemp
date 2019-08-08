@@ -30,4 +30,9 @@ Update user profile
 ### 4. Page: Teacher detail
 
 
+### 5. 访问小程序时的初始信息 - courses & lessons
+
+<p align="center">
+  <img src="images/allcourses.png" width="400">
+</p>
 
