@@ -1,6 +1,12 @@
 
+### 1. Login log
 
-### 1. New user accesses
+用户访问、登录信息
+
+
+
+
+### 2. New user accesses
 
 - Create a user in wechat_users.
     open_id
@@ -10,7 +16,7 @@
 - Create a Drupal user
 
 
-### 2. User login
+### 3. User login
 
 [todo]
 
@@ -21,4 +27,7 @@ Update user profile
 
 
 
-### 3. Page: Teacher detail
+### 4. Page: Teacher detail
+
+
+

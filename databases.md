@@ -8,6 +8,7 @@
 
     en_edu_extra
         wechat_users
+        log
 
 
 ```
@@ -29,5 +30,28 @@ MariaDB [en_edu_extra]> describe wechat_users;
 | avatar_url     | varchar(255) | YES  |     | NULL    |                |
 | union_id       | tinytext     | YES  |     | NULL    |                |
 +----------------+--------------+------+-----+---------+----------------+
-```
 
+
+MariaDB [en_edu_extra]> desc log;
++------------+-------------+------+-----+-------------------+----------------+
+| Field      | Type        | Null | Key | Default           | Extra          |
++------------+-------------+------+-----+-------------------+----------------+
+| id         | int(11)     | NO   | PRI | NULL              | auto_increment |
+| info       | tinytext    | YES  |     | NULL              |                |
+| created    | datetime    | YES  |     | CURRENT_TIMESTAMP |                |
+| type       | varchar(32) | YES  |     | NULL              |                |
+| appid      | tinyint(4)  | YES  |     | 0                 |                |
+| session3rd | varchar(64) | YES  |     |                   |                |
++------------+-------------+------+-----+-------------------+----------------+
+
+appid
+
+- 0 WEMP
+
+type
+
+- access
+- login
+
+
+```

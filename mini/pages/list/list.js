@@ -26,14 +26,6 @@ Page({
     sliderOffset: 0,
     sliderLeft: 1,
 
-    COUNT: 20,
-    timeline: [],
-    hotRecomment: [],
-    hotRrecommendShow: true,
-    auth: {},
-    logined: true,
-    rotate: '',
-
     courses: [],
     courses_now: [],
     lessons_now: [],
@@ -144,12 +136,6 @@ Page({
       wx.T.setNavigationBarTitle()
       this.data.flagNavigationBarTitle = false
     }
-
-      /* origin
-    if (utils.pageReload(this.data.auth, [this.data.timeline])) {
-      wx.startPullDownRefresh({})
-    }
-    */
   },
 
 
@@ -162,81 +148,6 @@ Page({
   },
 
 
-  getBannerImgList() {
-
-    /*
-    const auth = this.data.auth
-    wx.request({
-      url: `${config.bannerRequestUrl}/get_banner`,
-      data: {
-        position: 'explore',
-      },
-      success: (res) => {
-      },
-      fail: () => {
-        wx.showToast({
-          title: '网路开小差，请稍后再试',
-          icon: 'none',
-        })
-      },
-    })
-    */
-  },
-
-  // 获取 timeline 推荐列表
-  // 翻页：将最后一条的 verifyCreatedAt 赋值给 before 字段即可
-  getEntryByTimeline(reload) {
-    const auth = this.data.auth
-    let timeline = this.data.timeline
-    if (utils.isEmptyObject(timeline) || reload) {
-      timeline = [{ verifyCreatedAt: '' }]
-    }
-    let rankIndex = (timeline.slice(-1)[0].verifyCreatedAt) || ''
-    wx.request({
-      url: `${config.timelineRequestUrl}/get_entry_by_timeline`,
-      data: {
-        src: 'web',
-        uid: auth.uid || '',
-        device_id: auth.clientId,
-        token: auth.token,
-        limit: this.data.COUNT,
-        category: 'all',
-        recomment: 1,
-        before: rankIndex,
-      },
-      success: (res) => {
-        let data = res.data
-        if (data.s === 1) {
-          wx.hideLoading()
-          let list = (data.d && data.d.entrylist) || []
-          console.log('list entry')
-          console.log(list)
-          this.setData({
-            timeline: reload ? list : this.data.timeline.concat(list),
-          })
-        } else {
-          wx.showToast({
-            title: data.m.toString(),
-            icon: 'none',
-          })
-        }
-      },
-      fail: () => {
-        wx.showToast({
-          title: '网路开小差，请稍后再试',
-          icon: 'none',
-        })
-      },
-      complete: () => {
-        wx.stopPullDownRefresh()
-      },
-    })
-  },
-  onReachBottom () {
-    //this.getEntryByTimeline()
-  },
-
-
   /**
    * Share message.
    */
@@ -246,7 +157,7 @@ Page({
     const slogan = lang === 0 ? '来自全球的英语教师，带给你不一样的英语课！' : 'Find your favorate English tutors and courses!'
     return {
       title: slogan,
-      path: '/pages/courses/courses?lang=' + lang
+      path: '/pages/list/list?lang=' + lang
     }
   },
 
