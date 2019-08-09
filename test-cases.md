@@ -33,6 +33,6 @@ Update user profile
 ### 5. 访问小程序时的初始信息 - courses & lessons
 
 <p align="center">
-  <img src="images/allcourses.png" width="400">
+  <img src="images/allcourses.png">
 </p>
 
