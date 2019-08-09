@@ -20,7 +20,7 @@ Page({
     localeStrings: {},
     //courseId: '0',
     lessonTitle: {},
-    courseTutor: {},
+    lessonTutor: {},
     courseDesc: {},
     tutorDesc: {},
     coursePrice: 0,
@@ -39,26 +39,26 @@ Page({
     //this.getCourseDetails(course_nid) // 不要每次都重新抓取, 只有在landing pages, 才需要
 
     if (lesson_nid) {
-      console.log('alllllll')
-      console.log(app.globalData.allCourses)
+      //console.log('alllllll')
+      //console.log(app.globalData.allCourses)
       //app.globalData.allCourses = []
       let theLesson = app.globalData.allLessons.filter( item => {
         return lesson_nid == item.nid
       })
-      console.log('ttt cour', theLesson)
+      //console.log('ttt cour', theLesson)
 
       if (theLesson.length > 0) {
         const lang_code = wx.T.getLanguageCode()
         const localeCountryNames = utils.getCountryNames()
         //let courseId = theCourse[0].nid
+        const lessonTutor = theLesson[0].author
         /*
-        let courseTutor = theCourse[0].author
         courseTutor.nationality = localeCountryNames[ courseTutor.iso2 ][ lang_code ]
         let coursePrice = theCourse[0].price
         */
 
         this.setData({
-          //courseId,
+          lessonTutor,
           lessonTitle: theLesson[0].lesson_title,
           /*
           courseNid: course_nid,
@@ -68,7 +68,6 @@ Page({
           },
           courseObjective:      theCourse[0].objectives,
           courseObjectiveItems: theCourse[0].objectives_items,
-          courseTutor,
           tutorDesc: {
             zh_hans: theCourse[0].author.desc_zh_hans,
             en:      theCourse[0].author.desc_en,

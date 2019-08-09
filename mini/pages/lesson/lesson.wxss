@@ -1,4 +1,6 @@
 
+@import '/components/weui/weui.wxss';
+
 .page-title-wrap .course-title {
   font-size: 56rpx;
   font-weight: 500;
@@ -209,6 +211,12 @@
 .time-wrap .time2,
 .time-wrap .time3 {
   margin: 0 10rpx;
+  font-weight: 500;
+}
+
+
+.button-sp-area .weui-btn {
+  width: 260rpx;
   font-weight: 500;
 }
 
