@@ -19,7 +19,7 @@ Page({
     localeCode: 'zh_hans',
     localeStrings: {},
     //courseId: '0',
-    courseTitle: {},
+    lessonTitle: {},
     courseTutor: {},
     courseDesc: {},
     tutorDesc: {},
@@ -35,29 +35,32 @@ Page({
 
   onLoad (options)
   {
-    const course_nid = options.nid
+    const lesson_nid = options.nid
     //this.getCourseDetails(course_nid) // 不要每次都重新抓取, 只有在landing pages, 才需要
 
-    if (course_nid) {
+    if (lesson_nid) {
       console.log('alllllll')
       console.log(app.globalData.allCourses)
       //app.globalData.allCourses = []
-      let theCourse = app.globalData.allCourses.filter( item => {
-        return course_nid == item.nid
+      let theLesson = app.globalData.allLessons.filter( item => {
+        return lesson_nid == item.nid
       })
-      console.log('ttt cour', theCourse)
+      console.log('ttt cour', theLesson)
 
-      if (theCourse.length > 0) {
+      if (theLesson.length > 0) {
         const lang_code = wx.T.getLanguageCode()
         const localeCountryNames = utils.getCountryNames()
         //let courseId = theCourse[0].nid
+        /*
         let courseTutor = theCourse[0].author
         courseTutor.nationality = localeCountryNames[ courseTutor.iso2 ][ lang_code ]
         let coursePrice = theCourse[0].price
+        */
 
         this.setData({
           //courseId,
-          courseTitle: theCourse[0].course_title,
+          lessonTitle: theLesson[0].lesson_title,
+          /*
           courseNid: course_nid,
           courseDesc: {
             zh_hans: theCourse[0].desc_string_zh_hans,
@@ -85,6 +88,7 @@ Page({
           },
           groupQrUrl: theCourse[0].group_qr,
           weoa_url: theCourse[0].weoa_url,
+      */
         })
       }
       //console.log('theCourse:', theCourse)
@@ -103,6 +107,7 @@ Page({
 
     const localeCode = wx.T.getLanguageCode()
 
+    /*
     const switchs = this.data.switchs
 
     // Objectives Main existing
@@ -119,7 +124,12 @@ Page({
       localeCode,
       switchs,
     })
+    */
 
+
+    this.setData({
+      localeCode,
+    })
   },
 
 

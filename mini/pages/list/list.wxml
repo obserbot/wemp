@@ -54,7 +54,7 @@
       </view>
       <view class='content course-title-wrap'>
         <view class='course-title'>
-          <view class='title'>{{ item.title }}</view>
+          <view class='title'>{{ item.lesson_title[ languageCode ] }}</view>
         </view>
         <view class='name-nationality'>
           <view class="tutor-name">

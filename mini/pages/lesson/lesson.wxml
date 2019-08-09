@@ -1,9 +1,8 @@
 <view class='container'>
 
-
   <view class="page-title-wrap">
     <view class='course-title'>
-      {{ courseTitle[localeCode] }}
+      {{ lessonTitle[localeCode] }}
     </view>
     <view class='tutor-wrap' hover-class='hover-class' bindtap='toPersonal' data-uid='{{ courseTutor.uid }}'>
       <view class='profile'>

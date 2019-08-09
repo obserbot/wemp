@@ -48,8 +48,8 @@ Page({
 
     utils.setLocaleStrings(this)
     event.on("languageChanged", this, utils.setLocaleStrings) // UI
-    event.on("languageChanged", this, this.setLocaleCourses)  // Content
-    //event.on("languageChanged", this, this.setLocaleLessons)  // Content
+    event.on("languageChanged", this, this.setLocaleCourses)  // Content of courses
+    event.on("languageChanged", this, this.setLocaleLessons)  // Content of lessons
 
     /*
     let initCount = 0
@@ -112,15 +112,15 @@ Page({
   setLocaleLessons ()
   {
     const lessons = app.globalData.allLessons
-    //const lang_code = wx.T.getLanguageCode()
-    //const localeCountryNames = utils.getCountryNames()
+    const lang_code = wx.T.getLanguageCode()
+    const localeCountryNames = utils.getCountryNames()
     let lessons_now = []
     for (let ix in lessons) {
     /*
       lessons[ix].nid = lessons[ix]['nid']
       lessons[ix].title = lessons[ix]['course_title'][lang_code]
-      lessons[ix].author.nationality = localeCountryNames[courses[ix].author.iso2][lang_code]
     */
+      lessons[ix].author.nationality = localeCountryNames[lessons[ix].author.iso2][lang_code]
       lessons_now.push(lessons[ix])
     }
 
