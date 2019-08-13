@@ -22,7 +22,7 @@
     <block wx:else>
       <view class="wechat-user-wrap">
         <view class="wechat-login2">
-          <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" class='login-text'>
+          <button open-type='getUserInfo' bindgetuserinfo='onGotUserInfo' class='login-text'>
             {{ localeStrings.login }}
           </button>
         </view>
@@ -155,7 +155,7 @@
 
   <view class='version-info'>
     <view class='app-name'>{{ localeStrings.appName }}</view>
-    <view class='version-code'>1.4.1</view>
+    <view class='version-code'>1.4.6</view>
   </view>
 
 </view>

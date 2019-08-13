@@ -27,7 +27,14 @@ App({
   {
     const that = this
 
-    // Language
+    // Todo: Language resolvation order:
+    //
+    // 1. url argument 'lang'
+    // 2. local storage 'languageCode'
+    // 3. setting in server for existing users
+    // 4. WeChat language
+    // 5. default 'zh_CN'
+
     let langIndex = 0
     if ('lang' in options.query) {
       langIndex = parseInt(options.query.lang) || 0
@@ -40,18 +47,14 @@ App({
     T.setTabBarTitles()
     wx.T = T
 
+    const session3rd = wx.getStorageSync('session3rd') || '';
 
-      /*
+    // Log system info
     wx.getSystemInfo({
-      success: function (res) {
-        that.globalData.systeminfo = res
+      success: res => {
+        //that.globalData.systeminfo = res
       },
     })
-    */
-
-
-    let session3rd = wx.getStorageSync('session3rd') || '';
-    //session3rd = ''
 
     me.wxLoginToGetCode().then( code => {
       if (code === 'error') {
@@ -246,9 +249,5 @@ App({
     myMessageSummary: [],
     myStatus: 0,
     loginWeiyiCount: 0,
-
-    systeminfo: {},
-    config: {}
   },
-
 })

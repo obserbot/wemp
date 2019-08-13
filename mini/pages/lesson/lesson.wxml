@@ -82,7 +82,7 @@
 
   <block wx:else>
     <view class="button-sp-area">
-      <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" class='weui-btn' type='primary'>
+      <button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" class='weui-btn' type='primary'>
         {{ localeStrings.enroll }}
       </button>
     </view>
