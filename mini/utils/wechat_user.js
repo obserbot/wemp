@@ -105,12 +105,11 @@ function initInfo(code, session3rd)
  */
 function getUserInfo (userInfo)
 {
-  return new Promise(function (resolve, reject) {
+  return new Promise((resolve, reject) => {
 
-    wx.setStorageSync('userInfo', userInfo);
-    wx.showLoading({
-      title: '登录中'
-    });
+    const localeStrings = wx.T.getLanguage()
+
+    wx.showLoading({ title: localeStrings.logining })
 
     const session3rd = wx.getStorageSync('session3rd') || ''
     const userinfo = JSON.stringify(userInfo);
@@ -125,6 +124,7 @@ function getUserInfo (userInfo)
         header: {'content-type': 'application/x-www-form-urlencoded'},
         success: res => {
           wx.hideLoading()
+          wx.setStorageSync('userInfo', userInfo);
           if (res.data.updateSession3rd) {
             wx.setStorageSync('session3rd', res.data.newSession3rd)
           }

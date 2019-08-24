@@ -1,7 +1,7 @@
 // /utils/locales.js
 
-export default {
-
+export default
+{
   'zh_hans':
   {
     'appName': '微移英语',
