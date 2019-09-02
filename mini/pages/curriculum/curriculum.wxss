@@ -1,0 +1,41 @@
+/* pages/daren/daren.wxss */
+
+.daren-container {
+  padding-bottom: 99rpx;
+  position: relative;
+}
+
+.darens-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+.darens-wrap .one-daren-wrap {
+  width: 46%;
+  text-align: center;
+  padding: 60rpx 0;
+  background-color: #fff;
+  margin: 2%;
+  border-radius: 12rpx;
+  box-shadow: 0 4rpx 4rpx 0 grey;
+}
+.darens-wrap .one-daren-wrap .dr-avatar image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+.darens-wrap .one-daren-wrap .dr-nickname {
+  margin-top: 16rpx;
+}
+.darens-wrap .one-daren-wrap .dr-description {
+  margin-top: 24rpx;
+}
+.darens-wrap .one-daren-wrap .dr-description text {
+  font-size: 24rpx;
+  font-weight: 300;
+  border: 1rpx solid #dcdcdc;
+  border-radius: 10rpx;
+  padding: 2rpx 6rpx;
+  color: #778899;
+}
+
+

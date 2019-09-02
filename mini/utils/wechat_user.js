@@ -10,28 +10,25 @@ const utils = require('../utils/utils.js')
  */
 function wxLoginToGetCode ()
 {
-  return new Promise((resolve, reject) => {
-
-    wx.login({
-      success(res) {
-        if (res.code) {
-          resolve(res.code)
+  return new Promise((resolve, reject) =>
+    {
+      wx.login({
+        success(res) {
+          if (res.code) {
+            resolve(res.code)
+          }
+          else {
+            reject('error')
+          }
+        },
+        timeout() {
+          reject('3')
+        },
+        fail() {
+          reject('2')
         }
-        else {
-          reject('error')
-        }
-      },
-
-      timeout() {
-        reject('3')
-      },
-
-      fail() {
-        reject('2')
-      }
+      })
     })
-
-  })
 }
 
 
@@ -80,30 +77,32 @@ function initInfo(code, session3rd)
 {
   //const that = this;
 
-  return new Promise((resolve, reject) => {
-
-    wx.request({
-      url: server_api.getUserDetails,
-      data: {code, session3rd},
-      method: 'POST',
-      header: {'content-type': 'application/x-www-form-urlencoded'},
-      success(res) {
-        //console.log('huhu init  resss');
-        //console.log(res);
-        resolve(res.data)
-      },
-      fail(res) {
-        console.log('Initiate info fails.', res)
-      }
-    });
-  })
+  return new Promise((resolve, reject) =>
+    {
+      wx.request({
+        url: server_api.getUserDetails,
+        data: {code, session3rd},
+        method: 'POST',
+        header: {'content-type': 'application/x-www-form-urlencoded'},
+        success(res) {
+          console.log('kkhuhu init  resss');
+          console.log(res);
+          resolve(res.data)
+        },
+        fail(res) {
+          console.log('Initiate info fails.', res)
+        }
+      });
+    })
 }
 
 
 /**
  * 授权获取用户名和头像成功，保存用户信息（远程、本地）
+ *
+ * 如果 lesson_nid > 0, 则同时注册该门课程。
  */
-function getUserInfo (userInfo)
+function getUserInfo (userInfo, lesson_nid = 0)
 {
   return new Promise((resolve, reject) => {
 
@@ -112,34 +111,30 @@ function getUserInfo (userInfo)
     wx.showLoading({ title: localeStrings.logining })
 
     const session3rd = wx.getStorageSync('session3rd') || ''
-    const userinfo = JSON.stringify(userInfo);
-    if (userInfo !== undefined) {
-      wx.request({
-        url: server_api.updateUserInfo,
-        data: {
-          session3rd,
-          userinfo,
-        },
-        method: 'POST',
-        header: {'content-type': 'application/x-www-form-urlencoded'},
-        success: res => {
-          wx.hideLoading()
-          wx.setStorageSync('userInfo', userInfo);
-          if (res.data.updateSession3rd) {
-            wx.setStorageSync('session3rd', res.data.newSession3rd)
-          }
-          resolve(res)
-        },
-        fail: res => {
-          wx.hideLoading()
-          reject(false)
+    const userinfo = JSON.stringify(userInfo)
+
+    wx.request({
+      url: server_api.updateUserInfo,
+      data: {
+        session3rd,
+        userinfo,
+        lesson_nid,
+      },
+      method: 'POST',
+      header: {'content-type': 'application/x-www-form-urlencoded'},
+      success: res => {
+        wx.hideLoading()
+        wx.setStorageSync('userInfo', userInfo);
+        if (res.data.updateSession3rd) {
+          wx.setStorageSync('session3rd', res.data.newSession3rd)
         }
-      });
-    }
-    else {
-      wx.hideLoading();
-      reject(false);
-    }
+        resolve(res)
+      },
+      fail: res => {
+        wx.hideLoading()
+        reject(false)
+      }
+    });
 
   });
 }

@@ -1,20 +1,20 @@
 <view class='container'>
 
   <view class="page-title-wrap">
-    <view class='course-title'>
+    <view class="course-title">
       {{ lessonTitle[localeCode] }}
     </view>
-    <view class='tutor-wrap' hover-class='hover-class' bindtap='toPersonal' data-uid='{{ lessonTutor.uid }}'>
-      <view class='profile'>
-        <view class='info'>
-          <image class='avatar' mode='aspectFill' src='{{ lessonTutor.avatar }}'></image>
+    <view class="tutor-wrap" hover-class="hover-class" bindtap="toPersonal" data-uid="{{ lessonTutor.uid }}">
+      <view class="profile">
+        <view class="info">
+          <image class="avatar" mode="aspectFill" src="{{ lessonTutor.avatar }}"></image>
         </view>
       </view>
-      <view class='tutor-name'>
+      <view class="tutor-name">
         <text class="tutor-name">{{ lessonTutor.name }}</text>
       </view>
-      <view class='nationality-wrap'>
-        <view class='nationality'>
+      <view class="nationality-wrap">
+        <view class="nationality">
           {{ lessonTutor.nationality }}
         </view>
       </view>
@@ -26,11 +26,11 @@
     </view>
   </view>
 
-  <view class='time-wrap' wx:if='{{ courseTime3[ languageCode ] }}'>
-    <view class='time-item time-label'>{{ localeStrings.time }}</view>:
-    <view class='time-item time1'>{{ courseTime1[ languageCode ] }}</view>
-    <view class='time-item time2'>({{ courseTime2[ languageCode ] }})</view>
-    <view class='time-item time3'>{{ courseTime3[ languageCode ] }}</view>
+  <view class="time-wrap" wx:if="{{ courseTime3[ languageCode ] }}">
+    <view class="time-item time-label">{{ localeStrings.time }}</view>:
+    <view class="time-item time1">{{ courseTime1[ languageCode ] }}</view>
+    <view class="time-item time2">({{ courseTime2[ languageCode ] }})</view>
+    <view class="time-item time3">{{ courseTime3[ languageCode ] }}</view>
   </view>
 
   <view class="syllabus-wrap">
@@ -64,31 +64,36 @@
     </view>
   </view>
 
-  <view class='goto-weoa' hover-class='hover-class' bindtap='toWEOA' wx:if='{{ weoa_url }}'>
+  <view class="goto-weoa" hover-class="hover-class" bindtap="toWEOA" wx:if="{{ weoa_url }}">
     {{ localeStrings.courseMaterial }} >
   </view>
 
-  <block wx:if="{{ isLogged }}">
-    <image class="avatar" src="{{ userInfo.avatarUrl }}"></image>
-    <view class="info">
-      <text class="name">{{ userInfo.nickName }}</text>
+  <block wx:if="{{ isLogged && isEnrolled }}">
+    <view class="personal-image-outside">
+      <image class="avatar" src="{{ userInfo.avatarUrl }}"></image>
+      <button bindtap="onUnEnroll" class="weui-btn" type="primary">
+        {{ localeStrings.unenroll }}
+      </button>
     </view>
-    <!--
-    <view class="logout" bindtap="userLogout">
-      {{ localeStrings.logout }}
-    </view>
-    -->
   </block>
 
-  <block wx:else>
+  <block wx:elif="{{ isLogged }}">
     <view class="button-sp-area">
-      <button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" class='weui-btn' type='primary'>
+      <button bindtap="onEnroll" class="weui-btn" type="primary">
         {{ localeStrings.enroll }}
       </button>
     </view>
   </block>
 
-  <view class="qrcode-wrap" wx:if='{{ groupQrUrl }}'>
+  <block wx:else>
+    <view class="button-sp-area">
+      <button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" class="weui-btn" type="primary">
+        {{ localeStrings.enroll }}
+      </button>
+    </view>
+  </block>
+
+  <view class="qrcode-wrap" wx:if="{{ groupQrUrl }}">
     <view class='qrcode-title'>
       {{ localeStrings.enterClass }}
     </view>

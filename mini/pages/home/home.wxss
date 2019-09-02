@@ -1,0 +1,219 @@
+/* courses.wxss */
+
+@import '/components/weui/weui.wxss';
+
+page {
+  background: #f5f5f5;
+}
+
+
+.container
+{
+  margin-top: 110rpx;
+}
+
+.weui-bar__item_on {
+  background: #fff;
+}
+.weui-bar__item_on .weui-navbar__title {
+  font-weight: 500;
+}
+.weui-navbar__slider {
+  /**width: 9.2em;*/
+  width: 13.4em;
+}
+
+
+/*
+.page-title-wrap {
+  font-size: 28px;
+  font-weight: 500;
+  text-align: center;
+  margin: 0 auto;
+  padding: 30px 0;
+  display: relative;
+}
+.page-title-wrap image {
+  margin-top: 8px;
+  width: 160px;
+  height: 35px;
+}
+.page-title-wrap:after {
+  content: "";
+  background-image: url(https://weiyishijie.com/en_edu/sites/default/files/sky5.jpg);
+  background-size: cover;
+  opacity: 0.4;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  position: absolute;
+  z-index: -1;
+}
+*/
+
+
+
+
+// From postItemTwo.wxss
+
+.content .title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.course-item {
+  padding: 8rpx 30rpx;
+  margin: 10rpx 0;
+  box-sizing: border-box;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  min-height: 180rpx;
+  font-size: 28rpx;
+  box-shadow: 0 5rpx 6rpx -4rpx rgba(0,0,0,0.3);
+}
+.name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #333;
+}
+.header image {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 10rpx;
+}
+.header .course-type-icon {
+  opacity: 0.5;
+}
+.tutor-avatar {
+  border-radius: 50%;
+  width: 80rpx;
+  height: 80rpx;
+}
+.name-nationality {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 300;
+  color: #696969;
+  /*
+  min-height: 58rpx;
+  */
+}
+.name-nationality .tutor-name {
+  margin-right: 28rpx;
+  font-size: 24rpx;
+}
+.name-nationality .tutor-nationality {
+  font-size: 23rpx;
+  border: 1px solid #dcdcdc;
+  border-radius: 10rpx;
+  padding: 0 4rpx;
+  color: #778899;
+}
+.course-title-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20rpx 16rpx 20rpx 34rpx;
+}
+.course-title-wrap .course-title {
+  margin-bottom: 22rpx;
+}
+.course-item .price {
+  margin-left: auto;
+  color: #778899;
+  flex: 0 0 180rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.course-item .price .course-price {
+  color: #1aad19;
+  padding: 12rpx 0;
+}
+.course-item .price .course-time {
+  font-size: 24rpx;
+}
+
+.content .course-title .title {
+  color: #2f4f4f;
+  font-size: 34rpx;
+  font-weight: 600;
+}
+.content .img {
+  width: 130rpx;
+  height: 130rpx;
+  margin-left: 20rpx;
+}
+.content .desc {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  color: #abb4bf;
+}
+.label {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  color: #abb4bf;
+  margin-right: 40rpx;
+}
+.label image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 8rpx;
+}
+.footer {
+  display: flex;
+  align-items: center;
+  height: 80rpx;
+}
+.hover-class,
+.navigator-hover {
+  background: #f2f2f2 !important;
+}
+
+/* 头部样式 slogan */
+
+.title-wrap {
+  font-size: 15px;
+  font-weight: 400;
+  border: 1px solid #dcdcdc;
+  background-color: #fffafa;
+  border-radius: 30rpx;
+  color: #380000;
+  margin: 20px 24px;
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+}
+.title-wrap .icon-wrap {
+  margin: 0 20px 0 25px;
+}
+.title-wrap .icon-wrap image {
+  height: 50px;
+  width: 50px;
+}
+.title-wrap .desc {
+  padding: 0 17px 0 0;
+}
+.title-wrap .desc .try {
+  margin: 5px 0;
+}
+.title-wrap .desc .try-it {
+  font-weight: 600;
+}
+
+/*
+.filter-label {
+  display: inline-block;
+}
+.filter-item {
+  display: inline-block;
+}
+*/

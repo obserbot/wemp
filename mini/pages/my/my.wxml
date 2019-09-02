@@ -22,7 +22,7 @@
     <block wx:else>
       <view class="wechat-user-wrap">
         <view class="wechat-login2">
-          <button open-type='getUserInfo' bindgetuserinfo='onGotUserInfo' class='login-text'>
+          <button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" class="login-text">
             {{ localeStrings.login }}
           </button>
         </view>

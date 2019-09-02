@@ -2,6 +2,7 @@
 
 const utils = require('../../utils/utils.js')
 const serverAPI = require('../../server.api.js')
+const me = require('../../utils/wechat_user.js')
 
 const barTitles = {
   zh_hans: '课程',
@@ -15,6 +16,7 @@ Page({
   data:
   {
     isLogged: false,
+    isEnrolled: false,
 
     localeCode: 'zh_hans',
     localeStrings: {},
@@ -35,7 +37,7 @@ Page({
 
   onLoad (options)
   {
-    const lesson_nid = options.nid
+    const lesson_nid = options.nid // string
     //this.getCourseDetails(course_nid) // 不要每次都重新抓取, 只有在landing pages, 才需要
 
     if (lesson_nid) {
@@ -57,7 +59,16 @@ Page({
         let coursePrice = theCourse[0].price
         */
 
+        const userInfo = wx.getStorageSync('userInfo')
+        const isLogged = userInfo ? true : false
+
+        const isEnrolled = app.globalData.allEnroll.includes(lesson_nid)
+        console.log('is enrolled', isEnrolled)
+        console.log('nid', lesson_nid)
+
         this.setData({
+          userInfo,
+          isLogged,
           lessonTutor,
           lessonTitle: theLesson[0].lesson_title,
           /*
@@ -197,6 +208,30 @@ Page({
         wx.hideLoading();
       }
     })
+  },
+
+
+  /*
+   * 用户点击“注册上课”按钮（实际是登录按钮），回调函数，获取登录用户信息。
+   */
+  onGotUserInfo (res)
+  {
+    const that = this
+    const userInfo = res.detail.userInfo
+    if (userInfo === undefined) { //拒绝授权
+      // res.detail: errMsg:"getUserInfo:fail auth deny"
+    }
+    else {
+      me.getUserInfo(userInfo).then(res => {
+        that.setData({
+          userInfo,
+          isEnrolled: true,
+          isLogged: true
+        });
+      }).catch((err) => {
+        utils.showToastError()
+      });
+    }
   },
 
 

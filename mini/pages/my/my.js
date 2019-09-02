@@ -63,6 +63,7 @@ Page({
     this.setData({ last_reading_list })
   },
 
+
   // 消息中心消息条数
   userNotificationNum() {
     const auth = this.data.auth

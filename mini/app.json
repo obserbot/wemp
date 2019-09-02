@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/list/list",
+    "pages/home/home",
     "pages/home2/home",
+    "pages/curriculum/curriculum",
     "pages/daren/daren",
     "pages/lesson/lesson",
     "pages/course/course",
@@ -30,7 +31,13 @@
     "backgroundColor": "#fff",
     "list": [
       {
-        "pagePath": "pages/list/list",
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "img/tab_home_normal.png",
+        "selectedIconPath": "img/tab_home.png"
+      },
+      {
+        "pagePath": "pages/curriculum/curriculum",
         "text": "课程",
         "iconPath": "img/tab_course_normal.png",
         "selectedIconPath": "img/tab_course.png"
