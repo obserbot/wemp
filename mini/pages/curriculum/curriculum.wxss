@@ -1,35 +1,58 @@
 /* pages/daren/daren.wxss */
 
-.daren-container {
+.container {
   padding-bottom: 99rpx;
   position: relative;
 }
 
-.darens-wrap {
+.courses-wrap {
   display: flex;
   flex-wrap: wrap;
 }
-.darens-wrap .one-daren-wrap {
+.courses-wrap .one-course-wrap {
   width: 46%;
-  text-align: center;
-  padding: 60rpx 0;
+  height: 420rpx;
+  position: relative;
+  /*
   background-color: #fff;
+  */
   margin: 2%;
-  border-radius: 12rpx;
-  box-shadow: 0 4rpx 4rpx 0 grey;
+  border-radius: 13rpx;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
-.darens-wrap .one-daren-wrap .dr-avatar image {
-  width: 120rpx;
-  height: 120rpx;
+.courses-wrap .one-course-wrap .tutor-wrap {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 20rpx 0 10rpx;
+  display: flex;
+  align-items: center;
+  opacity: 0.5;
+  color: #3281ff;
+  font-size: 29rpx;
+  font-weight: 500;
+  background-color: #fff;
+}
+.courses-wrap .one-course-wrap .tutor-wrap .course-info {
+  margin-left: 20rpx;
+}
+.courses-wrap .one-course-wrap .dr-avatar {
+  margin-left: auto;
+  margin-right: 20rpx;
+}
+.courses-wrap .one-course-wrap .dr-avatar image {
+  width: 80rpx;
+  height: 80rpx;
   border-radius: 50%;
 }
-.darens-wrap .one-daren-wrap .dr-nickname {
+.courses-wrap .one-course-wrap .dr-nickname {
   margin-top: 16rpx;
 }
-.darens-wrap .one-daren-wrap .dr-description {
+.courses-wrap .one-course-wrap .dr-description {
   margin-top: 24rpx;
 }
-.darens-wrap .one-daren-wrap .dr-description text {
+.courses-wrap .one-course-wrap .dr-description text {
   font-size: 24rpx;
   font-weight: 300;
   border: 1rpx solid #dcdcdc;

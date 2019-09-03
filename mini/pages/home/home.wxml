@@ -1,4 +1,5 @@
 
+<!-- 最新课程 | 热门课程
 <view class="weui-navbar">
   <block wx:for="{{ localeStrings.coursesTabs }}" wx:key="*this">
     <view id="{{ index }}" class="weui-navbar__item {{ activeIndex == index ? 'weui-bar__item_on' : '' }}"
@@ -14,9 +15,10 @@
   >
   </view>
 </view>
+-->
 
 
-<view class='container'>
+<view class="container">
 
 <!--
   <view class="title-wrap">
@@ -39,24 +41,24 @@
   </view>
 -->
 
-    <view class='course-item card' hover-class='hover-class'
+    <view class="course-item card" hover-class="hover-class"
       wx:if='{{ tabNow === "LESSONS" }}'
-      wx:for='{{ lessons_now }}' wx:key='{{ index }}' data-nid='{{ item.nid }}'
-      catchtap='toLessonDetail'
+      wx:for="{{ lessons_now }}" wx:key="{{ index }}" data-nid="{{ item.nid }}"
+      catchtap="toLessonDetail"
     >
 
-      <view class='header'>
+      <view class="header">
         <block wx:if="{{item.author.name !== 'anonymous'}}">
-        <view class='name' data-item='{{ item }}' catchtap='toPersonal'>
-          <image class="tutor-avatar" mode='aspectFill' src='{{ item.author.avatar || "/img/default_avatar.png" }}'></image>
+        <view class="name" data-item="{{ item }}" catchtap="toPersonal">
+          <image class="tutor-avatar" mode="aspectFill" src='{{ item.author.avatar || "/img/default_avatar.png" }}'></image>
         </view>
         </block>
       </view>
-      <view class='content course-title-wrap'>
-        <view class='course-title'>
-          <view class='title'>{{ item.lesson_title[ languageCode ] }}</view>
+      <view class="content course-title-wrap">
+        <view class="course-title">
+          <view class="title">{{ item.lesson_title[ languageCode ] }}</view>
         </view>
-        <view class='name-nationality'>
+        <view class="name-nationality">
           <view class="tutor-name">
             {{ item.author.names[ languageCode ] ? item.author.names[ languageCode ] : item.author.name }}
           </view>
@@ -65,7 +67,7 @@
       </view>
 
     <!--
-      <view class='price'>
+      <view class="price">
         <view class="course-price" wx:if='{{ item.price === "0" }}'>
           {{ localeStrings.free }} / {{ item.duration }}
         </view>
@@ -85,23 +87,23 @@
       -->
     </view>
 
-    <view class='course-item card' hover-class='hover-class'
+    <view class="course-item card" hover-class="hover-class"
       wx:if='{{ tabNow === "COURSES" }}'
-      wx:for='{{ courses_now }}' wx:key='{{ index }}' data-nid='{{ item.nid }}'
-      catchtap='toCourseDetail'
+      wx:for="{{ courses_now }}" wx:key="{{ index }}" data-nid="{{ item.nid }}"
+      catchtap="toCourseDetail"
     >
-      <view class='header'>
+      <view class="header">
         <block wx:if="{{item.author.name !== 'anonymous'}}">
-        <view class='name' data-item='{{ item }}' catchtap='toPersonal'>
-          <image class="tutor-avatar" mode='aspectFill' src='{{ item.author.avatar || "/img/default_avatar.png" }}'></image>
+        <view class="name" data-item="{{ item }}" catchtap='toPersonal'>
+          <image class="tutor-avatar" mode="aspectFill" src='{{ item.author.avatar || "/img/default_avatar.png" }}'></image>
         </view>
         </block>
       </view>
-      <view class='content course-title-wrap'>
-        <view class='course-title'>
-          <view class='title'>{{ item.title }}</view>
+      <view class="content course-title-wrap">
+        <view class="course-title">
+          <view class="title">{{ item.title }}</view>
         </view>
-        <view class='name-nationality'>
+        <view class="name-nationality">
           <view class="tutor-name">
             {{ item.author.names[ languageCode ] ? item.author.names[ languageCode ] : item.author.name }}
           </view>
@@ -109,7 +111,7 @@
         </view>
       </view>
 
-      <view class='price'>
+      <view class="price">
         <view class="course-price" wx:if='{{ item.price === "0" }}'>
           {{ localeStrings.free }} / {{ item.duration }}
         </view>

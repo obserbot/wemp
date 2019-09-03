@@ -4,14 +4,14 @@ const serverAPI = require('../../server.api.js')
 const utils = require('../../utils/utils.js')
 import event from '../../utils/event'
 
-//const app = getApp()
+const app = getApp()
 
 Page({
 
   data:
   {
     localeStrings: {},
-    darens: [],
+    allCourses: [],
   },
 
 
@@ -29,7 +29,8 @@ Page({
     event.on("languageChanged", this, utils.setLocaleStrings) // UI
     event.on("languageChanged", this, this.setLocaleDarens)   // Content
 
-    this.getDarens()
+    const allCourses = app.globalData.allCourses
+    this.setData({ allCourses })
   },
 
 
@@ -42,6 +43,7 @@ Page({
   },
 
 
+  /*
   onShareAppMessage (res)
   {
     return {
@@ -49,12 +51,15 @@ Page({
       path: '/pages/daren/daren'
     }
   },
+  */
 
 
+  /*
   onPullDownRefresh ()
   {
     this.getDarens(true)
   },
+  */
 
 
   /**
@@ -68,38 +73,6 @@ Page({
     })
   },
 
-
-  /**
-   * Get teacher list
-   */
-  getDarens (isPullDown = false)
-  {
-    const that = this
-
-    wx.showLoading({ title: that.data.localeStrings.isLoading })
-
-    wx.request({
-      url: serverAPI.getDarens,
-      data: {},
-      success: res => {
-        //console.log('kkkkresul')
-        //console.log(res)
-        that.setLocaleDarens( res.data.darens )
-      },
-      fail: () => {
-        wx.showToast({
-          title: that.data.localeStrings.networkError,
-          icon: 'none',
-        })
-      },
-      complete: () => {
-        wx.hideLoading()
-        if (isPullDown) {
-          wx.stopPullDownRefresh()
-        }
-      }
-    })
-  },
 
   setLocaleDarens(initDarens = false) {
 

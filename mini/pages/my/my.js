@@ -166,6 +166,7 @@ Page({
 
 
   // 用户点击“登出”
+  /*
   userLogout: function () {
     this.setData({
       //userInfo: {},
@@ -174,5 +175,6 @@ Page({
     wx.setStorageSync('userInfo', false);
     //app.globalData.myItems = [];
   }
+  */
 
 })

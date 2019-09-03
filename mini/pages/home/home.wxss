@@ -9,7 +9,10 @@ page {
 
 .container
 {
+/* tab spalce for 最新课程 | 热门课程
   margin-top: 110rpx;
+  */
+  margin-top: 10rpx;
 }
 
 .weui-bar__item_on {

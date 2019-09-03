@@ -1,18 +1,28 @@
 
-<view class="daren-container">
+<view class="container">
 
-  <view class="darens-wrap">
-    <view wx:for="{{ darens }}" wx:key="{{ item.uid }}"
-      class="one-daren-wrap" catchtap="toPersonal" data-uid="{{ item.uid }}"
+  <view class="courses-wrap">
+    <view wx:for="{{ allCourses }}" wx:key="{{ item.nid }}"
+      class="one-course-wrap" catchtap="gotoCourse" data-nid="{{ item.nid }}"
+      style="background-image:url(https://weiyishijie.com/en_edu/smart.jpg);"
     >
-      <view class="dr-avatar">
-        <image src="{{ item.avatar }}"></image>
-      </view>
-      <view class="dr-nickname">
-        <text>{{ item.name }}</text>
-      </view>
-      <view class="dr-description">
-        <text>{{ item.nationality }}</text>
+      <view class="tutor-wrap">
+        <view class="course-info">
+          <view class="course-title">
+            {{ item.course_title[ languageCode ] }}
+          </view>
+        </view>
+        <view class="dr-avatar">
+          <image src="{{ item.author.avatar }}"></image>
+        </view>
+        <!--
+        <view class="dr-nickname">
+          <text>{{ item.author.name }}</text>
+        </view>
+        <view class="dr-description">
+          <text>{{ item.author.nationality }}</text>
+        </view>
+        -->
       </view>
     </view>
   </view>
