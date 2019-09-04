@@ -4,7 +4,7 @@
   <view class="courses-wrap">
     <view wx:for="{{ allCourses }}" wx:key="{{ item.nid }}"
       class="one-course-wrap" catchtap="gotoCourse" data-nid="{{ item.nid }}"
-      style="background-image:url(https://weiyishijie.com/en_edu/smart.jpg);"
+      style="background-image:url({{ item.course_cover }});"
     >
       <view class="tutor-wrap">
         <view class="course-info">
