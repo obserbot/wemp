@@ -27,7 +27,7 @@ Page({
 
     utils.setLocaleStrings(this)
     event.on("languageChanged", this, utils.setLocaleStrings) // UI
-    event.on("languageChanged", this, this.setLocaleDarens)   // Content
+    //event.on("languageChanged", this, this.setLocaleDarens)   // Content
 
     const allCourses = app.globalData.allCourses
     this.setData({ allCourses })
@@ -62,18 +62,19 @@ Page({
   */
 
 
-  /**
-   * Goto personal
+  /*
+   * Goto 一个课程的详细介绍
    */
-  toPersonal (ev)
+  gotoCourse (ev)
   {
-    let uid = ev.currentTarget.dataset.uid
+    let nid = ev.currentTarget.dataset.nid
     wx.navigateTo({
-      url: `/pages/personal/personal?thirduid=${uid}`,
+      url: `/pages/course/course?nid=${nid}`,
     })
   },
 
 
+  /*
   setLocaleDarens(initDarens = false) {
 
     let darens = initDarens ? initDarens : this.data.darens
@@ -87,4 +88,5 @@ Page({
       darens
     })
   },
+  */
 })

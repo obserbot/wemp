@@ -20,7 +20,7 @@ page {
 }
 .weui-navbar__slider {
   /**width: 9.2em;*/
-  width: 13.9em;
+  width: 13.4em;
 }
 
 
