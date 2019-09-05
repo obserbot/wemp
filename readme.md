@@ -1,5 +1,22 @@
 # Weiyi English Mini Program (WEMP)
 
+
+MVP features (release on 2019-09-06):
+
+- Home (lessons)
+- Lesson detail (enroll)
+- Courses
+- Course detail
+- Teachers
+- Teacher detail
+- My points, enrolled lessons.
+- Payment for points
+
+
+
+
+
+
 ## Teachers and profiles
 
 ### (Chinese)
