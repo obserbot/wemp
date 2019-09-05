@@ -10,11 +10,10 @@ MVP features (release on 2019-09-06):
 - Teachers
 - Teacher detail
 - My points, enrolled lessons.
-- Payment for points
+- [pending] Payment for points
 
 
-
-
+Scanning the QR code below to open WEMP:
 
   <img src="images/wemp-qr.jpg" width="258">
 

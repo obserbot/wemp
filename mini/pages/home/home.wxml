@@ -66,14 +66,15 @@
         </view>
       </view>
 
-    <!--
       <view class="price">
+    <!--
         <view class="course-price" wx:if='{{ item.price === "0" }}'>
           {{ localeStrings.free }} / {{ item.duration }}
         </view>
         <view class="course-price" wx:if='{{ item.price !== "0" }}'>
           {{ item.price }} / {{ item.duration }}
         </view>
+      -->
         <view class="course-time" wx:if='{{ item.time1[ languageCode ] }}'>
           {{ item.time1[ languageCode ] }}
         </view>
@@ -84,7 +85,6 @@
           {{ item.time3[ languageCode ] }}
         </view>
       </view>
-      -->
     </view>
 
     <view class="course-item card" hover-class="hover-class"

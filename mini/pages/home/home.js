@@ -39,7 +39,6 @@ Page({
     //const that = this
     // Clicked shared link.
     const course_nid = options.course_nid
-    console.log('course nid', course_nid)
     if (course_nid) {
       wx.navigateTo({
         url: `/pages/lesson/lesson?nid=${course_nid}`

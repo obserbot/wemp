@@ -26,11 +26,17 @@
     </view>
   </view>
 
-  <view class="time-wrap" wx:if="{{ courseTime3[ languageCode ] }}">
+  <view class="time-wrap" wx:if="{{ time1[languageCode] || time2[languageCode] || time3[languageCode] }}">
     <view class="time-item time-label">{{ localeStrings.time }}</view>:
-    <view class="time-item time1">{{ courseTime1[ languageCode ] }}</view>
-    <view class="time-item time2">({{ courseTime2[ languageCode ] }})</view>
-    <view class="time-item time3">{{ courseTime3[ languageCode ] }}</view>
+    <view class="time-item time1" wx:if="{{ time1[ languageCode ] }}">
+      {{ time1[ languageCode ] }}
+    </view>
+    <view class="time-item time2" wx:if="{{ time2[ languageCode ] }}">
+      ({{ time2[ languageCode ] }})
+    </view>
+    <view class="time-item time3" wx:if="{{ time3[ languageCode ] }}">
+      {{ time3[ languageCode ] }}
+    </view>
   </view>
 
   <view class="syllabus-wrap">
@@ -69,7 +75,7 @@
   </view>
 
   <view class="enroll-users-wrap">
-    <view class="enroll-user" wx:for="{{ enrolledUsers }}" wx:key="{{index}}">
+    <view class="enroll-user" wx:for="{{ enrolledUsers }}" wx:key="{{ index }}">
       <view class="personal-image-outside">
         <image class="enroll-avatar" src="{{ item.avatar_url }}"></image>
       </view>

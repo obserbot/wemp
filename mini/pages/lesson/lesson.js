@@ -51,41 +51,42 @@ Page({
       {
         console.log('ddaata', data)
         const enrolledUsers = data.enroll_users
+
+        const lang_code = wx.T.getLanguageCode()
+        const localeCountryNames = utils.getCountryNames()
+        const userInfo = wx.getStorageSync('userInfo')
+        const isLogged = userInfo ? true : false
+        const isEnrolled = app.globalData.allEnroll.includes(nid)
+        console.log('ll', lang_code)
+        console.log(data.lesson_title)
+
         that.setData({
           enrolledUsers,
+          lessonTutor: data.author,
+          lessonTitle: data.lesson_title,
+          time1: data.time1,
+          time2: data.time2,
+          time3: data.time3,
         })
       })
 
-      //console.log('alllllll')
-      //console.log(app.globalData.allCourses)
-      //app.globalData.allCourses = []
-      let theLesson = app.globalData.allLessons.filter( item => {
-        return nid == item.nid
-      })
-
-      if (theLesson.length > 0) {
-        const lang_code = wx.T.getLanguageCode()
-        const localeCountryNames = utils.getCountryNames()
-        //let courseId = theCourse[0].nid
-        const lessonTutor = theLesson[0].author
         /*
         courseTutor.nationality = localeCountryNames[ courseTutor.iso2 ][ lang_code ]
         let coursePrice = theCourse[0].price
         */
 
-        const userInfo = wx.getStorageSync('userInfo')
-        const isLogged = userInfo ? true : false
-
-        const isEnrolled = app.globalData.allEnroll.includes(nid)
-
+          /*
         this.setData({
           userInfo,
           isLogged,
           isEnrolled,
           lessonNid: nid,
           lessonTutor,
-          lessonTitle: theLesson[0].lesson_title,
-          /*
+          lessonTitle: theLesson.lesson_title,
+          lessonTime3: {
+            zh_hans: theLesson.time3.zh_hans,
+            en:      theLesson.time3.en,
+          },
           courseNid: course_nid,
           courseDesc: {
             zh_hans: theCourse[0].desc_string_zh_hans,
@@ -106,15 +107,10 @@ Page({
             zh_hans: theCourse[0].time2.zh_hans,
             en:      theCourse[0].time2.en,
           },
-          courseTime3: {
-            zh_hans: theCourse[0].time3.zh_hans,
-            en:      theCourse[0].time3.en,
-          },
           groupQrUrl: theCourse[0].group_qr,
           weoa_url: theCourse[0].weoa_url,
-      */
         })
-      }
+      */
       //console.log('theCourse:', theCourse)
 
     utils.setLocaleStrings(this, barTitles)
