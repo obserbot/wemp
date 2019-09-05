@@ -16,6 +16,8 @@ MVP features (release on 2019-09-06):
 
 
 
+  <img src="images/wemp-qr.jpg" width="258">
+
 
 ## Teachers and profiles
 
