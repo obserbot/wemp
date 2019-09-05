@@ -223,9 +223,21 @@
 
 /* avatar */
 
-.personal-image-outside .avatar{
-    height: 90rpx;
-    width: 90rpx;
-    border-radius: 50%;
+.enroll-users-wrap {
+  display: block;
+  text-align: center;
+}
+.enroll-users-wrap .enroll-user {
+  display: inline-block;
+}
+.personal-image-outside .enroll-avatar {
+  height: 80rpx;
+  width: 80rpx;
+  border-radius: 50%;
+}
+.personal-image-outside .avatar {
+  height: 90rpx;
+  width: 90rpx;
+  border-radius: 50%;
 }
 

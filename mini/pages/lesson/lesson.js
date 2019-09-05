@@ -1,7 +1,6 @@
 // pages/course/course.js
 
 const utils = require('../../utils/utils.js')
-const serverAPI = require('../../server.api.js')
 const me = require('../../utils/wechat_user.js')
 
 const barTitles = {
@@ -18,6 +17,8 @@ Page({
     isLogged: false,
     isEnrolled: false,
     lessonNid: 0,
+
+    enrolledUsers: [],
     enrollNum: 0,
 
     localeCode: 'zh_hans',
@@ -39,15 +40,27 @@ Page({
 
   onLoad (options)
   {
-    const lesson_nid = options.nid // string
-    //this.getCourseDetails(course_nid) // 不要每次都重新抓取, 只有在landing pages, 才需要
+    const that = this
+    if ( ! options.hasOwnProperty('nid')) {
+      console.log('Error')
+      return;
+    }
 
-    if (lesson_nid) {
+    const nid = options.nid // string
+    me.getLessonDetails(nid).then( data =>
+      {
+        console.log('ddaata', data)
+        const enrolledUsers = data.enroll_users
+        that.setData({
+          enrolledUsers,
+        })
+      })
+
       //console.log('alllllll')
       //console.log(app.globalData.allCourses)
       //app.globalData.allCourses = []
       let theLesson = app.globalData.allLessons.filter( item => {
-        return lesson_nid == item.nid
+        return nid == item.nid
       })
 
       if (theLesson.length > 0) {
@@ -63,13 +76,13 @@ Page({
         const userInfo = wx.getStorageSync('userInfo')
         const isLogged = userInfo ? true : false
 
-        const isEnrolled = app.globalData.allEnroll.includes(lesson_nid)
+        const isEnrolled = app.globalData.allEnroll.includes(nid)
 
         this.setData({
           userInfo,
           isLogged,
           isEnrolled,
-          lessonNid: lesson_nid,
+          lessonNid: nid,
           lessonTutor,
           lessonTitle: theLesson[0].lesson_title,
           /*
@@ -103,7 +116,6 @@ Page({
         })
       }
       //console.log('theCourse:', theCourse)
-    }
 
     utils.setLocaleStrings(this, barTitles)
   },
@@ -154,62 +166,6 @@ Page({
       title: courseTitle,
       path: `/pages/courses/courses?course_nid=${nid}`
     }
-  },
-
-
-  getCourseDetails(course_nid) {
-
-    const that = this
-    wx.showLoading({ title: "加载中" })
-
-    wx.request({
-      url: serverAPI.getCourseDetails,
-      data: {
-        nid: course_nid,
-        //position: 'explore',
-      },
-      method: 'POST',
-      header: { 'content-type': 'application/x-www-form-urlencoded' },
-      success: (res) => {
-        console.log('COURSE***resul')
-        console.log(res)
-        // Todo: need to abandon
-        let desc_zh_hans = res.data.course_details.tutor.desc_zh_hans
-        let desc_en      = res.data.course_details.tutor.desc_en
-        desc_zh_hans = desc_zh_hans ? desc_zh_hans : res.data.course_details.tutor.description
-        desc_en      = desc_en      ? desc_en      : res.data.course_details.tutor.description
-
-        const lang_code = wx.T.getLanguageCode()
-        const title_lang = 'title_' + lang_code
-        const localeCountryNames = utils.getCountryNames()
-        //let courseTitle = res.data.course_details.title
-        const courseTitle = res.data.course_details[title_lang]
-        let tutorWrap = res.data.course_details.tutor
-        tutorWrap.nationality = localeCountryNames[tutorWrap.iso2][lang_code]
-
-        that.setData({
-          courseTitle,
-          courseTutor: tutorWrap,
-          courseDesc: {
-            zh_hans: res.data.course_details.desc_zh_hans,
-            en: res.data.course_details.desc_en
-          },
-          tutorDesc: {
-            'zh_hans': desc_zh_hans,
-            'en': desc_en
-          }
-        })
-      },
-      fail: () => {
-        wx.showToast({
-          title: '网路开小差，请稍后再试',
-          icon: 'none',
-        })
-      },
-      complete: () => {
-        wx.hideLoading();
-      }
-    })
   },
 
 
@@ -318,6 +274,17 @@ Page({
       url: `/pages/weoa/weoa?weoa=${weoa_url}`,
     })
   },
+
+
+  /*
+  onPullDownRefresh ()
+  {
+    wx.stopPullDownRefresh()
+    // Todo: get new data from server!
+    //this.initData()
+    //this.getEntries(true)
+  },
+  */
 
 
   /**

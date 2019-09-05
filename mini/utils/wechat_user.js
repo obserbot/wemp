@@ -258,6 +258,44 @@ function unenrollLesson(session3rd, lesson_nid)
 }
 
 
+/**
+ * Lesson API.
+ */
+function getLessonDetails (nid)
+{
+  //const that = this
+
+  return new Promise((resolve, reject) =>
+    {
+      const localeStrings = wx.T.getLanguage()
+
+      wx.showLoading({ title: localeStrings.logining })
+
+      wx.request({
+        url: server_api.getLessonDetails,
+        data: {nid},
+        method: 'POST',
+        header: {'content-type': 'application/x-www-form-urlencoded' },
+        success(res) {
+          resolve(res.data)
+        },
+        fail(res) {
+          utils.showToastError()
+          reject(false)
+        },
+        complete() {
+          wx.hideLoading();
+          /*
+          if (isPullDown) {
+            wx.stopPullDownRefresh()
+          }
+          */
+        }
+      })
+    })
+}
+
+
 module.exports = {
   wxLoginToGetCode,
   wysjLog,
@@ -265,6 +303,7 @@ module.exports = {
   initInfo,
   getUserInfo,
   enrollLesson,
+  getLessonDetails,
   unenrollLesson,
   traceReading,
 };

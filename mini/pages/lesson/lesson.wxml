@@ -68,6 +68,14 @@
     {{ localeStrings.courseMaterial }} >
   </view>
 
+  <view class="enroll-users-wrap">
+    <view class="enroll-user" wx:for="{{ enrolledUsers }}" wx:key="{{index}}">
+      <view class="personal-image-outside">
+        <image class="enroll-avatar" src="{{ item.avatar_url }}"></image>
+      </view>
+    </view>
+  </view>
+
   <block wx:if="{{ isLogged && isEnrolled }}">
     <view class="personal-image-outside button-sp-area">
       <image class="avatar" src="{{ userInfo.avatarUrl }}"></image>
