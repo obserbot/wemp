@@ -17,6 +17,8 @@ Page({
   {
     isLogged: false,
     isEnrolled: false,
+    lessonNid: 0,
+    enrollNum: 0,
 
     localeCode: 'zh_hans',
     localeStrings: {},
@@ -47,7 +49,6 @@ Page({
       let theLesson = app.globalData.allLessons.filter( item => {
         return lesson_nid == item.nid
       })
-      //console.log('ttt cour', theLesson)
 
       if (theLesson.length > 0) {
         const lang_code = wx.T.getLanguageCode()
@@ -63,12 +64,12 @@ Page({
         const isLogged = userInfo ? true : false
 
         const isEnrolled = app.globalData.allEnroll.includes(lesson_nid)
-        console.log('is enrolled', isEnrolled)
-        console.log('nid', lesson_nid)
 
         this.setData({
           userInfo,
           isLogged,
+          isEnrolled,
+          lessonNid: lesson_nid,
           lessonTutor,
           lessonTitle: theLesson[0].lesson_title,
           /*
@@ -145,7 +146,8 @@ Page({
 
   onShareAppMessage (res)
   {
-    const nid = this.data.courseNid
+    const nid = this.data.lessonNid
+    //const nid = this.data.courseNid
     const courseTitle = this.data.courseTitle[this.data.localeCode]
 
     return {
@@ -212,7 +214,7 @@ Page({
 
 
   /*
-   * 用户点击“注册上课”按钮（实际是登录按钮），回调函数，获取登录用户信息。
+   * 用户点击“注册上课”按钮（实际是登录按钮），回调函数，获取登录用户信息，并注册上课（如果尚未注册）。
    */
   onGotUserInfo (res)
   {
@@ -222,7 +224,7 @@ Page({
       // res.detail: errMsg:"getUserInfo:fail auth deny"
     }
     else {
-      me.getUserInfo(userInfo).then(res => {
+      me.getUserInfo(userInfo, that.data.lessonNid).then(res => {
         that.setData({
           userInfo,
           isEnrolled: true,
@@ -231,6 +233,65 @@ Page({
       }).catch((err) => {
         utils.showToastError()
       });
+    }
+  },
+
+
+  /**
+   * 用户点击“注册上课”按钮。
+   */
+  onEnroll ()
+  {
+    const that = this
+    const s3rd = wx.getStorageSync('session3rd') || false
+    const nid = this.data.lessonNid
+    console.log('ennnroooo', s3rd)
+    if (s3rd) {
+      me.enrollLesson(s3rd, nid).then( res =>
+        {
+          const enrollNum = that.data.enrollNum + 1
+          const index = app.globalData.allEnroll.indexOf( nid )
+          if (index == -1) {
+            app.globalData.allEnroll.push(nid)
+          }
+
+          that.setData({
+            enrollNum,
+            isEnrolled: true,
+          })
+        })
+    }
+    else {
+      utils.showToastError()
+    }
+  },
+
+
+  /**
+   * 用户点击“取消注册”按钮。
+   */
+  removeEnroll ()
+  {
+    const that = this
+    const s3rd = wx.getStorageSync('session3rd') || false
+    const nid = this.data.lessonNid
+    if (s3rd) {
+      me.unenrollLesson(s3rd, nid).then( res =>
+        {
+          let enrollNum = that.data.enrollNum - 1
+          const index = app.globalData.allEnroll.indexOf( nid )
+          if (index > -1) {
+            app.globalData.allEnroll.splice(index, 1)
+          }
+
+          that.setData({
+            enrollNum,
+            isEnrolled: false,
+          })
+        })
+    }
+    else {
+      utils.showToastError()
     }
   },
 

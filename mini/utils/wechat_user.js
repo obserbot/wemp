@@ -37,34 +37,33 @@ function wxLoginToGetCode ()
  */
 function weiyiLogin (code)
 {
-  return new Promise((resolve, reject) => {
-
-          wx.request({
-            url: server_api.wxLogin,
-            data: {code},
-            method: 'POST',
-            header: {'content-type': 'application/x-www-form-urlencoded'},
-            success: res => {
-              if (res.data.msg === 'ok') {
+  return new Promise((resolve, reject) =>
+    {
+      wx.request({
+        url: server_api.wxLogin,
+        data: {code},
+        method: 'POST',
+        header: {'content-type': 'application/x-www-form-urlencoded'},
+        success: res => {
+          if (res.data.msg === 'ok') {
                 /*
                 wx.setStorageSync('session3rd', res.data.session3rd)
                 wx.setStorageSync('wid', res.data.wid)
                 resolve(res.data.session3rd)
                 */
-                resolve(res.data)
-              }
-              else {
+            resolve(res.data)
+          }
+          else {
                 //console.log('Error 8: Cannot login on server.');
-                reject(false)
-              }
-            },
-            fail: () => {
+            reject(false)
+          }
+        },
+        fail: () => {
               //console.log('Fails.');
-              reject(false);
-            }
-          })
-
-  })
+          reject(false);
+        }
+      })
+    })
 }
 
 
@@ -205,12 +204,68 @@ function wysjLog (type, info)
 }
 
 
+/*
+ * Enroll
+ */
+function enrollLesson(session3rd, lesson_nid)
+{
+  //const that = this;
+
+  return new Promise((resolve, reject) =>
+    {
+      wx.request({
+        url: server_api.enrollLesson,
+        data: {session3rd, lesson_nid},
+        method: 'POST',
+        header: {'content-type': 'application/x-www-form-urlencoded'},
+        success(res) {
+          console.log('+++kkhuhu init  resss');
+          console.log(res);
+          resolve(res.data)
+        },
+        fail(res) {
+          console.log('Initiate info fails.', res)
+        }
+      });
+    })
+}
+
+
+/*
+ * Remove enroll
+ */
+function unenrollLesson(session3rd, lesson_nid)
+{
+  //const that = this;
+
+  return new Promise((resolve, reject) =>
+    {
+      wx.request({
+        url: server_api.unenrollLesson,
+        data: {session3rd, lesson_nid},
+        method: 'POST',
+        header: {'content-type': 'application/x-www-form-urlencoded'},
+        success(res) {
+          console.log('---kkhuhu init  resss');
+          console.log(res);
+          resolve(res.data)
+        },
+        fail(res) {
+          console.log('Initiate info fails.', res)
+        }
+      });
+    })
+}
+
+
 module.exports = {
   wxLoginToGetCode,
   wysjLog,
   weiyiLogin,
   initInfo,
   getUserInfo,
+  enrollLesson,
+  unenrollLesson,
   traceReading,
 };
 

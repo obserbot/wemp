@@ -69,9 +69,9 @@
   </view>
 
   <block wx:if="{{ isLogged && isEnrolled }}">
-    <view class="personal-image-outside">
+    <view class="personal-image-outside button-sp-area">
       <image class="avatar" src="{{ userInfo.avatarUrl }}"></image>
-      <button bindtap="onUnEnroll" class="weui-btn" type="primary">
+      <button bindtap="removeEnroll" class="weui-btn" type="warn">
         {{ localeStrings.unenroll }}
       </button>
     </view>
@@ -94,10 +94,10 @@
   </block>
 
   <view class="qrcode-wrap" wx:if="{{ groupQrUrl }}">
-    <view class='qrcode-title'>
+    <view class="qrcode-title">
       {{ localeStrings.enterClass }}
     </view>
-    <view class='qrcode'>
+    <view class="qrcode">
       <image src="{{ groupQrUrl }}" mode="widthFix" bindtap="previewImage"></image>
     </view>
   </view>
