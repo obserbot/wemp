@@ -250,9 +250,4 @@
   width: 80rpx;
   border-radius: 50%;
 }
-.personal-image-outside .avatar {
-  height: 90rpx;
-  width: 90rpx;
-  border-radius: 50%;
-}
 

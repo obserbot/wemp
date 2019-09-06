@@ -84,7 +84,6 @@
 
   <block wx:if="{{ isLogged && isEnrolled }}">
     <view class="personal-image-outside button-sp-area">
-      <image class="avatar" src="{{ userInfo.avatarUrl }}"></image>
       <button bindtap="removeEnroll" class="weui-btn" type="warn">
         {{ localeStrings.unenroll }}
       </button>

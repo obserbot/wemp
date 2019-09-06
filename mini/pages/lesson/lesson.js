@@ -19,7 +19,6 @@ Page({
     lessonNid: 0,
 
     enrolledUsers: [],
-    enrollNum: 0,
 
     localeCode: 'zh_hans',
     localeStrings: {},
@@ -49,18 +48,24 @@ Page({
     const nid = options.nid // string
     me.getLessonDetails(nid).then( data =>
       {
-        console.log('ddaata', data)
         const enrolledUsers = data.enroll_users
 
         const lang_code = wx.T.getLanguageCode()
         const localeCountryNames = utils.getCountryNames()
         const userInfo = wx.getStorageSync('userInfo')
         const isLogged = userInfo ? true : false
-        const isEnrolled = app.globalData.allEnroll.includes(nid)
-        console.log('ll', lang_code)
-        console.log(data.lesson_title)
+
+        const my_uid = app.globalData.myUid.toString()
+        const myinfoArr = enrolledUsers.filter((value, index, array) => {
+          return value.uid === my_uid;
+        })
+
+        const isEnrolled = myinfoArr.length > 0
 
         that.setData({
+          lessonNid: nid,
+          isLogged,
+          isEnrolled,
           enrolledUsers,
           lessonTutor: data.author,
           lessonTitle: data.lesson_title,
@@ -82,8 +87,6 @@ Page({
           /*
         this.setData({
           userInfo,
-          isLogged,
-          isEnrolled,
           lessonNid: nid,
           lessonTutor,
           lessonTitle: theLesson.lesson_title,
@@ -196,22 +199,29 @@ Page({
   {
     const that = this
     const s3rd = wx.getStorageSync('session3rd') || false
+    const userInfo = wx.getStorageSync('userInfo') || false;
     const nid = this.data.lessonNid
-    console.log('ennnroooo', s3rd)
-    if (s3rd) {
-      me.enrollLesson(s3rd, nid).then( res =>
-        {
-          const enrollNum = that.data.enrollNum + 1
-          const index = app.globalData.allEnroll.indexOf( nid )
+    if (s3rd && userInfo) {
+      me.enrollLesson(s3rd, nid).then(res => {
+        /*
+        const index = app.globalData.allEnroll.indexOf( nid )
           if (index == -1) {
             app.globalData.allEnroll.push(nid)
           }
+          */
 
-          that.setData({
-            enrollNum,
-            isEnrolled: true,
-          })
+        const my_uid = app.globalData.myUid.toString()
+        const enrolledUsers = that.data.enrolledUsers
+        enrolledUsers.push({
+          uid: my_uid.toString(),
+          avatar_url: userInfo.avatarUrl,
         })
+
+        that.setData({
+          enrolledUsers,
+          isEnrolled: true,
+        })
+      })
     }
     else {
       utils.showToastError()
@@ -228,19 +238,19 @@ Page({
     const s3rd = wx.getStorageSync('session3rd') || false
     const nid = this.data.lessonNid
     if (s3rd) {
-      me.unenrollLesson(s3rd, nid).then( res =>
-        {
-          let enrollNum = that.data.enrollNum - 1
-          const index = app.globalData.allEnroll.indexOf( nid )
-          if (index > -1) {
-            app.globalData.allEnroll.splice(index, 1)
-          }
-
-          that.setData({
-            enrollNum,
-            isEnrolled: false,
-          })
+      me.unenrollLesson(s3rd, nid).then(res => {
+        const my_uid = app.globalData.myUid.toString()
+        const enrolledUsers = that.data.enrolledUsers.filter((value, index, array) => {
+          return value.uid !== my_uid;
         })
+
+        that.setData({
+          isEnrolled: false,
+          enrolledUsers,
+        })
+      }).catch(err => {
+        utils.showToastError()
+      })
     }
     else {
       utils.showToastError()

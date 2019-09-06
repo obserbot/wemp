@@ -41,7 +41,9 @@ export default
     'time': '时间',
     'courseMaterial': '阅读课程学习材料',
     'enroll': '注册上课',
+    'enrolling': '正在注册...',
     'unenroll': '取消上课',
+    'removingEnroll': '正在取消...',
 
     "type": "分类",
     "all": "全部",
@@ -107,7 +109,9 @@ export default
     'time': 'Time',
     'courseMaterial': 'Reading course material',
     'enroll': 'Enroll',
+    'enrolling': 'Enrolling...',
     'unenroll': 'Check Off',
+    'removingEnroll': 'Removing...',
 
     "type": "Type",
     "all": "All",

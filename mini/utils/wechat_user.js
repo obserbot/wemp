@@ -209,22 +209,30 @@ function wysjLog (type, info)
  */
 function enrollLesson(session3rd, lesson_nid)
 {
-  //const that = this;
-
   return new Promise((resolve, reject) =>
     {
+      const localeStrings = wx.T.getLanguage()
+      wx.showLoading({ title: localeStrings.enrolling })
+
       wx.request({
         url: server_api.enrollLesson,
         data: {session3rd, lesson_nid},
         method: 'POST',
         header: {'content-type': 'application/x-www-form-urlencoded'},
         success(res) {
-          console.log('+++kkhuhu init  resss');
-          console.log(res);
-          resolve(res.data)
+          if (res.data.msg === 'ok') {
+            resolve(res.data)
+          }
+          else {
+            reject(false)
+          }
         },
         fail(res) {
           console.log('Initiate info fails.', res)
+          reject(false)
+        },
+        complete() {
+          wx.hideLoading();
         }
       });
     })
@@ -236,22 +244,30 @@ function enrollLesson(session3rd, lesson_nid)
  */
 function unenrollLesson(session3rd, lesson_nid)
 {
-  //const that = this;
-
   return new Promise((resolve, reject) =>
     {
+      const localeStrings = wx.T.getLanguage()
+      wx.showLoading({ title: localeStrings.removingEnroll })
+
       wx.request({
         url: server_api.unenrollLesson,
         data: {session3rd, lesson_nid},
         method: 'POST',
         header: {'content-type': 'application/x-www-form-urlencoded'},
         success(res) {
-          console.log('---kkhuhu init  resss');
-          console.log(res);
-          resolve(res.data)
+          if (res.data.msg === 'ok') {
+            resolve(res.data)
+          }
+          else {
+            reject(false)
+          }
         },
         fail(res) {
           console.log('Initiate info fails.', res)
+          reject(false)
+        },
+        complete() {
+          wx.hideLoading();
         }
       });
     })
@@ -268,8 +284,7 @@ function getLessonDetails (nid)
   return new Promise((resolve, reject) =>
     {
       const localeStrings = wx.T.getLanguage()
-
-      wx.showLoading({ title: localeStrings.logining })
+      wx.showLoading({ title: localeStrings.isLoading })
 
       wx.request({
         url: server_api.getLessonDetails,
