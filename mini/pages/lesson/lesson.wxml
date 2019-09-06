@@ -26,28 +26,15 @@
     </view>
   </view>
 
-  <view class="time-wrap" wx:if="{{ time1[languageCode] || time2[languageCode] || time3[languageCode] }}">
-    <view class="time-item time-label">{{ localeStrings.time }}</view>:
-    <view class="time-item time1" wx:if="{{ time1[ languageCode ] }}">
-      {{ time1[ languageCode ] }}
-    </view>
-    <view class="time-item time2" wx:if="{{ time2[ languageCode ] }}">
-      ({{ time2[ languageCode ] }})
-    </view>
-    <view class="time-item time3" wx:if="{{ time3[ languageCode ] }}">
-      {{ time3[ languageCode ] }}
-    </view>
-  </view>
-
   <view class="syllabus-wrap">
 
     <!-- 课程介绍 -->
 
-    <view class='syllabus-label' wx:if='{{ courseDesc[localeCode] }}'>
+    <view class='syllabus-label' wx:if='{{ lessonDesc[localeCode] }}'>
       {{ localeStrings.courseIntroduction }}
     </view>
-    <view class='course-description' wx:if='{{ courseDesc[localeCode] }}'>
-      {{ courseDesc[localeCode] }}
+    <view class='course-description' wx:if='{{ lessonDesc[localeCode] }}'>
+      {{ lessonDesc[localeCode] }}
     </view>
 
     <!-- 课程目标 -->
@@ -72,6 +59,19 @@
 
   <view class="goto-weoa" hover-class="hover-class" bindtap="toWEOA" wx:if="{{ weoa_url }}">
     {{ localeStrings.courseMaterial }} >
+  </view>
+
+  <view class="time-wrap" wx:if="{{ time1[languageCode] || time2[languageCode] || time3[languageCode] }}">
+    <view class="time-item time-label">{{ localeStrings.time }}</view>:
+    <view class="time-item time1" wx:if="{{ time1[ languageCode ] }}">
+      {{ time1[ languageCode ] }}
+    </view>
+    <view class="time-item time2" wx:if="{{ time2[ languageCode ] }}">
+      ({{ time2[ languageCode ] }})
+    </view>
+    <view class="time-item time3" wx:if="{{ time3[ languageCode ] }}">
+      {{ time3[ languageCode ] }}
+    </view>
   </view>
 
   <view class="enroll-users-wrap">

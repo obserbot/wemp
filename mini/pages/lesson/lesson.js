@@ -64,6 +64,10 @@ Page({
           enrolledUsers,
           lessonTutor: data.author,
           lessonTitle: data.lesson_title,
+          lessonDesc: {
+            zh_hans: data.desc.zh_hans,
+            en:      data.desc.en
+          },
           time1: data.time1,
           time2: data.time2,
           time3: data.time3,
@@ -88,10 +92,6 @@ Page({
             en:      theLesson.time3.en,
           },
           courseNid: course_nid,
-          courseDesc: {
-            zh_hans: theCourse[0].desc_string_zh_hans,
-            en:      theCourse[0].desc_string_en
-          },
           courseObjective:      theCourse[0].objectives,
           courseObjectiveItems: theCourse[0].objectives_items,
           tutorDesc: {
