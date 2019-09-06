@@ -4,13 +4,13 @@
 MVP features (release on 2019-09-06):
 
 - ~~Home (lessons)~~
-- Lesson detail (enroll)
+- ~~Lesson detail (enroll)~~
 - ~~Courses~~
 - Course detail
 - ~~Teachers~~
 - ~~Teacher detail~~
-- My points, enrolled lessons.
-- ~~[pending] Payment for points~~
+- [pending] ~~My points, enrolled lessons~~
+- [pending] ~~Payment for points~~
 
 
 Scanning the QR code below to open WEMP:
