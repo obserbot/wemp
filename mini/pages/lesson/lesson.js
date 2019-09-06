@@ -165,15 +165,14 @@ Page({
     const userInfo = res.detail.userInfo
     if (userInfo === undefined) { //拒绝授权
       // res.detail: errMsg:"getUserInfo:fail auth deny"
-    }
-    else {
+    } else {
       me.getUserInfo(userInfo, that.data.lessonNid).then(res => {
         that.setData({
           userInfo,
           isEnrolled: true,
           isLogged: true
         });
-      }).catch((err) => {
+      }).catch(err => {
         utils.showToastError()
       });
     }
@@ -208,8 +207,7 @@ Page({
           isEnrolled: true,
         })
       })
-    }
-    else {
+    } else {
       utils.showToastError()
     }
   },
@@ -235,8 +233,7 @@ Page({
       }).catch(err => {
         utils.showToastError()
       })
-    }
-    else {
+    } else {
       utils.showToastError()
     }
   },
