@@ -22,10 +22,8 @@ Page({
 
     localeCode: 'zh_hans',
     localeStrings: {},
-    //courseId: '0',
     lessonTitle: {},
     lessonTutor: {},
-    courseDesc: {},
     tutorDesc: {},
     coursePrice: 0,
 
@@ -36,9 +34,7 @@ Page({
     },
   },
 
-
-  onLoad (options)
-  {
+  onLoad (options) {
     const that = this
     if ( ! options.hasOwnProperty('nid')) {
       console.log('Error')
@@ -46,38 +42,37 @@ Page({
     }
 
     const nid = options.nid // string
-    me.getLessonDetails(nid).then( data =>
-      {
-        const enrolledUsers = data.enroll_users
+    me.getLessonDetails(nid).then( data => {
+      const enrolledUsers = data.enroll_users
 
-        const lang_code = wx.T.getLanguageCode()
-        const localeCountryNames = utils.getCountryNames()
-        const userInfo = wx.getStorageSync('userInfo')
-        const isLogged = userInfo ? true : false
+      const lang_code = wx.T.getLanguageCode()
+      const localeCountryNames = utils.getCountryNames()
+      const userInfo = wx.getStorageSync('userInfo')
+      const isLogged = userInfo ? true : false
 
-        const my_uid = app.globalData.myUid.toString()
-        const myinfoArr = enrolledUsers.filter((value, index, array) => {
-          return value.uid === my_uid;
-        })
-
-        const isEnrolled = myinfoArr.length > 0
-
-        that.setData({
-          lessonNid: nid,
-          isLogged,
-          isEnrolled,
-          enrolledUsers,
-          lessonTutor: data.author,
-          lessonTitle: data.lesson_title,
-          lessonDesc: {
-            zh_hans: data.desc.zh_hans,
-            en:      data.desc.en
-          },
-          time1: data.time1,
-          time2: data.time2,
-          time3: data.time3,
-        })
+      const my_uid = app.globalData.myUid.toString()
+      const myinfoArr = enrolledUsers.filter((value, index, array) => {
+        return value.uid === my_uid;
       })
+
+      const isEnrolled = myinfoArr.length > 0
+
+      that.setData({
+        lessonNid: nid,
+        isLogged,
+        isEnrolled,
+        enrolledUsers,
+        lessonTutor: data.author,
+        lessonTitle: data.lesson_title,
+        lessonDesc: {
+          zh_hans: data.desc.zh_hans,
+          en:      data.desc.en
+        },
+        time1: data.time1,
+        time2: data.time2,
+        time3: data.time3,
+      })
+    })
 
         /*
         courseTutor.nationality = localeCountryNames[ courseTutor.iso2 ][ lang_code ]
@@ -119,9 +114,7 @@ Page({
     utils.setLocaleStrings(this, barTitles)
   },
 
-
-  onShow ()
-  {
+  onShow () {
     if (this.data.flagNavigationBarTitle) {
       wx.T.setNavigationBarTitle(barTitles)
       this.data.flagNavigationBarTitle = false
@@ -148,15 +141,12 @@ Page({
     })
     */
 
-
     this.setData({
       localeCode,
     })
   },
 
-
-  onShareAppMessage (res)
-  {
+  onShareAppMessage (res) {
     const nid = this.data.lessonNid
     //const nid = this.data.courseNid
     const courseTitle = this.data.courseTitle[this.data.localeCode]
@@ -167,12 +157,10 @@ Page({
     }
   },
 
-
   /*
    * 用户点击“注册上课”按钮（实际是登录按钮），回调函数，获取登录用户信息，并注册上课（如果尚未注册）。
    */
-  onGotUserInfo (res)
-  {
+  onGotUserInfo (res) {
     const that = this
     const userInfo = res.detail.userInfo
     if (userInfo === undefined) { //拒绝授权
@@ -191,12 +179,10 @@ Page({
     }
   },
 
-
   /**
    * 用户点击“注册上课”按钮。
    */
-  onEnroll ()
-  {
+  onEnroll () {
     const that = this
     const s3rd = wx.getStorageSync('session3rd') || false
     const userInfo = wx.getStorageSync('userInfo') || false;
@@ -228,12 +214,10 @@ Page({
     }
   },
 
-
   /**
    * 用户点击“取消注册”按钮。
    */
-  removeEnroll ()
-  {
+  removeEnroll () {
     const that = this
     const s3rd = wx.getStorageSync('session3rd') || false
     const nid = this.data.lessonNid
@@ -257,30 +241,25 @@ Page({
     }
   },
 
-
   /**
    * Goto personal
    */
-  toPersonal (ev)
-  {
+  toPersonal (ev) {
     let uid = ev.currentTarget.dataset.uid
     wx.navigateTo({
       url: `/pages/personal/personal?thirduid=${uid}`,
     })
   },
 
-
   /**
    * Goto WEOA
    */
-  toWEOA (ev)
-  {
+  toWEOA (ev) {
     const weoa_url = this.data.weoa_url
     wx.navigateTo({
       url: `/pages/weoa/weoa?weoa=${weoa_url}`,
     })
   },
-
 
   /*
   onPullDownRefresh ()
@@ -292,12 +271,10 @@ Page({
   },
   */
 
-
   /**
    * Group qr code for the lesson.
    */
-  previewImage (res)
-  {
+  previewImage (res) {
     const url = this.data.groupQrUrl
     wx.previewImage({
       urls: [url]
