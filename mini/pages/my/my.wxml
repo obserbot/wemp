@@ -127,16 +127,16 @@
 -->
   </view>
 
-  <view class='card items'>
-    <picker bindchange="changeLanguage" value="{{ langIndex }}" range="{{ languages }}">
-      <view class='item' hover-class='hover-class' data-open='true'>
-        <view class='title'>
+  <view class="card items">
+    <view class="item" hover-class="hover-class">
+      <picker bindchange="changeLanguage" value="{{ langIndex }}" range="{{ languages }}">
+        <view class="title">
           <image src='/img/ic_language.png'></image>
           <view>{{ localeStrings.setLanguage }}</view>
         </view>
-      </view>
-    </picker>
-    <view class='item' hover-class='hover-class' bindtap='gotoFeedback'>
+      </picker>
+    </view>
+    <view class="item" hover-class="hover-class" bindtap="gotoFeedback">
       <view class='title'>
         <image src='/img/ic_feedback.png'></image>
         <view>{{ localeStrings.contact }}</view>
@@ -155,7 +155,7 @@
 
   <view class='version-info'>
     <view class='app-name'>{{ localeStrings.appName }}</view>
-    <view class='version-code'>2.0.2</view>
+    <view class='version-code'>2.2.3</view>
   </view>
 
 </view>

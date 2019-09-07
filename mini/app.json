@@ -11,10 +11,8 @@
     "pages/my/contact/contact",
     "pages/personal/personal",
     "pages/dialog/dialog",
-    "pages/setting/setting",
     "pages/infoCenter/infoCenter",
     "pages/entry/entry",
-    "pages/miniqrcode/miniqrcode",
     "pages/weoa/weoa"
   ],
   "window": {

@@ -1,6 +1,6 @@
 /* my.wxss */
 
-@import "/weui/weui.wxss";
+@import '/weui/weui.wxss';
 
 .wrapper {
   padding-top: 20rpx;
@@ -13,6 +13,7 @@
   margin: 0 auto;
   padding-top: 70rpx;
 }
+
 .profile-info .wechat-login2 .login-text {
   height: 55rpx;
   line-height: 55rpx;
@@ -23,54 +24,6 @@
   border-radius: 6px;
   font-size: 28rpx;
   top: -3px;
-}
-
-/*
-.profile-info .wechat-login {
-  position: absolute;
-  right: 20rpx;
-  top: 86rpx;
-  height: 55rpx;
-  line-height: 55rpx;
-  width: 170rpx;
-  border: 1px solid #bbb;
-  border-radius: 6px;
-}
-.profile-info .wechat-login .login-text {
-  background: none;
-  color: #FFF;
-  font-size: 28rpx;
-  top: -3px;
-}
-.get-user-info {
-  background-image: url('https://weiyishijie.com/en_edu/sites/default/files/avatar.png');
-  background-size: 148rpx 148rpx;
-  height: 148rpx;
-  width: 148rpx;
-  border-radius: 50%;
-}
-*/
-
-.profile-info .wechat-wid {
-  position: absolute;
-  left: 20rpx;
-  top: 20rpx;
-  color: #FFF;
-  font-size: 28rpx;
-}
-
-
-.profile-info .logout {
-  position: absolute;
-  right: 20rpx;
-  top: 86rpx;
-  width: 170rpx;
-  line-height: 55rpx;
-  height: 55rpx;
-  color: #FFF;
-  font-size: 28rpx;
-  border: 1px solid #bbb;
-  border-radius: 6px;
 }
 
 .profile-info {
@@ -182,3 +135,47 @@ button.item {
 {
   letter-spacing: 3rpx;
 }
+
+
+
+.card {
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+.items .item {
+  height: 90rpx;
+  line-height: 90rpx;
+  padding: 0 40rpx;
+  border-bottom: 1rpx solid #efefef;
+}
+.items .item:last-child {
+  border-bottom: none;
+}
+.items .item .title {
+  font-size: 32rpx;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+.items .item image {
+  width: 42rpx;
+  height: 42rpx;
+  margin-right: 40rpx;
+}
+.items .item .count {
+  font-size: 24rpx;
+  color: #abb4bf;
+}
+.items .item .count.reddot {
+  height: 30rpx;
+  line-height: 30rpx;
+  border-radius: 15rpx;
+  padding: 0 7px;
+  background: #ff5959;
+  color: #fff;
+}
+
+.hover-class {
+  background: #f2f2f2;
+}
+

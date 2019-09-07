@@ -11,9 +11,7 @@ const app = getApp()
 import event from '../../utils/event.js'
 
 Page({
-
-  data:
-  {
+  data: {
     localeStrings: '',
     languages: ['简体中文', 'English'],
     langIndex: 0,
@@ -28,9 +26,7 @@ Page({
     auth: {},
   },
 
-
-  onLoad ()
-  {
+  onLoad () {
     utils.setLocaleStrings(this)
 
     const wid = wx.getStorageSync('wid', 0)
@@ -43,9 +39,7 @@ Page({
     })
   },
 
-
-  onShow ()
-  {
+  onShow () {
     const userInfo = wx.getStorageSync('userInfo') || false
     if (userInfo) {
       this.setData({
@@ -62,7 +56,6 @@ Page({
 
     this.setData({ last_reading_list })
   },
-
 
   // 消息中心消息条数
   userNotificationNum() {
@@ -96,12 +89,10 @@ Page({
     })
   },
 
-
   /*
    * 用户点击“登陆”按钮，回调函数
    */
-  onGotUserInfo (res)
-  {
+  onGotUserInfo (res) {
     let that = this
     let userInfo = res.detail.userInfo
     if (userInfo === undefined) { //拒绝授权
@@ -124,31 +115,25 @@ Page({
     }
   },
 
-
-  navigateItem(ev) {
-
+  navigateItem (ev) {
     wx.navigateTo({
       url: ev.currentTarget.dataset.url,
     })
   },
 
-
   /**
    * Goto Feedback.
    */
-  gotoFeedback (ev)
-  {
+  gotoFeedback (ev) {
     wx.navigateTo({
       url: './contact/contact'
     })
   },
 
-
   /**
    * Change language.
    */
-  changeLanguage (ev)
-  {
+  changeLanguage (ev) {
     let langIndex = parseInt(ev.detail.value)
     //console.log('index')
     //console.log(langIndex)
@@ -163,18 +148,4 @@ Page({
 
     wx.setStorageSync('languageIndex', this.data.langIndex)
   },
-
-
-  // 用户点击“登出”
-  /*
-  userLogout: function () {
-    this.setData({
-      //userInfo: {},
-      isLogged: false
-    });
-    wx.setStorageSync('userInfo', false);
-    //app.globalData.myItems = [];
-  }
-  */
-
 })

@@ -5,8 +5,10 @@
 }
 
 .profile {
+  background: #fff;
   display: flex;
   flex-direction: column;
+  margin-bottom: 20rpx;
   padding: 18rpx 40rpx 0;
   position: relative;
 }
@@ -53,33 +55,40 @@
   border-radius: 10rpx;
   padding: 1px 3px;
 }
+
 .profile .others {
   color: #696969;
   overflow: hidden;
 }
+
 .profile .bottom {
   height: 99rpx;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .profile .bottom .l {
   display: flex;
 }
+
 .profile .bottom .action {
   margin-right: 100rpx;
   font-size: 28rpx;
   display: flex;
   align-items: center;
 }
+
 .profile .bottom .action .number {
   margin-right: 20rpx;
 }
+
 .profile .bottom .key {
   color: #abb4bf;
   font-size: 24rpx;
   padding-right: 10rpx;
 }
+
 .profile .bottom .edit {
   color: #3281ff;
   height: 60rpx;
@@ -89,15 +98,12 @@
   border-radius: 8rpx;
   border: 1px solid #3281ff;
 }
+
 .profile .follow-outside {
   position: absolute;
   display: flex;
   right: 12px;
   bottom: 12px;
-}
-.trend {
-  width: 60rpx;
-  height: 60rpx;
 }
 
 .myself-description {
@@ -116,6 +122,7 @@
 .wechat-login {
   width: 170rpx;
 }
+
 .follow-wrap .login-text {
   background: none;
   color: #3281ff;
@@ -147,5 +154,4 @@
   width: 230rpx;
   height: 230rpx;
 }
-
 
