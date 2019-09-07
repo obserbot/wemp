@@ -20,27 +20,6 @@
 
 <view class="container">
 
-<!--
-  <view class="title-wrap">
-    <view class="icon-wrap">
-      <image class="doc-img" src="/img/tick.png" />
-    </view>
-    <view class="desc">
-      <view class="try">{{ localeStrings.slogan1 }}<text class="try-it">{{ localeStrings.slogan2 }}</text>{{ localeStrings.slogan5 }}<text class="try-it">{{ localeStrings.slogan3 }}</text>{{ localeStrings.slogan6 }}</view>
-      <view class="try">{{ localeStrings.slogan4 }}</view>
-    </view>
-  </view>
--->
-
-<!--
-  <view class="page-title-wrap" wx:if="{{ languageCode === 'en' }}">
-    {{ localeStrings.courses }}
-  </view>
-  <view class="page-title-wrap" wx:if="{{ languageCode === 'zh_hans' }}">
-    <image class='' src='/img/courses_one_on_one.png'></image>
-  </view>
--->
-
     <view class="course-item card" hover-class="hover-class"
       wx:if='{{ tabNow === "LESSONS" }}'
       wx:for="{{ lessons_now }}" wx:key="{{ index }}" data-nid="{{ item.nid }}"

@@ -1,4 +1,6 @@
-@import "/components/weui/weui.wxss";
+/* my.wxss */
+
+@import "/weui/weui.wxss";
 
 .wrapper {
   padding-top: 20rpx;

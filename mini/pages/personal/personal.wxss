@@ -1,21 +1,23 @@
-@import "/components/weuiStyle/weui-loading.wxss";
-@import "/components/weuiStyle/weui-button.wxss";
+/* personal.wxss */
 
 .wrapper {
   padding-top: 20rpx;
 }
+
 .profile {
-  position: relative;
   display: flex;
   flex-direction: column;
   padding: 18rpx 40rpx 0;
+  position: relative;
 }
+
 .profile .avatar {
   width: 90rpx;
   height: 90rpx;
   border-radius: 50%;
   margin-right: 40rpx;
 }
+
 .profile .info {
   min-height: 90rpx;
   padding: 20rpx 0;
@@ -24,25 +26,24 @@
   font-size: 24rpx;
   color: #abb4bf;
 }
+
 .profile .info .text {
   flex: 1;
   min-height: 90rpx;
-  /*
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  */
 }
+
 .profile .info .text .line-first {
   display: flex;
   align-items: center;
   margin-bottom: 20rpx;
 }
+
 .profile .info .text .line-first .name {
   font-size: 30rpx;
   color: #333;
   margin-right: 30rpx;
 }
+
 .profile .info .text .line-first .nationality {
   color: #abb4bf;
   text-align: center;
