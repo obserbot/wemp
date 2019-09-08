@@ -13,7 +13,6 @@ import T from './utils/i18n'
 import * as Constants from 'utils/constants'
 
 App({
-
   // options example:
   // {
   //   path: "pages/home/home",
@@ -23,8 +22,7 @@ App({
   //   scene: 1007,
   //   shareTicket: "<Undefined>"
   // }
-  onLaunch (options)
-  {
+  onLaunch (options) {
     const that = this
 
     // Todo: Language resolvation order:
@@ -47,14 +45,27 @@ App({
     T.setTabBarTitles()
     wx.T = T
 
+    /*
+     * 全局数据更新逻辑：
+     * 1. app.js 请求并保存全局数据。
+     * 2. 具体页面查询全局数据。如数据为空，可能是异步请求暂未返回，定时多次查询。
+     *    2.1 查询到全局数据，则正常显示。
+     *    2.2 多次查询不到，则显示错误信息。
+     * 3. 具体页面更新数据（下拉更新、重进入更新、其他更新），页面更新后，更新全局数据。
+     *
+     * Todo：设置本地数据缓存机制，避免频繁请求。
+     */
+
     const session3rd = wx.getStorageSync('session3rd') || '';
 
     // Log system info
+    /*
     wx.getSystemInfo({
       success: res => {
         //that.globalData.systeminfo = res
       },
     })
+    */
 
     me.wxLoginToGetCode().then( code => {
       if (code === 'error') {
@@ -73,11 +84,15 @@ App({
         wx.showLoading({ title: locales[lang_code].isLoading })
 
         me.initInfo(code, session3rd).then( data => {
+          // data.enroll_nids: ["123", "234"]
           //that.connectSocket(session3rd)
           wx.setStorageSync('wid', data.wid)
+          wx.setStorageSync('session3rd', data.session3rd)
 
           // Initiate global data
           that.globalData.allCourses = JSON.parse(data.all_courses)
+          that.globalData.allEnroll = data.enroll_nids
+          that.globalData.myUid = data.uid // Number
           const lessons_json = JSON.parse(data.all_lessons)
           if (lessons_json.pstat === 'ok') {
             that.globalData.allLessons = lessons_json.lessons
@@ -104,18 +119,17 @@ App({
         that.loginWechat()
       }
       */
-
     }).catch( err => {
-      console.log('catch', err)
+      // Todo: Repeat requiring several times.
+      // Todo: Check network connecting.
+      console.log('Fail to get code', err)
     })
   },
-
 
   /**
    * 服务器登录，用 code 换取 session3rd.
    */
-  loginWeiyi (code)
-  {
+  loginWeiyi (code) {
     const that = this
     //console.log('lgin Weiyi')
     if (that.globalData.loginWeiyiCount < 50) {
@@ -137,13 +151,11 @@ App({
     }
   },
 
-
   /**
    * wx.login() 调用微信登录
    * 获取登录凭证 code，有效期 5 分钟
    */
-  loginWechat ()
-  {
+  loginWechat () {
     const that = this
     //console.log('lgin Wechat')
 
@@ -170,9 +182,8 @@ App({
     });
   },
 
-
   // Websocket
-  connectSocket(session3rd) {
+  connectSocket (session3rd) {
 
     /*
     const that = this
@@ -239,12 +250,12 @@ App({
     //me.wysjLog('launch', 'onHide')
   },
 
-
   globalData:
   {
     status: 0,
     allCourses: [],
     allLessons: [],
+    allEnroll: [],
     enSocket: {},
     myMessageSummary: [],
     myStatus: 0,

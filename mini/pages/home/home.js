@@ -11,9 +11,7 @@ import * as CONSTS from '../../utils/constants'
 const app = getApp()
 
 Page({
-
-  data:
-  {
+  data: {
     localeStrings: {},
     languageCode: 'zh_hans',
     currentCategory: CONSTS.CATE_OPEN_CLASS,
@@ -33,10 +31,7 @@ Page({
     isAdmin: false,
   },
 
-
-  onLoad (options)
-  {
-    //const that = this
+  onLoad (options) {
     // Clicked shared link.
     const course_nid = options.course_nid
     if (course_nid) {
@@ -47,7 +42,6 @@ Page({
 
     utils.setLocaleStrings(this)
     event.on("languageChanged", this, utils.setLocaleStrings) // UI
-    event.on("languageChanged", this, this.setLocaleCourses)  // Content of courses
     event.on("languageChanged", this, this.setLocaleLessons)  // Content of lessons
 
     /*
@@ -69,8 +63,6 @@ Page({
     initData()
     */
     this.initData()
-    //this.getEntries()
-
 
 
     const admin = wx.getStorageSync('admin', 'iiii')
@@ -79,12 +71,10 @@ Page({
     }
   },
 
-
   /**
    * Localize course info.
    */
-  setLocaleCourses (initCourses = false)
-  {
+  setLocaleCourses (initCourses = false) {
     let courses = initCourses ? initCourses : this.data.courses
     const lang_code = wx.T.getLanguageCode()
     const localeCountryNames = utils.getCountryNames()
@@ -104,12 +94,10 @@ Page({
     })
   },
 
-
   /**
    * Localize lesson info.
    */
-  setLocaleLessons ()
-  {
+  setLocaleLessons () {
     const lessons = app.globalData.allLessons
     const lang_code = wx.T.getLanguageCode()
     const localeCountryNames = utils.getCountryNames()
@@ -128,50 +116,43 @@ Page({
     })
   },
 
-
-  onShow ()
-  {
+  onShow () {
     if (this.data.flagNavigationBarTitle) {
       wx.T.setNavigationBarTitle()
       this.data.flagNavigationBarTitle = false
     }
   },
 
-
-  onPullDownRefresh ()
-  {
+  onPullDownRefresh () {
     wx.stopPullDownRefresh()
     // Todo: get new data from server!
     //this.initData()
-    //this.getEntries(true)
   },
-
 
   /**
    * Share message.
    */
-  onShareAppMessage (res)
-  {
+  onShareAppMessage (res) {
     const lang = wx.getStorageSync('languageIndex') || 0
-    const slogan = lang === 0 ? '来自全球的英语教师，带给你不一样的英语课！' : 'Find your favorate English tutors and courses!'
+    const slogan = lang === 0
+      ? '来自全球的英语教师，带给你不一样的英语课！'
+      : 'Find your favorate English tutors and courses!'
     return {
       title: slogan,
       path: '/pages/list/list?lang=' + lang
     }
   },
 
-
   /**
    * Init data
    */
-  initData ()
-  {
+  initData () {
     const that = this
     let initCount = 0
 
     const init = function() {
       if (app.globalData.status === 1) {
-        that.setLocaleCourses( app.globalData.allCourses )
+        //that.setLocaleCourses( app.globalData.allCourses )
         that.setLocaleLessons()
       }
       else {
@@ -186,67 +167,20 @@ Page({
     init()
   },
 
-
-  /**
-   * Get all courses.
-   */
-  getEntries (isPullDown = false)
-  {
-    const that = this
-    wx.showLoading({ title: that.data.localeStrings.isLoading })
-
-    wx.request({
-      url: serverAPI.getCourses,
-      data: {},
-      success: (res) => {
-        console.log('!!***resul')
-        console.log(res)
-        that.setLocaleCourses( res.data.courses )
-        //app.globalData.allCourses = res.data.courses
-      },
-      fail: () => {
-        utils.showToastError()
-      },
-      complete: () => {
-        wx.hideLoading();
-        if (isPullDown) {
-          wx.stopPullDownRefresh()
-        }
-      }
-    })
-  },
-
-
   /*
-   * Goto 一节课的详细介绍
+   * Lesson detail.
    */
-  toLessonDetail (ev)
-  {
+  toLessonDetail (ev) {
     let nid = ev.currentTarget.dataset.nid
     wx.navigateTo({
       url: `/pages/lesson/lesson?nid=${nid}`,
-      //url: `/pages/lessonote/lessonote?nid=${nid}`,
     })
   },
-
-
-  /*
-   * Goto 一个课程的详细介绍
-   */
-  toCourseDetail (ev)
-  {
-    let nid = ev.currentTarget.dataset.nid
-    wx.navigateTo({
-      url: `/pages/course/course?nid=${nid}`,
-    })
-  },
-
 
   /**
    * Navbar
    */
-  tabClick (ev)
-  {
+  tabClick (ev) {
     // Old:
     const currentCategory = ev.currentTarget.dataset.category
     const sliderOffset = ev.currentTarget.offsetLeft
