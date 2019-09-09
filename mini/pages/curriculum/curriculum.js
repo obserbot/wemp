@@ -7,16 +7,12 @@ import event from '../../utils/event'
 const app = getApp()
 
 Page({
-
-  data:
-  {
+  data: {
     localeStrings: {},
     allCourses: [],
   },
 
-
-  onLoad (options)
-  {
+  onLoad (options) {
     // Clicked shared link.
     const uid = options.thirduid
     if (uid) {
@@ -33,9 +29,7 @@ Page({
     this.setData({ allCourses })
   },
 
-
-  onShow ()
-  {
+  onShow () {
     if (this.data.flagNavigationBarTitle) {
       wx.T.setNavigationBarTitle()
       this.data.flagNavigationBarTitle = false
@@ -61,12 +55,7 @@ Page({
   },
   */
 
-
-  /*
-   * Goto 一个课程的详细介绍
-   */
-  gotoCourse (ev)
-  {
+  gotoCourse (ev) {
     let nid = ev.currentTarget.dataset.nid
     wx.navigateTo({
       url: `/pages/course/course?nid=${nid}`,

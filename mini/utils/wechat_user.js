@@ -273,16 +273,11 @@ function unenrollLesson(session3rd, lesson_nid)
     })
 }
 
-
 /**
  * Lesson API.
  */
-function getLessonDetails (nid)
-{
-  //const that = this
-
-  return new Promise((resolve, reject) =>
-    {
+function getLessonDetails (nid) {
+  return new Promise((resolve, reject) => {
       const localeStrings = wx.T.getLanguage()
       wx.showLoading({ title: localeStrings.isLoading })
 
@@ -310,7 +305,6 @@ function getLessonDetails (nid)
     })
 }
 
-
 module.exports = {
   wxLoginToGetCode,
   wysjLog,
@@ -322,5 +316,4 @@ module.exports = {
   unenrollLesson,
   traceReading,
 };
-
 

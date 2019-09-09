@@ -1,6 +1,5 @@
 <view class='container'>
 
-
   <view class="page-title-wrap">
     <view class='course-title'>
       {{ courseTitle[localeCode] }}
@@ -65,9 +64,11 @@
     </view>
   </view> <!-- End of syllabus -->
 
+<!--
   <view class='goto-weoa' hover-class='hover-class' bindtap='toWEOA' wx:if='{{ weoa_url }}'>
     {{ localeStrings.courseMaterial }} >
   </view>
+-->
 
   <block wx:if="{{ isLogged }}">
     <image class="avatar" src="{{ userInfo.avatarUrl }}"></image>
@@ -95,6 +96,8 @@
     -->
   </block>
 
+
+<!--
   <view class="qrcode-wrap" wx:if='{{ groupQrUrl }}'>
     <view class='qrcode-title'>
       {{ localeStrings.enterClass }}
@@ -103,6 +106,7 @@
       <image src="{{ groupQrUrl }}" mode="widthFix" bindtap="previewImage"></image>
     </view>
   </view>
+-->
 
 
 <!--

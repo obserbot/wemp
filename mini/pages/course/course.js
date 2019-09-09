@@ -11,9 +11,7 @@ const barTitles = {
 const app = getApp()
 
 Page({
-
-  data:
-  {
+  data: {
     isLogged: false,
 
     localeCode: 'zh_hans',
@@ -32,9 +30,7 @@ Page({
     },
   },
 
-
-  onLoad (options)
-  {
+  onLoad (options) {
     const course_nid = options.nid
     //this.getCourseDetails(course_nid) // 不要每次都重新抓取, 只有在landing pages, 才需要
 
@@ -93,9 +89,7 @@ Page({
     utils.setLocaleStrings(this, barTitles)
   },
 
-
-  onShow ()
-  {
+  onShow () {
     if (this.data.flagNavigationBarTitle) {
       wx.T.setNavigationBarTitle(barTitles)
       this.data.flagNavigationBarTitle = false
@@ -122,9 +116,7 @@ Page({
 
   },
 
-
-  onShareAppMessage (res)
-  {
+  onShareAppMessage (res) {
     const nid = this.data.courseNid
     const courseTitle = this.data.courseTitle[this.data.localeCode]
 
@@ -190,36 +182,24 @@ Page({
     })
   },
 
-
-  /**
-   * Goto personal
-   */
-  toPersonal (ev)
-  {
+  toPersonal (ev) {
     let uid = ev.currentTarget.dataset.uid
     wx.navigateTo({
       url: `/pages/personal/personal?thirduid=${uid}`,
     })
   },
 
-
-  /**
-   * Goto WEOA
-   */
-  toWEOA (ev)
-  {
+  toWEOA (ev) {
     const weoa_url = this.data.weoa_url
     wx.navigateTo({
       url: `/pages/weoa/weoa?weoa=${weoa_url}`,
     })
   },
 
-
   /**
    * Group qr code for the lesson.
    */
-  previewImage (res)
-  {
+  previewImage (res) {
     const url = this.data.groupQrUrl
     wx.previewImage({
       urls: [url]

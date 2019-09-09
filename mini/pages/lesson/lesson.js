@@ -11,9 +11,7 @@ const barTitles = {
 const app = getApp()
 
 Page({
-
-  data:
-  {
+  data: {
     isLogged: false,
     isEnrolled: false,
     lessonNid: 0,
