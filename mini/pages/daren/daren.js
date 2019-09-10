@@ -50,30 +50,24 @@ Page({
     }
   },
 
-
-  onPullDownRefresh ()
-  {
+  onPullDownRefresh () {
     this.getDarens(true)
   },
-
 
   /**
    * Goto personal
    */
-  toPersonal (ev)
-  {
+  toPersonal (ev) {
     let uid = ev.currentTarget.dataset.uid
     wx.navigateTo({
       url: `/pages/personal/personal?thirduid=${uid}`,
     })
   },
 
-
   /**
    * Get teacher list
    */
-  getDarens (isPullDown = false)
-  {
+  getDarens (isPullDown = false) {
     const that = this
 
     wx.showLoading({ title: that.data.localeStrings.isLoading })

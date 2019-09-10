@@ -34,12 +34,23 @@
     </view>
   </view>
 
-  <view class='myself-description' wx:if='{{ tutorDesc[ languageCode ] }}'>
+  <view class="myself-description" wx:if="{{ tutorDesc[ languageCode ] }}">
     {{ tutorDesc[ languageCode ] }}
-    <view wx:if='{{ languageCode === "zh_hans" }}' class='para'>
+    <view wx:if='{{ languageCode === "zh_hans" }}' class="para">
       {{ tutorDesc['en'] }}
     </view>
   </view>
+
+  <view class="courses-wrap" wx:if="{{ courses.length > 0 }}">
+    <view class="course-label">{{ localeStrings.courses }}</view>
+    <view class="course-item"
+      wx:for="{{ courses }}" wx:key="{{ index }}"
+      bindtap="gotoCourse" data-nid="{{ item.nid }}"
+    >
+      {{ item.title[languageCode] }}
+    </view>
+  </view>
+
   <!--
   <view class='contact-wrap'>
     <view class='contact-title'>

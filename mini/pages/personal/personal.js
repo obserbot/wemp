@@ -4,10 +4,10 @@ const utils = require('../../utils/utils.js')
 const wechatUser = require('../../utils/wechat_user.js')
 const server_api = require('../../server.api.js')
 
-Page({
+const app = getApp()
 
-  data:
-  {
+Page({
+  data: {
     languageCode: 'zh_hans',
     localeStrings: '',
 
@@ -25,11 +25,11 @@ Page({
     tutorDesc: {zh_hans: '', en: ''},
     breifDesc: {zh_hans: '', en: ''},
     theTutor: {},
+
+    courses: [],
   },
 
-
-  onLoad (query)
-  {
+  onLoad (query) {
     utils.setLocaleStrings(this)
 
     const myInfo = wx.getStorageSync('userInfo') || false
@@ -43,11 +43,20 @@ Page({
     }
 
     if (query && query.thirduid) {
-      let uid = query.thirduid
+      const uid = query.thirduid
       //  console.log('duidddd')
       //  console.log(uid)
       this.getDarenInfo(uid)
       //this.getMultiUser(thirduid)
+
+      // Courses of the teacher.
+      const courses = app.globalData.allCourses.filter( item => {
+        return uid == item.author.uid
+      })
+      this.setData({
+        courses
+      })
+      console.log('ddd courses', courses)
     } else {
       //this.getUserInfo()
       wx.showToast({
@@ -58,9 +67,7 @@ Page({
     }
   },
 
-
-  onShow ()
-  {
+  onShow () {
     /*
     const localeCode = wx.T.getLanguageCode()
     this.setData({
@@ -69,12 +76,10 @@ Page({
     */
   },
 
-
   /**
    *
    */
-  getDarenInfo (uid)
-  {
+  getDarenInfo (uid) {
     const that = this
     const session3rd = wx.getStorageSync('session3rd') || ''
 
@@ -126,10 +131,8 @@ Page({
     })
   },
 
-
   // 用户点击“微信登陆”按钮，回调函数
   onGotUserInfo: function(res) {
-
     let that = this
     let userInfo = res.detail.userInfo
     if (userInfo === undefined) { //拒绝授权
@@ -158,7 +161,6 @@ Page({
   },
 
   toggleFollow() {
-
     const that = this
     const is_following = this.data.isFollowing ? 1 : 0
     const session3rd = wx.getStorageSync('session3rd') || false
@@ -207,6 +209,13 @@ Page({
 
   },
 
+  gotoCourse (ev) {
+    let nid = ev.currentTarget.dataset.nid
+    wx.navigateTo({
+      url: `/pages/course/course?nid=${nid}`,
+    })
+  },
+
   // 对话
   goDialog() {
     wx.navigateTo({
@@ -214,12 +223,10 @@ Page({
     })
   },
 
-
   /**
    * Share message.
    */
-  onShareAppMessage (res)
-  {
+  onShareAppMessage (res) {
     const lang = wx.getStorageSync('languageIndex') || 0
     const slogan = this.data.briefDesc[ this.data.languageCode ]
     const uid = this.data.thirduid
@@ -228,7 +235,6 @@ Page({
       path: `/pages/daren/daren?thirduid=${uid}`
     }
   },
-
 
   previewImage (res)
   {

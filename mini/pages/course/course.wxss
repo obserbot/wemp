@@ -101,9 +101,8 @@
 
 .tutor-wrap {
   display: flex;
-  padding: 20px 0;
+  padding: 40rpx 0;
   background-color: #fff;
-  margin-bottom: 50px;
   align-items: center;
 }
 .tutor-wrap .tutor-name {
@@ -150,23 +149,28 @@
   margin: 10px 20px 30px;
   color: #000;
 }
+
 .syllabus-wrap .syllabus-label {
-  font-size: 20px;
+  font-size: 40rpx;
   font-weight: 600;
-  margin: 38px 0 21px;
+  margin: 60rpx 0 42rpx;
 }
+
 .syllabus-wrap .objective-main {
   margin: 2px 0 12px;
 }
+
 .syllabus-wrap .objective-item-wrap {
   display: flex;
   align-items: center;
   margin: 24px 0;
 }
+
 .syllabus-wrap .objective-item-wrap .list-dot-wrap {
   flex: 0 0 18px;
   padding: 0 2px 0 12px;
 }
+
 .syllabus-wrap .list-dot-wrap image.list-dot {
   width: 8px;
   height: 8px;
@@ -222,6 +226,7 @@
   padding: 10rpx 20rpx;
   height: 40rpx;
   line-height: 40rpx;
+  margin: 12rpx 0;
 }
 
 

@@ -98,7 +98,9 @@ Page({
    * Localize lesson info.
    */
   setLocaleLessons () {
-    const lessons = app.globalData.allLessons
+    const lessons = app.globalData.allLessons.filter((value, index, array) => {
+      return value.promote == '1'
+    })
     const lang_code = wx.T.getLanguageCode()
     const localeCountryNames = utils.getCountryNames()
     let lessons_now = []
