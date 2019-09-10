@@ -1,10 +1,10 @@
 <view class='container'>
 
   <view class="page-title-wrap">
-    <view class='course-title'>
-      {{ courseTitle[localeCode] }}
+    <view class="course-title">
+      {{ nowCourse.title[localeCode] }}
     </view>
-    <view class='tutor-wrap' hover-class='hover-class' bindtap='toPersonal' data-uid='{{ courseTutor.uid }}'>
+    <view class="tutor-wrap" hover-class="hover-class" bindtap="toPersonal" data-uid="{{ courseTutor.uid }}">
       <view class='profile'>
         <view class='info'>
           <image class='avatar' mode='aspectFill' src='{{ courseTutor.avatar }}'></image>
@@ -59,6 +59,18 @@
         </view>
         <view class='list-content-wrap'>
            {{ item }}
+        </view>
+      </view>
+    </view>
+
+    <view class="curriculum-wrap" wx:if="{{ nowCourse.curriculum.length > 0 }}">
+      <view class="lesson-wrap"
+        wx:for="{{ nowCourse.curriculum }}" wx:key="{{ index }}"
+        data-nid="{{ item.nid }}" bindtap="toLesson"
+      >
+        <view class="lesson-title">
+        {{ index + 1 }}.
+          {{ item.title[localeCode] }}
         </view>
       </view>
     </view>

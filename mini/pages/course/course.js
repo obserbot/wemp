@@ -35,13 +35,22 @@ Page({
     //this.getCourseDetails(course_nid) // 不要每次都重新抓取, 只有在landing pages, 才需要
 
     if (course_nid) {
-      console.log('alllllll')
-      console.log(app.globalData.allCourses)
+      //console.log(app.globalData.allCourses)
       //app.globalData.allCourses = []
+      /*
       let theCourse = app.globalData.allCourses.filter( item => {
         return course_nid == item.nid
       })
-      console.log('ttt cour', theCourse)
+      */
+      const nowCourse = app.globalData.allCourses.find( item => {
+        return course_nid == item.nid
+      })
+
+          // todo: Remove all below.
+      let theCourse = []
+      if (nowCourse) {
+        theCourse.push( nowCourse )
+      }
 
       if (theCourse.length > 0) {
         const lang_code = wx.T.getLanguageCode()
@@ -52,7 +61,9 @@ Page({
         let coursePrice = theCourse[0].price
 
         this.setData({
-          //courseId,
+          nowCourse,
+
+          // todo: Remove all below.
           courseTitle: theCourse[0].course_title,
           courseNid: course_nid,
           courseDesc: {
@@ -118,14 +129,13 @@ Page({
 
   onShareAppMessage (res) {
     const nid = this.data.courseNid
-    const courseTitle = this.data.courseTitle[this.data.localeCode]
+    const courseTitle = this.data.nowCourse.title[this.data.localeCode]
 
     return {
       title: courseTitle,
       path: `/pages/courses/courses?course_nid=${nid}`
     }
   },
-
 
   getCourseDetails(course_nid) {
 
@@ -186,6 +196,13 @@ Page({
     let uid = ev.currentTarget.dataset.uid
     wx.navigateTo({
       url: `/pages/personal/personal?thirduid=${uid}`,
+    })
+  },
+
+  toLesson (ev) {
+    let nid = ev.currentTarget.dataset.nid
+    wx.navigateTo({
+      url: `/pages/lesson/lesson?nid=${nid}`,
     })
   },
 

@@ -66,18 +66,13 @@ function weiyiLogin (code)
     })
 }
 
-
 /**
  * 用户初始化信息
  * @param session3rd
  * @param code
  */
-function initInfo(code, session3rd)
-{
-  //const that = this;
-
-  return new Promise((resolve, reject) =>
-    {
+function initInfo(code, session3rd) {
+  return new Promise((resolve, reject) => {
       wx.request({
         url: server_api.getUserDetails,
         data: {code, session3rd},
@@ -95,18 +90,14 @@ function initInfo(code, session3rd)
     })
 }
 
-
 /**
  * 授权获取用户名和头像成功，保存用户信息（远程、本地）
  *
  * 如果 lesson_nid > 0, 则同时注册该门课程。
  */
-function getUserInfo (userInfo, lesson_nid = 0)
-{
+function getUserInfo (userInfo, lesson_nid = 0) {
   return new Promise((resolve, reject) => {
-
     const localeStrings = wx.T.getLanguage()
-
     wx.showLoading({ title: localeStrings.logining })
 
     const session3rd = wx.getStorageSync('session3rd') || ''
