@@ -8,6 +8,8 @@ const barTitles = {
   en: 'Course'
 }
 
+const WxParse = require('../../wxParse/wxParse.js')
+
 const app = getApp()
 
 Page({
@@ -101,6 +103,7 @@ Page({
   },
 
   onShow () {
+    const that = this
     if (this.data.flagNavigationBarTitle) {
       wx.T.setNavigationBarTitle(barTitles)
       this.data.flagNavigationBarTitle = false
@@ -125,6 +128,9 @@ Page({
       switchs,
     })
 
+    // Mupltiple description
+    const descp = this.data.nowCourse.desc[localeCode];
+    WxParse.wxParse('course_desc', 'md', descp, that)
   },
 
   onShareAppMessage (res) {

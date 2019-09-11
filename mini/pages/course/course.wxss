@@ -1,3 +1,6 @@
+/* course.wxss */
+
+@import "/wxParse/wxParse.wxss";
 
 .page-title-wrap .course-title {
   font-size: 56rpx;
@@ -214,6 +217,10 @@
 .time-wrap .time3 {
   margin: 0 10rpx;
   font-weight: 500;
+}
+
+text {
+  word-break: break-word;
 }
 
 /* curriculum */
