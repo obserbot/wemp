@@ -11,8 +11,6 @@
     "pages/my/contact/contact",
     "pages/personal/personal",
     "pages/dialog/dialog",
-    "pages/infoCenter/infoCenter",
-    "pages/entry/entry",
     "pages/weoa/weoa"
   ],
   "window": {

@@ -139,6 +139,7 @@
 .contact-wrap {
   padding: 10px 0 62px;
 }
+
 .contact-wrap button {
   width: 179px;
   font-size: 18px;
@@ -156,7 +157,7 @@
 .syllabus-wrap .syllabus-label {
   font-size: 40rpx;
   font-weight: 600;
-  margin: 60rpx 0 42rpx;
+  margin: 60rpx 0 22rpx;
 }
 
 .syllabus-wrap .objective-main {
@@ -190,6 +191,10 @@
   font-size: 17px;
   font-weight: 400;
   padding: 0;
+}
+
+.course-description .wxParse-p {
+  margin: 26rpx 0;
 }
 
 .qrcode-wrap {

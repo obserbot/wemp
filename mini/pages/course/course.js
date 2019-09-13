@@ -14,11 +14,10 @@ const app = getApp()
 
 Page({
   data: {
-    isLogged: false,
+    //isLogged: false,
 
     localeCode: 'zh_hans',
     localeStrings: {},
-    //courseId: '0',
     courseTitle: {},
     courseTutor: {},
     courseDesc: {},

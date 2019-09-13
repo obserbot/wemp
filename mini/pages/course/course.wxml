@@ -39,10 +39,10 @@
 
     <!-- 课程介绍 -->
 
-    <view class='syllabus-label' wx:if='{{ courseDesc[localeCode] }}'>
+    <view class="syllabus-label" wx:if="{{ courseDesc[localeCode] }}">
       {{ localeStrings.courseIntroduction }}
     </view>
-    <view class='course-description' wx:if='{{ courseDesc[localeCode] }}'>
+    <view class="course-description" wx:if="{{ courseDesc[localeCode] }}">
       <template is="wxParse" data="{{ wxParseData:course_desc.nodes }}" />
     </view>
 
@@ -78,26 +78,21 @@
     </view>
   </view> <!-- End of syllabus -->
 
-<!--
+<!-- 公众号文章
   <view class='goto-weoa' hover-class='hover-class' bindtap='toWEOA' wx:if='{{ weoa_url }}'>
     {{ localeStrings.courseMaterial }} >
   </view>
 -->
 
+<!-- 课程可注册
   <block wx:if="{{ isLogged }}">
     <image class="avatar" src="{{ userInfo.avatarUrl }}"></image>
     <view class="info">
       <text class="name">{{ userInfo.nickName }}</text>
     </view>
-    <!--
-    <view class="logout" bindtap="userLogout">
-      {{ localeStrings.logout }}
-    </view>
-    -->
   </block>
 
   <block wx:else>
-  <!--
     <view class="wechat-user-wrap">
       <view class="wechat-login2">
         <button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" class='login-text'>
@@ -107,11 +102,10 @@
     </view>
     <view class="info">
     </view>
-    -->
   </block>
+-->
 
-
-<!--
+<!-- 显示二维码：老师联系方式
   <view class="qrcode-wrap" wx:if='{{ groupQrUrl }}'>
     <view class='qrcode-title'>
       {{ localeStrings.enterClass }}
@@ -122,8 +116,7 @@
   </view>
 -->
 
-
-<!--
+<!-- 联系客服
   <view class="contact-wrap">
     <button class="cs_button" open-type="contact" session-from="weapp">
       {{ localeStrings.customerService }}
