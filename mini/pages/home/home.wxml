@@ -17,6 +17,12 @@
 </view>
 -->
 
+<view class="weui-navbar">
+  <view class="latest-classes">
+    {{ localeStrings.latestClasses }}
+  </view>
+</view>
+
 
 <view class="container">
 

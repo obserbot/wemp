@@ -1,6 +1,7 @@
 /* lesson.wxss */
 
 @import '/weui/weui.wxss';
+@import "/wxParse/wxParse.wxss";
 
 .page-title-wrap .course-title {
   font-size: 56rpx;

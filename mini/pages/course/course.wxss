@@ -224,10 +224,6 @@
   font-weight: 500;
 }
 
-text {
-  word-break: break-word;
-}
-
 /* curriculum */
 .curriculum-wrap {
 }

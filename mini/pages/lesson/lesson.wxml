@@ -1,8 +1,10 @@
+<import src="/wxParse/wxParse.wxml" />
+
 <view class='container'>
 
   <view class="page-title-wrap">
     <view class="course-title">
-      {{ lessonTitle[localeCode] }}
+      <text>{{ lessonTitle[localeCode] }}</text>
     </view>
     <view class="tutor-wrap" hover-class="hover-class" bindtap="toPersonal" data-uid="{{ lessonTutor.uid }}">
       <view class="profile">
@@ -30,11 +32,11 @@
 
     <!-- 课程介绍 -->
 
-    <view class='syllabus-label' wx:if='{{ lessonDesc[localeCode] }}'>
+    <view class="syllabus-label" wx:if="{{ lessonDesc[localeCode] }}">
       {{ localeStrings.courseIntroduction }}
     </view>
-    <view class='course-description' wx:if='{{ lessonDesc[localeCode] }}'>
-      {{ lessonDesc[localeCode] }}
+    <view class="course-description" wx:if="{{ lessonDesc[localeCode] }}">
+      <template is="wxParse" data="{{ wxParseData:lesson_desc.nodes }}" />
     </view>
 
     <!-- 课程目标 -->

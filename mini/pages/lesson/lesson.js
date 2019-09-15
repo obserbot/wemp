@@ -8,6 +8,8 @@ const barTitles = {
   en: 'Course'
 }
 
+const WxParse = require('../../wxParse/wxParse.js')
+
 const app = getApp()
 
 Page({
@@ -70,6 +72,10 @@ Page({
         time2: data.time2,
         time3: data.time3,
       })
+
+      // Mupltiple description
+      const descp = that.data.lessonDesc[lang_code][0];
+      WxParse.wxParse('lesson_desc', 'md', descp, that)
     })
 
         /*
