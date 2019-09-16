@@ -39,10 +39,10 @@
 
     <!-- 课程介绍 -->
 
-    <view class="syllabus-label" wx:if="{{ courseDesc[localeCode] }}">
+    <view class="syllabus-label">
       {{ localeStrings.courseIntroduction }}
     </view>
-    <view class="course-description" wx:if="{{ courseDesc[localeCode] }}">
+    <view class="course-description">
       <template is="wxParse" data="{{ wxParseData:course_desc.nodes }}" />
     </view>
 
