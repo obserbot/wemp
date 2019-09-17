@@ -29,6 +29,7 @@ MariaDB [en_edu_extra]> describe wechat_users;
 | uid            | int(11)      | YES  |     | NULL    |                |
 | avatar_url     | varchar(255) | YES  |     | NULL    |                |
 | union_id       | tinytext     | YES  |     | NULL    |                |
+| points         | int(11)      | YES  |     | 0       |                |
 +----------------+--------------+------+-----+---------+----------------+
 
 
@@ -55,3 +56,34 @@ type
 
 
 ```
+
+
+## Points
+
+- points column in wechat_users table
+- point_events
+- point_event_types
+
+### point_event_types
+
+```
+MariaDB [en_edu_extra]> describe point_event_types;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| id     | int(11)      | NO   | PRI | NULL    | auto_increment |
+| title  | tinytext     | YES  |     | NULL    |                |
+| descp  | varchar(255) | YES  |     | NULL    |                |
+| points | int(11)      | YES  |     | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+
+MariaDB [en_edu_extra]> select * from point_event_types;
++----+----------+-------+--------+
+| id | title    | descp | points |
++----+----------+-------+--------+
+|  1 | Register | NULL  |     20 |
+|  2 | Enroll   | NULL  |     -5 |
++----+----------+-------+--------+
+```
+
+
