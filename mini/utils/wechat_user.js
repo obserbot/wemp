@@ -91,6 +91,36 @@ function initInfo(code, session3rd) {
 }
 
 /**
+ * 全局信息：公共信息，个人信息
+ * @param session3rd
+ */
+function getGlobalInfo (session3rd) {
+  console.log('inin', session3rd)
+  return new Promise((resolve, reject) => {
+    const localeStrings = wx.T.getLanguage()
+    wx.showLoading({ title: localeStrings.isLoading })
+
+    wx.request({
+      url: server_api.getGlobalInfo,
+      data: {session3rd},
+      method: 'POST',
+      header: {'content-type': 'application/x-www-form-urlencoded'},
+      success(res) {
+        //console.log('global info');
+        //console.log(res);
+        resolve(res.data)
+      },
+      fail(res) {
+        console.log('Getting global info fails.', res)
+      },
+      complete() {
+        wx.hideLoading();
+      }
+    });
+  })
+}
+
+/**
  * 授权获取用户名和头像成功，保存用户信息（远程、本地）
  *
  * 如果 lesson_nid > 0, 则同时注册该门课程。
@@ -301,6 +331,7 @@ module.exports = {
   wysjLog,
   weiyiLogin,
   initInfo,
+  getGlobalInfo,
   getUserInfo,
   enrollLesson,
   getLessonDetails,

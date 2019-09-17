@@ -5,7 +5,7 @@ const me = require('../../utils/wechat_user.js')
 
 const barTitles = {
   zh_hans: '课程',
-  en: 'Course'
+  en: 'Lesson'
 }
 
 const WxParse = require('../../wxParse/wxParse.js')

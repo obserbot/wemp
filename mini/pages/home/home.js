@@ -2,6 +2,7 @@
 
 const serverAPI = require('../../server.api.js')
 
+const me = require('../../utils/wechat_user.js')
 const utils = require('../../utils/utils.js')
 import event from '../../utils/event'
 
@@ -64,7 +65,6 @@ Page({
     */
     this.initData()
 
-
     const admin = wx.getStorageSync('admin', 'iiii')
     if (admin === 'hu') {
       this.setData({ isAdmin: true })
@@ -126,9 +126,23 @@ Page({
   },
 
   onPullDownRefresh () {
-    wx.stopPullDownRefresh()
-    // Todo: get new data from server!
-    //this.initData()
+    const that = this
+    const s3rd = wx.getStorageSync('session3rd') || '';
+    me.getGlobalInfo(s3rd)
+      .then (data => {
+        app.globalData.allCourses = JSON.parse(data.all_courses)
+        const lessons_json = JSON.parse(data.all_lessons)
+        if (lessons_json.pstat === 'ok') {
+          app.globalData.allLessons = lessons_json.lessons
+        }
+        app.globalData.status = 1
+
+        that.initData()
+        wx.stopPullDownRefresh()
+      })
+      .catch (er => {
+        wx.stopPullDownRefresh()
+      })
   },
 
   /**
