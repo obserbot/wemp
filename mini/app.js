@@ -85,12 +85,14 @@ App({
           //that.connectSocket(session3rd)
           wx.setStorageSync('wid', data.wid)
           wx.setStorageSync('session3rd', data.session3rd)
+          //console.log('EEE', data)
 
           // Initiate global data
           //console.log('COURSES', JSON.parse(data.all_courses))
           that.globalData.allCourses = JSON.parse(data.all_courses)
           that.globalData.allEnroll = data.enroll_nids
-          that.globalData.myUid = data.uid // Number
+          that.globalData.myUid = data.uid        // Number
+          that.globalData.myPoints = data.points  // Number
           const lessons_json = JSON.parse(data.all_lessons)
           if (lessons_json.pstat === 'ok') {
             that.globalData.allLessons = lessons_json.lessons
@@ -251,6 +253,7 @@ App({
     allCourses: [],
     allLessons: [],
     allEnroll: [],
+    myPoints: 0,
     enSocket: {},
     myMessageSummary: [],
     myStatus: 0,

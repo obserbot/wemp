@@ -19,6 +19,7 @@ Page({
     isLogged: false,
     last_reading_list: [],
     wid: 0,
+    myPoints: 0,
     message_summary: [],
 
     userInfo: {},
@@ -31,10 +32,12 @@ Page({
 
     const wid = wx.getStorageSync('wid', 0)
     const message_summary = app.globalData.myMessageSummary
+    const myPoints = app.globalData.myPoints
     const langIndex = wx.getStorageSync('languageIndex') || 0
     this.setData({
       langIndex,
       wid,
+      myPoints,
       message_summary
     })
   },
