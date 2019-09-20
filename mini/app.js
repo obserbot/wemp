@@ -67,7 +67,7 @@ App({
     })
     */
 
-    me.wxLoginToGetCode().then( code => {
+    me.wxLoginToGetCode().then(code => {
       if (code === 'error') {
         console.log('error')
         return
@@ -80,16 +80,14 @@ App({
 
         // Login, refresh session, get initial info, create a new user if necessary.
         // Loading...
-        const lang_code = langIndex === 0 ? 'zh_hans' : 'en'
-        wx.showLoading({ title: locales[lang_code].isLoading })
-
-        me.initInfo(code, session3rd).then( data => {
+        me.initInfo(code, session3rd).then(data => {
           // data.enroll_nids: ["123", "234"]
           //that.connectSocket(session3rd)
           wx.setStorageSync('wid', data.wid)
           wx.setStorageSync('session3rd', data.session3rd)
 
           // Initiate global data
+          //console.log('COURSES', JSON.parse(data.all_courses))
           that.globalData.allCourses = JSON.parse(data.all_courses)
           that.globalData.allEnroll = data.enroll_nids
           that.globalData.myUid = data.uid // Number
@@ -106,10 +104,7 @@ App({
           else {
             wx.setStorageSync('admin', 'kkkhu')
           }
-
-          wx.hideLoading();
         }).catch( all_courses => {
-          wx.hideLoading();
           wx.setStorageSync('session3rd', '')
         })
       /*

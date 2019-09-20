@@ -3,42 +3,36 @@
 const server_api = require('../server.api.js')
 const utils = require('../utils/utils.js')
 
-
 /**
  * wx.login() 调用微信登录
  * 获取登录凭证 code，有效期 5 分钟
  */
-function wxLoginToGetCode ()
-{
-  return new Promise((resolve, reject) =>
-    {
-      wx.login({
-        success(res) {
-          if (res.code) {
-            resolve(res.code)
-          }
-          else {
-            reject('error')
-          }
-        },
-        timeout() {
-          reject('3')
-        },
-        fail() {
-          reject('2')
+function wxLoginToGetCode () {
+  return new Promise((resolve, reject) => {
+    wx.login({
+      success(res) {
+        if (res.code) {
+          resolve(res.code)
         }
-      })
+        else {
+          reject('error')
+        }
+      },
+      timeout() {
+        reject('timeout')
+      },
+      fail() {
+        reject('failed')
+      }
     })
+  })
 }
-
 
 /**
  * Try login up to 3 times.
  */
-function weiyiLogin (code)
-{
-  return new Promise((resolve, reject) =>
-    {
+function weiyiLogin (code) {
+  return new Promise((resolve, reject) => {
       wx.request({
         url: server_api.wxLogin,
         data: {code},
@@ -73,21 +67,27 @@ function weiyiLogin (code)
  */
 function initInfo(code, session3rd) {
   return new Promise((resolve, reject) => {
-      wx.request({
-        url: server_api.getUserDetails,
-        data: {code, session3rd},
-        method: 'POST',
-        header: {'content-type': 'application/x-www-form-urlencoded'},
-        success(res) {
-          console.log('kkhuhu init  resss');
-          console.log(res);
-          resolve(res.data)
-        },
-        fail(res) {
-          console.log('Initiate info fails.', res)
-        }
-      });
-    })
+    const localeStrings = wx.T.getLanguage()
+    wx.showLoading({ title: localeStrings.isLoading })
+
+    wx.request({
+      url: server_api.getUserDetails,
+      data: {code, session3rd},
+      method: 'POST',
+      header: {'content-type': 'application/x-www-form-urlencoded'},
+      success(res) {
+        //console.log('kkhuhu init  resss');
+        //console.log(res);
+        resolve(res.data)
+      },
+      fail(res) {
+        console.log('Initiate info fails.', res)
+      },
+      complete() {
+        wx.hideLoading();
+      }
+    });
+  })
 }
 
 /**
@@ -95,7 +95,7 @@ function initInfo(code, session3rd) {
  * @param session3rd
  */
 function getGlobalInfo (session3rd) {
-  console.log('inin', session3rd)
+  //console.log('inin', session3rd)
   return new Promise((resolve, reject) => {
     const localeStrings = wx.T.getLanguage()
     wx.showLoading({ title: localeStrings.isLoading })
