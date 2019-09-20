@@ -20,6 +20,10 @@ Page({
 
     enrolledUsers: [],
 
+    modalEnrollHidden: true,
+    modalRemoveEnrollHidden: true,
+    modalLackPointsHidden: true,
+
     localeCode: 'zh_hans',
     localeStrings: {},
     lessonTitle: {},
@@ -188,6 +192,64 @@ Page({
         utils.showToastError()
       });
     }
+  },
+
+  /**
+   * Show modal Enroll.
+   */
+  onModalEnroll () {
+    const myPoints = app.globalData.myPoints
+    if (myPoints > 25) {
+      this.setData({
+        modalEnrollHidden: false,
+      })
+    } else {
+      this.setData({
+        modalLackPointsHidden: false,
+      })
+    }
+  },
+
+  /**
+   * Cancel enroll.
+   */
+  modalEnrollCancel () {
+    this.setData({
+      modalEnrollHidden: true,
+    })
+  },
+
+  /**
+   * Confirm enroll
+   */
+  modalEnrollConfirm () {
+    this.onEnroll()
+    this.setData({
+      modalEnrollHidden: true,
+    })
+  },
+
+  /**
+   * Cancel enroll.
+   */
+  modalLackPointsCancel () {
+    this.setData({
+      modalLackPointsHidden: true,
+    })
+  },
+
+  /**
+   * Contact service for points.
+   */
+  modalContactService () {
+    // Todo: log
+    this.setData({
+      modalLackPointsHidden: true,
+    })
+
+    wx.navigateTo({
+      url: '/pages/my/contact/contact'
+    })
   },
 
   /**

@@ -94,7 +94,7 @@
 
   <block wx:elif="{{ isLogged }}">
     <view class="button-sp-area">
-      <button bindtap="onEnroll" class="weui-btn" type="primary">
+      <button bindtap="onModalEnroll" class="weui-btn" type="primary">
         {{ localeStrings.enroll }}
       </button>
     </view>
@@ -126,3 +126,28 @@
   </view>
 -->
 </view>
+
+
+
+<!-- Enroll modal -->
+
+<modal title="{{ localeStrings.titleConfirmEnroll }}"
+  confirm-text="{{ localeStrings.confirm }}" cancel-text="{{ localeStrings.cancel }}"
+  hidden="{{ modalEnrollHidden }}"
+  bindconfirm="modalEnrollConfirm" bindcancel="modalEnrollCancel"
+>
+  <text>{{ localeStrings.textConsume5Points }}</text>
+</modal>
+
+<!-- Not enough points modal -->
+
+<modal title="{{ localeStrings.titleLackPoints }}"
+  confirm-text="{{ localeStrings.contactService }}" cancel-text="{{ localeStrings.cancel }}"
+  hidden="{{ modalLackPointsHidden }}"
+  bindconfirm="modalContactService" bindcancel="modalLackPointsCancel"
+>
+  <text>{{ localeStrings.textLackPoints }}</text>
+</modal>
+
+
+
