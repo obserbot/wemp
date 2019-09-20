@@ -86,7 +86,7 @@
 
   <block wx:if="{{ isLogged && isEnrolled }}">
     <view class="personal-image-outside button-sp-area">
-      <button bindtap="removeEnroll" class="weui-btn" type="warn">
+      <button bindtap="modalRemoveEnroll" class="weui-btn" type="warn">
         {{ localeStrings.unenroll }}
       </button>
     </view>
@@ -129,7 +129,7 @@
 
 
 
-<!-- Enroll modal -->
+<!-- Modal 1. Enroll -->
 
 <modal title="{{ localeStrings.titleConfirmEnroll }}"
   confirm-text="{{ localeStrings.confirm }}" cancel-text="{{ localeStrings.cancel }}"
@@ -139,7 +139,17 @@
   <text>{{ localeStrings.textConsume5Points }}</text>
 </modal>
 
-<!-- Not enough points modal -->
+<!-- Modal 2. Remove Enroll -->
+
+<modal title="{{ localeStrings.titleRemoveEnroll }}"
+  confirm-text="{{ localeStrings.confirm }}" cancel-text="{{ localeStrings.cancel }}"
+  hidden="{{ modalRemoveEnrollHidden }}"
+  bindconfirm="modalRemoveEnrollConfirm" bindcancel="modalRemoveEnrollCancel"
+>
+  <text>{{ localeStrings.textRemoveEnroll }}</text>
+</modal>
+
+<!-- Modal 3. Not enough points -->
 
 <modal title="{{ localeStrings.titleLackPoints }}"
   confirm-text="{{ localeStrings.contactService }}" cancel-text="{{ localeStrings.cancel }}"

@@ -2,7 +2,7 @@
 
 export default
 {
-  'zh_hans':
+  "zh_hans":
   {
     'appName': '微移英语',
     'language': '语言',
@@ -36,8 +36,8 @@ export default
     'labelCourses': '课程',
     'labelTeachers': '教师',
     'coursesTabs': ['课程表', '课程'],
-    'free': '免费',
-    'enterClass': '扫码进入课堂',
+    "free": "免费",
+    "enterClass": "扫码进入课堂",
     "time": "时间",
     "courseMaterial": "阅读课程学习材料",
     "enroll": "注册上课",
@@ -45,9 +45,11 @@ export default
     "unenroll": "取消上课",
     "removingEnroll": "正在取消...",
     "titleConfirmEnroll": "确定上课？",
+    "titleRemoveEnroll": "确定退课？",
     "confirm": "确定",
     "cancel": "取消",
     "textConsume5Points": "本课程将花费 5 个积分。",
+    "textRemoveEnroll": "注意：已经支付的积分不退还。",
     "titleLackPoints": "积分不够",
     "textLackPoints": "本课程需要 5 个积分，你目前的积分不够支付。",
     "latestClasses": "最新课程",
@@ -73,7 +75,7 @@ export default
     "checkOut": "登 出"
   },
 
-  'en':
+  "en":
   {
     'appName': 'Weiyi English',
     'language': 'Language',
@@ -109,9 +111,9 @@ export default
     'slogan8': 'I am preparing for TOEFL / SAT / IELTS / ...',
     'slogan9': 'I need to boost my English writing level',
     'slogan10': 'Any tips to learn English?',
-    'coursesTabs': ['Schedule', 'Courses'],
-    'free': 'Free',
-    'enterClass': 'Scan qr to enter',
+    "coursesTabs": ['Schedule', 'Courses'],
+    "free": "Free",
+    "enterClass": "Scan qr to enter",
     "time": "Time",
     "courseMaterial": "Reading course material",
     "enroll": "Enroll",
@@ -119,9 +121,11 @@ export default
     "unenroll": "Check Off",
     "removingEnroll": "Removing...",
     "titleConfirmEnroll": "Confirm to enroll?",
+    "titleRemoveEnroll": "Remove enrollment？",
     "confirm": "Confirm",
     "cancel": "Cancel",
     "textConsume5Points": "You will spend 5 points to enroll the lesson. Are you sure to continue?",
+    "textRemoveEnroll": "It is not refundable.",
     "titleLackPoints": "More points",
     "textLackPoints": "The lesson requires 5 points to enroll. You need more points for it.",
     "latestClasses": "Latest Classes",

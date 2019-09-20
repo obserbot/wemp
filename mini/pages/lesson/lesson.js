@@ -199,7 +199,7 @@ Page({
    */
   onModalEnroll () {
     const myPoints = app.globalData.myPoints
-    if (myPoints > 25) {
+    if (myPoints >= 5) {
       this.setData({
         modalEnrollHidden: false,
       })
@@ -253,7 +253,7 @@ Page({
   },
 
   /**
-   * 用户点击“注册上课”按钮。
+   * 用户点击“注册上课”确认按钮。
    */
   onEnroll () {
     const that = this
@@ -261,7 +261,7 @@ Page({
     const userInfo = wx.getStorageSync('userInfo') || false;
     const nid = this.data.lessonNid
     if (s3rd && userInfo) {
-      me.enrollLesson(s3rd, nid).then(res => {
+      me.enrollLesson(s3rd, nid).then(data => {
         /*
         const index = app.globalData.allEnroll.indexOf( nid )
           if (index == -1) {
@@ -276,6 +276,8 @@ Page({
           avatar_url: userInfo.avatarUrl,
         })
 
+        app.globalData.myPoints = data.points
+
         that.setData({
           enrolledUsers,
           isEnrolled: true,
@@ -287,9 +289,22 @@ Page({
   },
 
   /**
-   * 用户点击“取消注册”按钮。
+   * Remove enrollment modal.
    */
-  removeEnroll () {
+  modalRemoveEnroll () {
+    this.setData({
+      modalRemoveEnrollHidden: false,
+    })
+  },
+
+  /**
+   * 用户点击“取消注册”的确定按钮。
+   */
+  modalRemoveEnrollConfirm () {
+    this.setData({
+      modalRemoveEnrollHidden: true,
+    })
+
     const that = this
     const s3rd = wx.getStorageSync('session3rd') || false
     const nid = this.data.lessonNid
@@ -310,6 +325,15 @@ Page({
     } else {
       utils.showToastError()
     }
+  },
+
+  /**
+   * Remove enrollment modal.
+   */
+  modalRemoveEnrollCancel () {
+    this.setData({
+      modalRemoveEnrollHidden: true,
+    })
   },
 
   /**

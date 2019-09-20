@@ -43,7 +43,7 @@
     </view>
     <view class="detailed-item points">
         <view class="item-number">
-          {{ isLogged ? 20 : 0 }}
+          {{ isLogged ? myPoints : 0 }}
         </view>
         <view class="item-title">
           {{ localeStrings.points }}
@@ -155,7 +155,7 @@
 
   <view class='version-info'>
     <view class='app-name'>{{ localeStrings.appName }}</view>
-    <view class='version-code'>2.3.8</view>
+    <view class='version-code'>2.6.0</view>
   </view>
 
 </view>
