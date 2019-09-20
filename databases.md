@@ -60,6 +60,8 @@ type
 
 ## Points
 
+Tables:
+
 - points column in wechat_users table
 - point_events
 - point_event_types
@@ -86,4 +88,18 @@ MariaDB [en_edu_extra]> select * from point_event_types;
 +----+----------+-------+--------+
 ```
 
+### point_events
+
+```
+MariaDB [en_edu_extra]> describe point_events;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| id             | int(11)      | NO   | PRI | NULL    | auto_increment |
+| title          | tinytext     | YES  |     | NULL    |                |
+| wechat_user_id | int(11)      | YES  |     | NULL    |                |
+| type_id        | int(11)      | YES  |     | NULL    |                |
+| descp          | varchar(255) | YES  |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+```
 
