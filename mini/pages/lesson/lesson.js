@@ -171,7 +171,15 @@ Page({
       // res.detail: errMsg:"getUserInfo:fail auth deny"
     } else {
       me.getUserInfo(userInfo, that.data.lessonNid).then(res => {
+        const my_uid = res.data.uid
+        const enrolledUsers = that.data.enrolledUsers
+        enrolledUsers.push({
+          uid: my_uid,
+          avatar_url: userInfo.avatarUrl,
+        })
+
         that.setData({
+          enrolledUsers,
           userInfo,
           isEnrolled: true,
           isLogged: true

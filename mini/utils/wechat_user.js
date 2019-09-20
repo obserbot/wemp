@@ -142,17 +142,18 @@ function getUserInfo (userInfo, lesson_nid = 0) {
       },
       method: 'POST',
       header: {'content-type': 'application/x-www-form-urlencoded'},
-      success: res => {
-        wx.hideLoading()
+      success(res) {
         wx.setStorageSync('userInfo', userInfo);
         if (res.data.updateSession3rd) {
           wx.setStorageSync('session3rd', res.data.newSession3rd)
         }
         resolve(res)
       },
-      fail: res => {
-        wx.hideLoading()
+      fail(res) {
         reject(false)
+      },
+      complete() {
+        wx.hideLoading()
       }
     });
 
