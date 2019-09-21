@@ -34,12 +34,14 @@
 
   <view class="detailed-items">
     <view class="detailed-item guanzhu">
+    <!--
         <view class="item-number">
           {{ 0 }}
         </view>
         <view class="item-title">
           {{ localeStrings.following }}
         </view>
+    -->
     </view>
     <view class="detailed-item points">
         <view class="item-number">
@@ -50,12 +52,14 @@
         </view>
     </view>
     <view class="detailed-item lessons">
+    <!--
         <view class="item-number">
           {{ '0 / 0' }}
         </view>
         <view class="item-title">
           {{ localeStrings.courses }}
       </view>
+    -->
     </view>
   </view>
 </view>
@@ -155,7 +159,7 @@
 
   <view class="version-info">
     <view class="app-name">{{ localeStrings.appName }}</view>
-    <view class="version-code">2.6.2</view>
+    <view class="version-code">2.6.3</view>
   </view>
 
 </view>
