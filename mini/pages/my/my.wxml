@@ -153,9 +153,9 @@
 -->
   </view>
 
-  <view class='version-info'>
-    <view class='app-name'>{{ localeStrings.appName }}</view>
-    <view class='version-code'>2.6.0</view>
+  <view class="version-info">
+    <view class="app-name">{{ localeStrings.appName }}</view>
+    <view class="version-code">2.6.2</view>
   </view>
 
 </view>

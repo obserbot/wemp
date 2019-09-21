@@ -60,6 +60,35 @@ Page({
     this.setData({ last_reading_list })
   },
 
+  onPullDownRefresh () {
+    const that = this
+    const s3rd = wx.getStorageSync('session3rd') || '';
+    me.getGlobalInfo(s3rd)
+      .then (data => {
+        app.globalData.allCourses = JSON.parse(data.all_courses)
+        const lessons_json = JSON.parse(data.all_lessons)
+        if (lessons_json.pstat === 'ok') {
+          app.globalData.allLessons = lessons_json.lessons
+        }
+        app.globalData.status = 1
+
+        // Points
+        if (that.data.isLogged) {
+          const myPoints = data.points
+          app.globalData.myPoints = myPoints
+          that.setData({
+            myPoints,
+          })
+        }
+
+        //that.initData()
+        wx.stopPullDownRefresh()
+      })
+      .catch (er => {
+        wx.stopPullDownRefresh()
+      })
+  },
+
   // 消息中心消息条数
   userNotificationNum() {
     const auth = this.data.auth
