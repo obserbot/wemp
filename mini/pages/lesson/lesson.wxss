@@ -4,10 +4,16 @@
 @import "/wxParse/wxParse.wxss";
 
 .page-title-wrap .course-title {
+  font-size: 36rpx;
+  font-weight: 300;
+  text-align: center;
+  padding: 46rpx 20rpx 0;
+}
+.page-title-wrap .lesson-title {
   font-size: 56rpx;
   font-weight: 500;
   text-align: center;
-  padding: 66rpx 20rpx 50rpx;
+  padding: 26rpx 20rpx 46rpx;
 }
 
 
@@ -57,6 +63,7 @@
   color: #2f4f4f;
   margin-bottom: 12px;
 }
+/*
 .course-title-wrap {
   width: 240rpx;
   text-align: center;
@@ -101,6 +108,7 @@
 .navigator-hover {
   background: #f2f2f2 !important;
 }
+*/
 
 
 .tutor-wrap {

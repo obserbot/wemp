@@ -77,6 +77,7 @@ Page({
         time2: data.time2,
         time3: data.time3,
         courseType: data.course_type === "43" ? true : false,
+        courseTitle: data.course_title,
       })
 
       // Mupltiple description

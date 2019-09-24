@@ -4,6 +4,9 @@
 
   <view class="page-title-wrap">
     <view class="course-title">
+      <text>{{ courseTitle[localeCode] }}</text>
+    </view>
+    <view class="lesson-title">
       <text>{{ lessonTitle[localeCode] }}</text>
     </view>
     <view class="tutor-wrap" hover-class="hover-class" bindtap="toPersonal" data-uid="{{ lessonTutor.uid }}">
