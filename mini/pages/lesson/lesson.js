@@ -46,7 +46,8 @@ Page({
     }
 
     const nid = options.nid // string
-    me.getLessonDetails(nid).then( data => {
+    me.getLessonDetails(nid).then(data => {
+      //console.log('wiii', data)
       const enrolledUsers = data.enroll_users
 
       const lang_code = wx.T.getLanguageCode()
@@ -75,6 +76,7 @@ Page({
         time1: data.time1,
         time2: data.time2,
         time3: data.time3,
+        courseType: data.course_type === "43" ? true : false,
       })
 
       // Mupltiple description
