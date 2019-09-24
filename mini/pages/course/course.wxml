@@ -74,6 +74,7 @@
         {{ index + 1 }}.
           {{ item.title[localeCode] }}
         </view>
+        <view class="go">＞</view>
       </view>
     </view>
   </view> <!-- End of syllabus -->
@@ -84,26 +85,41 @@
   </view>
 -->
 
-<!-- 课程可注册
-  <block wx:if="{{ isLogged }}">
-    <image class="avatar" src="{{ userInfo.avatarUrl }}"></image>
-    <view class="info">
-      <text class="name">{{ userInfo.nickName }}</text>
-    </view>
-  </block>
+  <view class="course-enroll-wrap" wx:if="{{ ! isCurriculum }}">
 
-  <block wx:else>
-    <view class="wechat-user-wrap">
-      <view class="wechat-login2">
-        <button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" class='login-text'>
+    <view class="enroll-users-wrap">
+      <view class="enroll-user" wx:for="{{ enrolledUsers }}" wx:key="{{ index }}">
+        <view class="personal-image-outside">
+          <image class="enroll-avatar" src="{{ item.avatar_url }}"></image>
+        </view>
+      </view>
+    </view>
+
+    <block wx:if="{{ isLogged && isEnrolled }}">
+      <view class="personal-image-outside button-sp-area">
+        <button bindtap="modalRemoveEnroll" class="weui-btn" type="warn">
+          {{ localeStrings.unenroll }}
+        </button>
+      </view>
+    </block>
+
+    <block wx:elif="{{ isLogged }}">
+      <view class="button-sp-area">
+        <button bindtap="onModalEnroll" class="weui-btn" type="primary">
           {{ localeStrings.enroll }}
         </button>
       </view>
-    </view>
-    <view class="info">
-    </view>
-  </block>
--->
+    </block>
+
+    <block wx:else>
+      <view class="button-sp-area">
+        <button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" class="weui-btn" type="primary">
+          {{ localeStrings.enroll }}
+        </button>
+      </view>
+    </block>
+
+  </view>
 
 <!-- 显示二维码：老师联系方式
   <view class="qrcode-wrap" wx:if='{{ groupQrUrl }}'>
@@ -116,11 +132,9 @@
   </view>
 -->
 
-<!-- 联系客服
   <view class="contact-wrap">
     <button class="cs_button" open-type="contact" session-from="weapp">
       {{ localeStrings.customerService }}
     </button>
   </view>
--->
 </view>

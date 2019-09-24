@@ -7,6 +7,9 @@
   font-weight: 500;
   text-align: center;
   padding: 66rpx 20rpx 50rpx;
+
+  background: linear-gradient(rgba(244,246,249,0.1),  rgba(255,255,255,0.9)),
+    url("https://weiyishijie.com/en_edu/leaf3.png");
 }
 
 
@@ -55,13 +58,6 @@
   font-size: 16px;
   color: #2f4f4f;
   margin-bottom: 12px;
-}
-.course-title-wrap {
-  width: 240rpx;
-  text-align: center;
-}
-.content .course-title .title {
-  color: #2f4f4f;
 }
 .content .img {
   width: 130rpx;
@@ -137,14 +133,15 @@
 }
 
 .contact-wrap {
+  margin: 54rpx 0 28rpx;
   padding: 10px 0 62px;
 }
 
 .contact-wrap button {
-  width: 179px;
-  font-size: 18px;
+  width: 330rpx;
+  font-size: 36rpx;
   font-weight: 400;
-  border-radius: 5px;
+  border-radius: 10rpx;
   background-color: #3281ff;
   color: #fff;
 }
@@ -234,7 +231,18 @@
   padding: 10rpx 20rpx;
   height: 40rpx;
   line-height: 40rpx;
-  margin: 12rpx 0;
+  margin: 24rpx 0;
+  display: flex;
+}
+
+.curriculum-wrap .lesson-wrap .go {
+  margin-left: auto;
+  opacity: 0.3;
+}
+
+.button-sp-area .weui-btn {
+  width: 330rpx;
+  font-weight: 500;
 }
 
 

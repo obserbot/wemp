@@ -16,6 +16,8 @@ Page({
   data: {
     //isLogged: false,
 
+    isCurriculum: false,
+
     localeCode: 'zh_hans',
     localeStrings: {},
     courseTitle: {},
@@ -47,7 +49,8 @@ Page({
         return course_nid == item.nid
       })
 
-          // todo: Remove all below.
+      const isCurriculum = nowCourse.course_type === "43"
+
       let theCourse = []
       if (nowCourse) {
         theCourse.push( nowCourse )
@@ -63,6 +66,7 @@ Page({
 
         this.setData({
           nowCourse,
+          isCurriculum,
 
           // todo: Remove all below.
           courseTitle: theCourse[0].course_title,
