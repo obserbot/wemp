@@ -44,12 +44,14 @@
     -->
     </view>
     <view class="detailed-item points">
+      <block wx:if="{{ isLogged }}">
         <view class="item-number">
           {{ isLogged ? myPoints : 0 }}
         </view>
         <view class="item-title">
           {{ localeStrings.points }}
         </view>
+      </block>
     </view>
     <view class="detailed-item lessons">
     <!--
@@ -159,7 +161,7 @@
 
   <view class="version-info">
     <view class="app-name">{{ localeStrings.appName }}</view>
-    <view class="version-code">2.6.3</view>
+    <view class="version-code">2.7.1</view>
   </view>
 
 </view>

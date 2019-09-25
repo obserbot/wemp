@@ -32,21 +32,21 @@ Page({
 
     const wid = wx.getStorageSync('wid', 0)
     const message_summary = app.globalData.myMessageSummary
-    const myPoints = app.globalData.myPoints
     const langIndex = wx.getStorageSync('languageIndex') || 0
     this.setData({
       langIndex,
       wid,
-      myPoints,
       message_summary
     })
   },
 
   onShow () {
     const userInfo = wx.getStorageSync('userInfo') || false
+    const myPoints = app.globalData.myPoints
     if (userInfo) {
       this.setData({
         userInfo,
+        myPoints,
         isLogged: true
       })
     }
