@@ -47,7 +47,7 @@ Page({
 
     const nid = options.nid // string
     me.getLessonDetails(nid).then(data => {
-      //console.log('wiii', data)
+      console.log('wiii', data)
       const enrolledUsers = data.enroll_users
 
       const lang_code = wx.T.getLanguageCode()
@@ -61,6 +61,7 @@ Page({
       })
 
       const isEnrolled = myinfoArr.length > 0
+      const enrollDisabled = data.promote === '0'
 
       that.setData({
         lessonNid: nid,
@@ -78,6 +79,7 @@ Page({
         time3: data.time3,
         courseType: data.course_type === "43" ? true : false,
         courseTitle: data.course_title,
+        enrollDisabled,
       })
 
       // Mupltiple description
