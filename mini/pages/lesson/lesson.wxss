@@ -3,12 +3,17 @@
 @import '/weui/weui.wxss';
 @import "/wxParse/wxParse.wxss";
 
+.container {
+  padding-bottom: 120rpx;
+}
+
 .page-title-wrap .course-title {
   font-size: 36rpx;
   font-weight: 300;
   text-align: center;
   padding: 46rpx 20rpx 0;
 }
+
 .page-title-wrap .lesson-title {
   font-size: 56rpx;
   font-weight: 500;

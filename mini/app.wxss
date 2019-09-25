@@ -8,3 +8,9 @@ page {
 text {
   word-break: break-word;
 }
+
+.container .wxParse-h2 {
+  color: #aa7700;
+  margin-bottom: 32rpx;
+  margin-top: 60rpx;
+}
