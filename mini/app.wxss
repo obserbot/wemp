@@ -14,3 +14,21 @@ text {
   margin-bottom: 32rpx;
   margin-top: 60rpx;
 }
+
+.container .wxParse-p image {
+  width: 100% !important;
+}
+
+.container .wxParse-p {
+  margin: 20rpx 0;
+}
+
+.container .wxParse-li .wxParse-p {
+  margin: 0;
+}
+
+.container .wxParse-p .wxParse-strong {
+  padding-left: 14rpx;
+  padding-right: 14rpx;
+}
+
