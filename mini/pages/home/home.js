@@ -155,7 +155,7 @@ Page({
       : 'Find your favorate English tutors and courses!'
     return {
       title: slogan,
-      path: '/pages/list/list?lang=' + lang
+      path: '/pages/home/home?lang=' + lang
     }
   },
 
