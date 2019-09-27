@@ -103,6 +103,7 @@ Page({
         const briefDesc = res.data.info.brief_desc
         const follower_num = res.data.info.follow_number
         const isFollowing = res.data.info.is_following === 1 ? true : false
+        const qrCode = res.data.info.qr_code
 
         const theTutor = {
           nationality: utils.getCountryNames(res.data.info.iso2),
@@ -119,6 +120,7 @@ Page({
           follower_num,
 
           theTutor,
+          qrCode,
         })
       },
       fail: () => {
@@ -236,10 +238,9 @@ Page({
     }
   },
 
-  previewImage (res)
-  {
+  previewImage (res) {
     wx.previewImage({
-      urls: ["https://weiyishijie.com/en_edu/sites/default/files/qrcode.png"]
+      urls: [this.data.qrCode]
     });
   },
 

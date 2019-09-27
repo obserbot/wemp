@@ -51,16 +51,14 @@
     </view>
   </view>
 
-  <!--
-  <view class='contact-wrap'>
-    <view class='contact-title'>
+  <view class="contact-wrap" wx:if="{{ qrCode }}">
+    <view class="contact-title">
       {{ localeStrings.contact }}
     </view>
-    <view class='qrcode-wrap'>
-      <image src="/img/qrcode.png" mode="widthFix" bindtap="previewImage"></image>
+    <view class="qrcode-wrap">
+      <image src="{{ qrCode }}" mode="widthFix" bindtap="previewImage"></image>
     </view>
   </view>
-  -->
 
 <!--
   <view class="message-wrap" wx:if="{{ isLogged }}">
