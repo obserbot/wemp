@@ -61,7 +61,7 @@ Page({
       })
 
       const isEnrolled = myinfoArr.length > 0
-      const enrollDisabled = data.promote === '0'
+      const enableEnroll = data.enable_enroll === 1
 
       that.setData({
         lessonNid: nid,
@@ -79,7 +79,7 @@ Page({
         time3: data.time3,
         courseType: data.course_type === "43" ? true : false,
         courseTitle: data.course_title,
-        enrollDisabled,
+        enableEnroll,
       })
 
       // Mupltiple description
