@@ -56,7 +56,7 @@ Page({
       this.setData({
         courses
       })
-      console.log('ddd courses', courses)
+      //console.log('ddd courses', courses)
     } else {
       //this.getUserInfo()
       wx.showToast({
@@ -88,8 +88,8 @@ Page({
     wx.request({
       url: server_api.getDarenInfo,
       data: {
-        uid: uid,
-        session3rd: session3rd
+        uid,
+        session3rd
       },
       success: (res) => {
         wx.hideLoading()
@@ -104,6 +104,7 @@ Page({
         const follower_num = res.data.info.follow_number
         const isFollowing = res.data.info.is_following === 1 ? true : false
         const qrCode = res.data.info.qr_code
+        const showQrCode = res.data.info.show_qr_code
 
         const theTutor = {
           nationality: utils.getCountryNames(res.data.info.iso2),
@@ -121,6 +122,7 @@ Page({
 
           theTutor,
           qrCode,
+          showQrCode,
         })
       },
       fail: () => {

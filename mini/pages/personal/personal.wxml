@@ -3,19 +3,19 @@
     <view class="info">
       <image class="avatar" mode='aspectFill' src='{{ thirdavatar }}' wx:if='{{ thirdavatar }}'></image>
       <image class="avatar" src='/img/empty_avatar_user.png' wx:else></image>
-      <view class='text'>
-        <view class='line-first'>
-          <view class='name'>{{ thirdname }}</view>
-          <view class='nationality'>{{ theTutor.nationality[ languageCode ] }}</view>
+      <view class="text">
+        <view class="line-first">
+          <view class="name">{{ thirdname }}</view>
+          <view class="nationality">{{ theTutor.nationality[ languageCode ] }}</view>
         </view>
-        <view class='others'>{{ briefDesc[ languageCode ] }}</view>
+        <view class="others">{{ briefDesc[ languageCode ] }}</view>
       </view>
     </view>
-    <view class='bottom'>
-      <view class='l'>
-        <view class='action'>
-          <view class='number'>{{ follower_num }}</view>
-          <view class='key'>{{ localeStrings.followers }}</view>
+    <view class="bottom">
+      <view class="l">
+        <view class="action">
+          <view class="number">{{ follower_num }}</view>
+          <view class="key">{{ localeStrings.followers }}</view>
         </view>
       </view>
     </view>
@@ -36,9 +36,6 @@
 
   <view class="myself-description" wx:if="{{ tutorDesc[ languageCode ] }}">
     {{ tutorDesc[ languageCode ] }}
-    <view wx:if='{{ languageCode === "zh_hans" }}' class="para">
-      {{ tutorDesc['en'] }}
-    </view>
   </view>
 
   <view class="courses-wrap" wx:if="{{ courses.length > 0 }}">
@@ -51,7 +48,7 @@
     </view>
   </view>
 
-  <view class="contact-wrap" wx:if="{{ qrCode }}">
+  <view class="contact-wrap" wx:if="{{ qrCode && showQrCode }}">
     <view class="contact-title">
       {{ localeStrings.contact }}
     </view>

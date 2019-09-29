@@ -161,7 +161,7 @@
 
   <view class="version-info">
     <view class="app-name">{{ localeStrings.appName }}</view>
-    <view class="version-code">2.7.5</view>
+    <view class="version-code">2.8.0</view>
   </view>
 
 </view>
