@@ -109,11 +109,11 @@
   align-items: center;
   height: 80rpx;
 }
-.hover-class,
-.navigator-hover {
+*/
+
+.hover-class {
   background: #f2f2f2 !important;
 }
-*/
 
 
 .tutor-wrap {
