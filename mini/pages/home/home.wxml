@@ -40,14 +40,11 @@
         </block>
       </view>
       <view class="content course-title-wrap">
+        <view class="real-course-title">
+          {{ item.course_title[ languageCode ] ? item.course_title[ languageCode ] : '' }}
+        </view>
         <view class="course-title">
           <view class="title">{{ item.lesson_title[ languageCode ] }}</view>
-        </view>
-        <view class="name-nationality">
-          <view class="tutor-name">
-            {{ item.author.names[ languageCode ] ? item.author.names[ languageCode ] : item.author.name }}
-          </view>
-          <view class="tutor-nationality">{{ item.author.nationality }}</view>
         </view>
       </view>
 
