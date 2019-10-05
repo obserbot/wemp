@@ -2,6 +2,7 @@
 
 const serverAPI = require('../../server.api.js')
 const utils = require('../../utils/utils.js')
+const me = require('../../utils/wechat_user.js')
 import event from '../../utils/event'
 
 const app = getApp()
@@ -47,13 +48,21 @@ Page({
   },
   */
 
-
-  /*
-  onPullDownRefresh ()
-  {
-    this.getDarens(true)
+  onPullDownRefresh () {
+    const that = this
+    const s3rd = wx.getStorageSync('session3rd') || '';
+    me.getGlobalInfo(s3rd)
+      .then (data => {
+        const allCourses = JSON.parse(data.all_courses)
+        app.globalData.allCourses = allCourses
+        app.globalData.status = 1
+        that.setData({ allCourses })
+        wx.stopPullDownRefresh()
+      })
+      .catch (er => {
+        wx.stopPullDownRefresh()
+      })
   },
-  */
 
   gotoCourse (ev) {
     let nid = ev.currentTarget.dataset.nid
