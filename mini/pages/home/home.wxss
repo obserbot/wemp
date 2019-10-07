@@ -71,7 +71,7 @@ page {
 }
 
 .real-course-title {
-  font-size: 13px;
+  font-size: 28rpx;
   font-weight: 300;
   color: #696969;
   margin-bottom: 16rpx;

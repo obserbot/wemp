@@ -13,6 +13,7 @@ text {
   color: #aa7700;
   margin-bottom: 32rpx;
   margin-top: 60rpx;
+  text-align: center;
 }
 
 .container .wxParse-p image {
