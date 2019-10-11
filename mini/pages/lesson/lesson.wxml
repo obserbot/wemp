@@ -44,24 +44,21 @@
       <template is="wxParse" data="{{ wxParseData:lesson_desc.nodes }}" />
     </view>
 
-    <!-- 课程目标 -->
+    <!-- 课程内容 if exists -->
 
-    <view class='syllabus-label' wx:if='{{ switchs.hasObjectiveMain && switchs.hasObjectiveItems }}'>
-      {{ localeStrings.objectives }}
-    </view>
-    <view class='objective-main' wx:if="{{ switchs.hasObjectiveMain }}">
-      {{ courseObjective[localeCode] }}
-    </view>
-    <view class='objective-items' wx:if="{{ switchs.hasObjectiveItems }}">
-      <view class='objective-item-wrap' wx:for='{{ courseObjectiveItems[localeCode] }}' wx:key='{{ index }}'>
-        <view class='list-dot-wrap'>
-          <image class='list-dot' src='/img/list-dot.png'></image>
+    <view class="lesson-content-wrap" wx:if="{{ tttShow }}">
+
+      <block wx:for="{{ replyTemArray }}" wx:key="{{ index }}">
+
+        <view class="voice" data-index="{{ index }}" bindtouchend="switchPlaying">
+          <view class="bg {{ audioArr[index].play }}"></view>
         </view>
-        <view class='list-content-wrap'>
-           {{ item }}
-        </view>
-      </view>
+
+        <template is="wxParse" data="{{ wxParseData:item }}" />
+      </block>
+
     </view>
+
   </view>
 
   <view class="goto-weoa" hover-class="hover-class" bindtap="toWEOA" wx:if="{{ weoa_url }}">

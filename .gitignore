@@ -1,4 +1,5 @@
 mini/project.config.json
 mini/server.api.js
+mini/utils/secret.js
 .DS_Store
 

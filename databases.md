@@ -1,6 +1,25 @@
 
 
+## pgadmin
 
+pgadmin=# \d wemphit
+                                       Table "public.wemphit"
+   Column   |           Type           | Collation | Nullable |               Default               
+------------+--------------------------+-----------+----------+-------------------------------------
+ id         | integer                  |           | not null | nextval('wemphit_id_seq'::regclass)
+ wyuid      | integer                  |           |          | 
+ path       | character varying(64)    |           |          | 
+ is_landing | boolean                  |           |          | false
+ infojsonb  | jsonb                    |           |          | 
+ created_at | timestamp with time zone |           | not null | now()
+Indexes:
+    "wemphit_pkey" PRIMARY KEY, btree (id)
+
+
+
+
+
+## Drupal and extra
 
 2 databases:
 
@@ -58,7 +77,7 @@ type
 ```
 
 
-## Points
+### Points
 
 Tables:
 
@@ -66,7 +85,7 @@ Tables:
 - point_events
 - point_event_types
 
-### point_event_types
+#### point_event_types
 
 ```
 MariaDB [en_edu_extra]> describe point_event_types;
@@ -88,7 +107,7 @@ MariaDB [en_edu_extra]> select * from point_event_types;
 +----+----------+-------+--------+
 ```
 
-### point_events
+#### point_events
 
 ```
 MariaDB [en_edu_extra]> describe point_events;
