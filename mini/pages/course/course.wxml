@@ -71,7 +71,6 @@
         data-nid="{{ item.nid }}" bindtap="toLesson"
       >
         <view class="lesson-title">
-        {{ index + 1 }}.
           {{ item.title[localeCode] }}
         </view>
         <view class="go">＞</view>
@@ -85,6 +84,7 @@
   </view>
 -->
 
+<!--
   <view class="course-enroll-wrap" wx:if="{{ ! isCurriculum }}">
 
     <view class="enroll-users-wrap">
@@ -120,6 +120,7 @@
     </block>
 
   </view>
+-->
 
 <!-- 显示二维码：老师联系方式
   <view class="qrcode-wrap" wx:if='{{ groupQrUrl }}'>

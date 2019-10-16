@@ -20,6 +20,8 @@ Page({
 
     enrolledUsers: [],
 
+    paras: [],
+
     modalEnrollHidden: true,
     modalRemoveEnrollHidden: true,
     modalLackPointsHidden: true,
@@ -36,7 +38,12 @@ Page({
       hasObjectiveMain: false,
       hasObjectiveItems: false,
     },
+
+    tttShow: false,
   },
+
+  index_mp3s: [],
+  loadAudioPoint: 0,
 
   onLoad (options) {
     const that = this
@@ -47,7 +54,7 @@ Page({
 
     const nid = options.nid // string
     me.getLessonDetails(nid).then(data => {
-      console.log('wiii', data)
+      console.log('8882wiii', data)
       const enrolledUsers = data.enroll_users
 
       const lang_code = wx.T.getLanguageCode()
@@ -63,7 +70,82 @@ Page({
       const isEnrolled = myinfoArr.length > 0
       const enableEnroll = data.enable_enroll === 1
 
+
+      // Reading book
+      const tttShow = data.audiobook
+      /*
+      const audioArr = []
+      let audioCount = 0
+      for (let ix in data.pieces) {
+        if (data.pieces[ix].type === 'audio') {
+          console.log('kkkiiiaudo---------')
+          audioArr[audioCount] = {}
+          audioArr[audioCount].play = ''
+          audioArr[audioCount].src = "https://weiyishijie.com/en_edu/wmmc/" + data.pieces[ix].content
+          audioCount++
+        }
+      }
+
+      if (audioArr.length > 0) {
+        audioArr[0].media = wx.createInnerAudioContext()
+        audioArr[0].media.src = audioArr[0].src
+        audioArr[0].media.onEnded(that.soundStop)
+        audioArr[0].media.onCanplay(that.canPlay)
+      }
+      */
+
+      // New from postgresql
+      const pg_lesson_id = data.pg_lesson_id
+      if (tttShow && pg_lesson_id) {
+        me.pgLesson(pg_lesson_id).then( data => {
+          const paras = JSON.parse(data.Lesson)
+          const index_mp3s = []
+          const texts = []
+          for (let iy  in paras) {
+            console.log('INDEX: ', iy)
+            console.log(paras[iy])
+            if (paras[iy].type === 2) { // mp3
+              paras[iy].play = ''
+              paras[iy].src = "https://weiyishijie.com/en_edu/wmmc/" + paras[iy].content
+              index_mp3s.push(iy)
+            } else if (paras[iy].type === 1) { // text
+              paras[iy].wxparse_index = texts.length
+              texts.push(paras[iy].content)
+            }
+          }
+
+          // Start download mp3
+          if (index_mp3s.length > 0) {
+            paras[index_mp3s[0]].media = wx.createInnerAudioContext()
+            paras[index_mp3s[0]].media.src = paras[index_mp3s[0]].src
+            paras[index_mp3s[0]].media.onEnded(that.soundStop)
+            paras[index_mp3s[0]].media.onCanplay(that.canPlay)
+          }
+          that.index_mp3s = index_mp3s
+
+          // Convert markdown
+          if (texts.length > 0) {
+            for (let iz=0; iz<texts.length; iz++) {
+              WxParse.wxParse('paratext' + iz, 'md', texts[iz], that)
+              if (iz === texts.length - 1) {
+                WxParse.wxParseTemArray('textParaArray', 'paratext', texts.length, that)
+              }
+            }
+          }
+
+          that.setData({
+            paras,
+          })
+        }).catch(err => {
+          console.log('dddaaaddd', err)
+          //utils.showToastError()
+        });
+      }
+
       that.setData({
+        tttShow,
+       // bookPieces,
+
         lessonNid: nid,
         isLogged,
         isEnrolled,
@@ -161,12 +243,11 @@ Page({
 
   onShareAppMessage (res) {
     const nid = this.data.lessonNid
-    //const nid = this.data.courseNid
-    const courseTitle = this.data.courseTitle[this.data.localeCode]
+    const title = this.data.localeStrings.lesson
 
     return {
-      title: courseTitle,
-      path: `/pages/courses/courses?course_nid=${nid}`
+      title: title,
+      path: `/pages/lesson/lesson?nid=${nid}`
     }
   },
 
@@ -379,6 +460,63 @@ Page({
     wx.previewImage({
       urls: [url]
     });
+  },
+
+  /**
+   * Callback onStop.
+   */
+  soundStop () {
+    const paras = this.data.paras
+    for (let i in paras) {
+      if (paras[i].type === 2) {
+        paras[i].play = ''
+        paras[i].media.stop()
+      }
+    }
+
+    this.setData({
+      paras
+    })
+  },
+
+  canPlay () {
+    const index_mp3s = this.index_mp3s
+    const count = this.loadAudioPoint + 1
+    const paras = this.data.paras
+    if (count < index_mp3s.length) {
+      paras[index_mp3s[count]].media = wx.createInnerAudioContext()
+      paras[index_mp3s[count]].media.src = paras[index_mp3s[count]].src
+      paras[index_mp3s[count]].media.onEnded(this.soundStop)
+      paras[index_mp3s[count]].media.onCanplay(this.canPlay)
+    }
+    this.loadAudioPoint = count
+  },
+
+  /**
+   * Play / Pause
+   */
+  switchPlaying (ev) {
+    let index = ev.currentTarget.dataset.index
+    //const bookPieces = this.data.bookPieces
+    const paras = this.data.paras
+    if (paras[index].play == 'voicePlay') {
+      paras[index].play = ''
+      paras[index].media.pause()
+    }
+    else {
+      for (let i in paras) {
+        if (paras[i].type === 2) {
+          paras[i].play = ''
+          paras[i].media.stop()
+        }
+      }
+      paras[index].play = 'voicePlay'
+      paras[index].media.play()
+    }
+
+    this.setData({
+      paras
+    })
   },
 
 })

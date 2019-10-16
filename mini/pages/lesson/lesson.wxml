@@ -48,14 +48,16 @@
 
     <view class="lesson-content-wrap" wx:if="{{ tttShow }}">
 
-      <block wx:for="{{ replyTemArray }}" wx:key="{{ index }}">
-
-        <view class="voice" data-index="{{ index }}" bindtouchend="switchPlaying">
-          <view class="bg {{ audioArr[index].play }}"></view>
+      <view class="paras-wrap" wx:for="{{ paras }}" wx:key="{{ index }}">
+        <view class="para-mp3" wx:if="{{ item.type === 2 }}">
+          <view class="voice" data-index="{{ index }}" bindtouchend="switchPlaying">
+            <view class="bg {{ item.play }}"></view>
+          </view>
         </view>
-
-        <template is="wxParse" data="{{ wxParseData:item }}" />
-      </block>
+        <view class="para-text" wx:if="{{ item.type === 1 }}">
+          <template is="wxParse" data="{{ wxParseData:textParaArray[item.wxparse_index] }}" />
+        </view>
+      </view>
 
     </view>
 
@@ -88,6 +90,7 @@
       </view>
     </view>
 
+    <block wx:if="{{ enableEnroll }}">
     <block wx:if="{{ isLogged && isEnrolled }}">
       <view class="personal-image-outside button-sp-area">
         <button bindtap="modalRemoveEnroll" class="weui-btn" type="warn" disabled="{{ ! enableEnroll }}">
@@ -112,6 +115,7 @@
           {{ localeStrings.enroll }}
         </button>
       </view>
+    </block>
     </block>
 
   </block>
