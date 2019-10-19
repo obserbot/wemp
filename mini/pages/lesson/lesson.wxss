@@ -4,7 +4,9 @@
 @import "/wxParse/wxParse.wxss";
 
 .container {
+/*
   padding-bottom: 120rpx;
+  */
 }
 
 .page-title-wrap .course-title {
@@ -37,7 +39,11 @@
   height: 52rpx;
 }
 
-.pause-icon {
+.pause-wrap {
+  margin: 0 0 0 12rpx;
+}
+
+.pause-wrap .pause-icon {
   width: 52rpx;
   height: 52rpx;
 }
@@ -284,12 +290,18 @@
   border-radius: 50%;
 }
 
+/* Enroll button */
+
+.enroll-button-wrap {
+  margin-bottom: 120rpx;
+}
 
 /* New voice animation UI */
 
-.voice{
+.voice {
   height: 70rpx;
-  width: 280rpx;
+  line-height: 70rpx;
+  width: 75%;
   background: #fff;
   border-radius: 14rpx;
 }
@@ -300,7 +312,7 @@
   height: 48rpx;
   background-size: 400%;
   background-position: 100%;
-  margin: 11rpx 0;
+  margin: 11rpx 0 11rpx 20rpx;
 }
 
 .voicePlay {

@@ -97,33 +97,33 @@
       </view>
     </view>
 
-    <block wx:if="{{ enableEnroll }}">
-    <block wx:if="{{ isLogged && isEnrolled }}">
-      <view class="personal-image-outside button-sp-area">
-        <button bindtap="modalRemoveEnroll" class="weui-btn" type="warn" disabled="{{ ! enableEnroll }}">
-          {{ localeStrings.unenroll }}
-        </button>
-      </view>
-    </block>
+    <view class="enroll-button-wrap" wx:if="{{ enableEnroll }}">
+      <block wx:if="{{ isLogged && isEnrolled }}">
+        <view class="personal-image-outside button-sp-area">
+          <button bindtap="modalRemoveEnroll" class="weui-btn" type="warn" disabled="{{ ! enableEnroll }}">
+            {{ localeStrings.unenroll }}
+          </button>
+        </view>
+      </block>
 
-    <block wx:elif="{{ isLogged }}">
-      <view class="button-sp-area">
-        <button bindtap="onModalEnroll" class="weui-btn" type="primary" disabled="{{ ! enableEnroll }}">
-          {{ localeStrings.enroll }}
-        </button>
-      </view>
-    </block>
+      <block wx:elif="{{ isLogged }}">
+        <view class="button-sp-area">
+          <button bindtap="onModalEnroll" class="weui-btn" type="primary" disabled="{{ ! enableEnroll }}">
+            {{ localeStrings.enroll }}
+          </button>
+        </view>
+      </block>
 
-    <block wx:else>
-      <view class="button-sp-area">
-        <button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" class="weui-btn" type="primary"
-          disabled="{{ ! enableEnroll }}"
-        >
-          {{ localeStrings.enroll }}
-        </button>
-      </view>
-    </block>
-    </block>
+      <block wx:else>
+        <view class="button-sp-area">
+          <button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" class="weui-btn" type="primary"
+            disabled="{{ ! enableEnroll }}"
+          >
+            {{ localeStrings.enroll }}
+          </button>
+        </view>
+      </block>
+    </view>
 
   </block>
 
@@ -136,14 +136,6 @@
     </view>
   </view>
 
-
-<!--
-  <view class="contact-wrap">
-    <button class="cs_button" open-type="contact" session-from="weapp">
-      {{ localeStrings.customerService }}
-    </button>
-  </view>
--->
 </view>
 
 
