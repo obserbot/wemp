@@ -46,7 +46,7 @@ Page({
 
   index_mp3s: [],
   loadAudioPoint: 0,
-  audioPageNum: 2,  // 一次加载2条语音
+  audioPageNum: 2,  // 一次加载多少条语音
   audioPagePointer: 1, // 本次加载条数指针
 
   onLoad (options) {
@@ -459,16 +459,6 @@ Page({
     })
   },
 
-  /*
-  onPullDownRefresh ()
-  {
-    wx.stopPullDownRefresh()
-    // Todo: get new data from server!
-    //this.initData()
-    //this.getEntries(true)
-  },
-  */
-
   /**
    * Group qr code for the lesson.
    */
@@ -485,7 +475,7 @@ Page({
   soundStop () {
     const paras = this.data.paras
     for (let i in paras) {
-      if (paras[i].type === 2) {
+      if (paras[i].type === 2 && paras[i].media) {
         paras[i].play = ''
         paras[i].pause = false
         paras[i].media.stop()
@@ -493,7 +483,7 @@ Page({
     }
 
     this.setData({
-      paras
+      paras,
     })
   },
 
