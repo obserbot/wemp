@@ -21,6 +21,26 @@
   padding: 26rpx 20rpx 46rpx;
 }
 
+.para-mp3 {
+  margin-top: 72rpx;
+  display: flex;
+  align-items: center;
+}
+
+.page-loading-gif-wrap {
+  margin: 20rpx 0 0;
+  text-align: center;
+}
+
+.loading-gif {
+  width: 52rpx;
+  height: 52rpx;
+}
+
+.pause-icon {
+  width: 52rpx;
+  height: 52rpx;
+}
 
 // From postItemTwo.wxss
 
@@ -252,7 +272,8 @@
 .enroll-users-wrap {
   display: block;
   text-align: center;
-  margin: 40rpx 48rpx 60rpx;
+  margin: 40rpx auto;
+  width: 60%;
 }
 .enroll-users-wrap .enroll-user {
   display: inline-block;
@@ -271,7 +292,6 @@
   width: 280rpx;
   background: #fff;
   border-radius: 14rpx;
-  margin-top: 72rpx;
 }
 
 .bg {

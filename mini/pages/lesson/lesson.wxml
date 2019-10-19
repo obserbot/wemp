@@ -47,18 +47,25 @@
     <!-- 课程内容 if exists -->
 
     <view class="lesson-content-wrap" wx:if="{{ tttShow }}">
-
       <view class="paras-wrap" wx:for="{{ paras }}" wx:key="{{ index }}">
-        <view class="para-mp3" wx:if="{{ item.type === 2 }}">
-          <view class="voice" data-index="{{ index }}" bindtouchend="switchPlaying">
-            <view class="bg {{ item.play }}"></view>
+        <block wx:if="{{ index < showPointer }}">
+          <view class="para-mp3" wx:if="{{ item.type === 2 }}">
+            <view class="voice" data-index="{{ index }}" bindtap="switchPlaying">
+              <view class="bg {{ item.play }}"></view>
+            </view>
+            <view class="pause-wrap" wx:if="{{ item.pause }}" data-index="{{ index }}" bindtap="switchPlaying">
+              <image class="pause-icon" src="/img/pause.png"></image>
+            </view>
           </view>
-        </view>
-        <view class="para-text" wx:if="{{ item.type === 1 }}">
-          <template is="wxParse" data="{{ wxParseData:textParaArray[item.wxparse_index] }}" />
-        </view>
+          <view class="para-text" wx:if="{{ item.type === 1 }}">
+            <template is="wxParse" data="{{ wxParseData:textParaArray[item.wxparse_index] }}" />
+          </view>
+        </block>
       </view>
+    </view>
 
+    <view class="page-loading-gif-wrap" wx:if="{{ isLoading }}">
+      <image class="loading-gif" src="/img/loading.gif"></image>
     </view>
 
   </view>
@@ -82,7 +89,7 @@
 
   <block wx:if="{{ courseType }}">
 
-    <view class="enroll-users-wrap">
+    <view class="enroll-users-wrap" wx:if="{{ enrolledUsers.length > 0 }}">
       <view class="enroll-user" wx:for="{{ enrolledUsers }}" wx:key="{{ index }}">
         <view class="personal-image-outside">
           <image class="enroll-avatar" src="{{ item.avatar_url }}"></image>

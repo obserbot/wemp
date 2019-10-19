@@ -21,6 +21,8 @@ Page({
     enrolledUsers: [],
 
     paras: [],
+    isLoading: false,
+    showPointer: 0,
 
     modalEnrollHidden: true,
     modalRemoveEnrollHidden: true,
@@ -44,6 +46,8 @@ Page({
 
   index_mp3s: [],
   loadAudioPoint: 0,
+  audioPageNum: 2,  // 一次加载2条语音
+  audioPagePointer: 1, // 本次加载条数指针
 
   onLoad (options) {
     const that = this
@@ -101,20 +105,29 @@ Page({
           const paras = JSON.parse(data.Lesson)
           const index_mp3s = []
           const texts = []
+          let isShow = true
+          let showPointer = 0
+
           for (let iy  in paras) {
-            console.log('INDEX: ', iy)
-            console.log(paras[iy])
+            //console.log('INDEX: ', iy)
+            //console.log(paras[iy])
             if (paras[iy].type === 2) { // mp3
               paras[iy].play = ''
+              paras[iy].pause = false
               paras[iy].src = "https://weiyishijie.com/en_edu/wmmc/" + paras[iy].content
               index_mp3s.push(iy)
+
+              if (isShow) {
+                isShow = false
+                showPointer = iy
+              }
             } else if (paras[iy].type === 1) { // text
               paras[iy].wxparse_index = texts.length
               texts.push(paras[iy].content)
             }
           }
 
-          // Start download mp3
+          // Trigger mp3 downloading
           if (index_mp3s.length > 0) {
             paras[index_mp3s[0]].media = wx.createInnerAudioContext()
             paras[index_mp3s[0]].media.src = paras[index_mp3s[0]].src
@@ -133,8 +146,12 @@ Page({
             }
           }
 
+          const isLoading = showPointer < paras.length
+
           that.setData({
             paras,
+            showPointer,
+            isLoading,
           })
         }).catch(err => {
           console.log('dddaaaddd', err)
@@ -470,6 +487,7 @@ Page({
     for (let i in paras) {
       if (paras[i].type === 2) {
         paras[i].play = ''
+        paras[i].pause = false
         paras[i].media.stop()
       }
     }
@@ -481,15 +499,36 @@ Page({
 
   canPlay () {
     const index_mp3s = this.index_mp3s
-    const count = this.loadAudioPoint + 1
+    const count = this.loadAudioPoint + 1 // 下一条音频位置
     const paras = this.data.paras
-    if (count < index_mp3s.length) {
-      paras[index_mp3s[count]].media = wx.createInnerAudioContext()
-      paras[index_mp3s[count]].media.src = paras[index_mp3s[count]].src
-      paras[index_mp3s[count]].media.onEnded(this.soundStop)
-      paras[index_mp3s[count]].media.onCanplay(this.canPlay)
+
+    if (this.audioPagePointer > this.audioPageNum) {
+      this.audioPagePointer = 1
+      return
+    }
+    this.audioPagePointer += 1
+
+    // 显示本条语音，以及至下一条语言之前的全部文本
+    let isLoading = false
+    let showPointer = this.data.showPointer
+    if (count < index_mp3s.length) { // 加载下一条
+      isLoading = true
+      showPointer = parseInt(index_mp3s[count])
+
+      paras[showPointer].media = wx.createInnerAudioContext()
+      paras[showPointer].media.src = paras[showPointer].src
+      paras[showPointer].media.onEnded(this.soundStop)
+      paras[showPointer].media.onCanplay(this.canPlay)
+    } else {
+      showPointer = paras.length
     }
     this.loadAudioPoint = count
+
+    this.setData({
+      paras,
+      showPointer,
+      isLoading,
+    })
   },
 
   /**
@@ -501,21 +540,47 @@ Page({
     const paras = this.data.paras
     if (paras[index].play == 'voicePlay') {
       paras[index].play = ''
+      paras[index].pause = true
       paras[index].media.pause()
     }
     else {
       for (let i in paras) {
-        if (paras[i].type === 2) {
+        if (paras[i].type === 2 && i != index && paras[i].media) {
           paras[i].play = ''
+          paras[i].pause = false
           paras[i].media.stop()
         }
       }
       paras[index].play = 'voicePlay'
+      paras[index].pause = false
       paras[index].media.play()
     }
 
     this.setData({
       paras
+    })
+  },
+
+  onReachBottom () {
+    console.log('kkk Reach bottom erere!!!')
+    const index_mp3s = this.index_mp3s
+    const paras = this.data.paras
+    let count = this.loadAudioPoint
+    let isLoading = true
+
+    if (count < index_mp3s.length) {
+      const pos = index_mp3s[count]
+      paras[pos].media = wx.createInnerAudioContext()
+      paras[pos].media.src = paras[pos].src
+      paras[pos].media.onEnded(this.soundStop)
+      paras[pos].media.onCanplay(this.canPlay)
+    } else {
+      isLoading = false
+    }
+
+    this.setData({
+      paras,
+      isLoading,
     })
   },
 
