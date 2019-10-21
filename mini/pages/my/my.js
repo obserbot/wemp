@@ -133,11 +133,13 @@ Page({
     else {
       me.getUserInfo(userInfo).then(res => {
         //app.globalData.myItems = res.data.items;
-        console.log('items');
+        //console.log('items');
         //console.log(res.data.items);
+        const myPoints = app.globalData.myPoints
         that.setData({
           //businessExists: res.data.items.length > 0 ? true : false,
           //myItems: res.data.items,
+          myPoints,
           userInfo: wx.getStorageSync('userInfo'),
           isLogged: true
         });
@@ -150,6 +152,15 @@ Page({
   navigateItem (ev) {
     wx.navigateTo({
       url: ev.currentTarget.dataset.url,
+    })
+  },
+
+  /**
+   * Goto Points.
+   */
+  gotoPoints (ev) {
+    wx.navigateTo({
+      url: '../points/points'
     })
   },
 

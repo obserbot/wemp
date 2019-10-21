@@ -43,15 +43,13 @@
         </view>
     -->
     </view>
-    <view class="detailed-item points">
-      <block wx:if="{{ isLogged }}">
-        <view class="item-number">
-          {{ isLogged ? myPoints : 0 }}
-        </view>
-        <view class="item-title">
-          {{ localeStrings.points }}
-        </view>
-      </block>
+    <view class="detailed-item points" bindtap="gotoPoints" wx:if="{{ isLogged }}">
+      <view class="item-number">
+        {{ myPoints }}
+      </view>
+      <view class="item-title">
+        {{ localeStrings.points }}
+      </view>
     </view>
     <view class="detailed-item lessons">
     <!--
@@ -123,17 +121,16 @@
       </view>
       <view class='count'>{{userInfo.viewedEntriesCount || 0}}篇</view>
     </view>
-    <view class='item' hover-class='hover-class' catchtap='navigatItem' data-url='/pages/manageTag/manageTag'>
-      <view class='title'>
-        <image src='/img/tag.png'></image>
-        <view>标签管理</view>
-      </view>
-      <view class='count'>{{userInfo.subscribedTagsCount || 0}}个</view>
-    </view>
 -->
   </view>
 
   <view class="card items">
+    <view class="item" hover-class="hover-class" bindtap="gotoPoints">
+      <view class='title'>
+        <image src='/img/ic_coins.png'></image>
+        <view>{{ localeStrings.points }}</view>
+      </view>
+    </view>
     <view class="item" hover-class="hover-class">
       <picker bindchange="changeLanguage" value="{{ langIndex }}" range="{{ languages }}">
         <view class="title">
@@ -161,7 +158,7 @@
 
   <view class="version-info">
     <view class="app-name">{{ localeStrings.appName }}</view>
-    <view class="version-code">3.1.0</view>
+    <view class="version-code">3.2.0</view>
   </view>
 
 </view>
