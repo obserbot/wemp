@@ -198,12 +198,10 @@ let traceReading = function (article_nid, scroll_top) {
   })
 };
 
-
 /**
  * Log
  */
-function wysjLog (type, info)
-{
+function wysjLog (type, info) {
   const session3rd = wx.getStorageSync('session3rd') || ''
 
   const info_obj = {
@@ -225,6 +223,63 @@ function wysjLog (type, info)
   })
 }
 
+/**
+ * WYLog
+ */
+function wyLog (type = '', info = '') {
+  const session3rd = wx.getStorageSync('session3rd') || ''
+
+  const info_obj = {
+    info,
+    session3rd,
+  }
+
+  wx.request({
+    url: server_api.wyLog,
+    data: {
+      app: 'en_edu',
+      title: type,
+      info: JSON.stringify(info_obj)
+    },
+    success(res) {
+    },
+    fail(res) {
+    }
+  })
+}
+
+/**
+ * Postgresql lessons
+ */
+function pgLesson (pg_lesson_id = '') {
+  return new Promise((resolve, reject) => {
+    const session3rd = wx.getStorageSync('session3rd') || ''
+
+    const info_obj = {
+      session3rd,
+    }
+
+    console.log('wwwwwww', pg_lesson_id)
+    wx.request({
+      url: server_api.pgLesson,
+      data: {
+        app: 'en_edu',
+        uid: 'uuuuiiiddd',
+        pg_lesson_id: pg_lesson_id
+      },
+      method: 'POST',
+      header: {'content-type': 'application/x-www-form-urlencoded'},
+      success(res) {
+        console.log('pglesson, success: ', res)
+        resolve(res.data)
+      },
+      fail(res) {
+        console.log('pglesson, fail: ', res)
+        reject(false)
+      }
+    })
+  })
+}
 
 /*
  * Enroll
@@ -327,9 +382,58 @@ function getLessonDetails (nid) {
     })
 }
 
+/**
+ * Buy
+ */
+function buy () {
+  return new Promise((resolve, reject) => {
+    //console.log('xxxx')
+    wx.request({
+      url: 'https://weiyishijie.com/en_edu/api/v1/payment',
+      data:{
+        id: 'app.globalData.openkk',//获取用户 openid
+        fee:100 //商品价格
+      },
+      header: {'Content-Type': 'application/x-www-form-urlencoded'},
+      method: 'POST',
+      success: function (res) {
+        console.log(res.data);
+        console.log('调起支付');
+        wx.requestPayment({
+          'timeStamp': res.data.timeStamp,
+          'nonceStr': res.data.nonceStr,
+          //'package': 'prepay_id=' + res.data.appId,
+          'package': res.data.package,
+          'signType': 'MD5',
+          'paySign': res.data.paySign,
+          'success': function (res) {
+            console.log('success');
+            wx.showToast({
+              title: '支付成功',
+              icon: 'success',
+              duration: 3000
+            });
+          },
+          'fail': function (res) {
+            console.log(res);
+          },
+          'complete': function (res) {
+            console.log('complete');
+          }
+        });
+      },
+      fail: function (res) {
+        console.log(res.data)
+      }
+    });
+  })
+}
+
 module.exports = {
   wxLoginToGetCode,
   wysjLog,
+  wyLog,
+  pgLesson,
   weiyiLogin,
   initInfo,
   getGlobalInfo,
@@ -337,6 +441,7 @@ module.exports = {
   enrollLesson,
   getLessonDetails,
   unenrollLesson,
+  buy,
   traceReading,
 };
 
