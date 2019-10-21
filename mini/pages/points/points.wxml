@@ -1,13 +1,9 @@
+<view class="container">
+  <view class="">
+    {{ myPoints }}
+  </view>
 
-
-
-<view class="">
-  {{ myPoints }}
+  <button bindtap="buyPoints" class="weui-btn" type="primary">
+    {{ localeStrings.buy }}
+  </button>
 </view>
-
-
-
-
-<button bindtap="buyPoints" class="weui-btn" type="primary">
-        {{ localeStrings.unenroll }}
-    </button>
