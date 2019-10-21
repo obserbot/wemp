@@ -1,0 +1,13 @@
+
+
+
+<view class="">
+  {{ myPoints }}
+</view>
+
+
+
+
+<button bindtap="buyPoints" class="weui-btn" type="primary">
+        {{ localeStrings.unenroll }}
+    </button>
