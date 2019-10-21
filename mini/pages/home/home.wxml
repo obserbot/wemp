@@ -70,10 +70,6 @@
     </view>
 </view>
 
-        <view class='login-text' bindtap='xiadan' wx:if='{{ isAdmin }}'>
-        xia dan
-        </view>
-
 
 <!--
 <view class='filter-wrap'>

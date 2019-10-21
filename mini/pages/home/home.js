@@ -226,52 +226,6 @@ Page({
     */
   },
 
-
-  /*
-   * xia dan
-   */
-  xiadan ()
-  {
-    console.log('xxxx')
-    wx.request({
-      url: 'https://weiyishijie.com/en_edu/api/v1/payment',
-      data:{
-        id: 'app.globalData.openid',//获取用户 openid
-        fee:100 //商品价格
-      },
-      header: {'Content-Type': 'application/x-www-form-urlencoded'},
-      method: 'POST',
-      success: function (res) {
-        console.log(res.data);
-        console.log('调起支付');
-        wx.requestPayment({
-          'timeStamp': res.data.timeStamp,
-          'nonceStr': res.data.nonceStr,
-          'package': res.data.package,
-          'signType': 'MD5',
-          'paySign': res.data.paySign,
-          'success': function (res) {
-            console.log('success');
-            wx.showToast({
-              title: '支付成功',
-              icon: 'success',
-              duration: 3000
-            });
-          },
-          'fail': function (res) {
-            console.log(res);
-          },
-          'complete': function (res) {
-            console.log('complete');
-          }
-        });
-      },
-      fail: function (res) {
-        console.log(res.data)
-      }
-    });
-  },
-
   /**
    * https://www.wangjiankai.com/2018/07/01/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9B%91%E5%90%AC%E9%A1%B5%E9%9D%A2%E6%BB%91%E5%8A%A8%E8%B7%9D%E9%A1%B6%E9%83%A8%E8%B7%9D%E7%A6%BB%EF%BC%88%E8%BF%94%E5%9B%9E%E9%A1%B6%E9%83%A8%EF%BC%89/<Paste>
    * 回到顶部功能
