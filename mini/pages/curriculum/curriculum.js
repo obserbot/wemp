@@ -9,6 +9,10 @@ const app = getApp()
 
 Page({
   data: {
+    which: 0,
+    navTabs: [],
+    sliderOffset: 0,
+
     localeStrings: {},
     allCourses: [],
   },
@@ -71,6 +75,20 @@ Page({
     })
   },
 
+  /**
+   * Navbar
+   */
+  tabClick (ev) {
+    const sliderOffset = ev.currentTarget.offsetLeft
+    const which = ev.currentTarget.dataset.which
+
+    this.setData({
+      sliderOffset,
+      which,
+    });
+
+    //this.setLocaleCourses()
+  },
 
   /*
   setLocaleDarens(initDarens = false) {

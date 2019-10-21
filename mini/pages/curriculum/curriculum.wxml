@@ -1,4 +1,19 @@
 
+
+<!-- 有声书 | 课程 -->
+<view class="weui-navbar">
+  <view class="weui-navbar__item {{ which == 0 ? 'weui-bar__item_on' : '' }}" data-which="0" bindtap="tabClick" >
+    <view class="weui-navbar__title">{{ localeStrings.Audiobooks }}</view>
+  </view>
+  <view class="weui-navbar__item {{ which == 1 ? 'weui-bar__item_on' : '' }}" data-which="1" bindtap="tabClick" >
+    <view class="weui-navbar__title">{{ localeStrings.courses }}</view>
+  </view>
+  <view class="weui-navbar__slider"
+    style="transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"
+  >
+  </view>
+</view>
+
 <view class="container">
 
   <view class="courses-wrap">

@@ -1,6 +1,22 @@
 /* pages/daren/daren.wxss */
 
+@import '/weui/weui.wxss';
+
+.weui-bar__item_on {
+  background: #fff;
+}
+
+.weui-bar__item_on .weui-navbar__title {
+  font-weight: 500;
+}
+
+.weui-navbar__slider {
+  /**width: 9.2em;*/
+  width: 13.4em;
+}
+
 .container {
+  margin-top: 110rpx;
   padding-bottom: 99rpx;
   position: relative;
 }
