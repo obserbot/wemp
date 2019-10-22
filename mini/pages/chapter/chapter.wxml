@@ -4,7 +4,7 @@
 
   <view class="page-title-wrap">
     <view class="course-title">
-      <text>{{ bookTitle[localeCode] }}</text>
+      《<text>{{ bookTitle[localeCode] }}</text>》
     </view>
     <view class="lesson-title">
       <text>{{ chapterTitle[localeCode] }}</text>
@@ -13,16 +13,11 @@
 
   <view class="syllabus-wrap">
 
-    <!-- 课程介绍 -->
-
-    <!--
-    <view class="syllabus-label" wx:if="{{ lessonDesc[localeCode] }}">
-      {{ localeStrings.courseIntroduction }}
+    <!-- 本章介绍
+    <view class="course-description" wx:if="{{ chapterDesc[localeCode] }}">
+      <template is="wxParse" data="{{ wxParseData:chapter_desc.nodes }}" />
     </view>
     -->
-    <view class="course-description" wx:if="{{ lessonDesc[localeCode] }}">
-      <template is="wxParse" data="{{ wxParseData:lesson_desc.nodes }}" />
-    </view>
 
     <!-- 课程文本 -->
 
@@ -42,19 +37,6 @@
           </view>
         </view>
       </view>
-    </view>
-  </view>
-
-  <view class="time-wrap" wx:if="{{ time1[languageCode] || time2[languageCode] || time3[languageCode] }}">
-    <view class="time-item time-label">{{ localeStrings.time }}</view>:
-    <view class="time-item time1" wx:if="{{ time1[ languageCode ] }}">
-      {{ time1[ languageCode ] }}
-    </view>
-    <view class="time-item time2" wx:if="{{ time2[ languageCode ] }}">
-      ({{ time2[ languageCode ] }})
-    </view>
-    <view class="time-item time3" wx:if="{{ time3[ languageCode ] }}">
-      {{ time3[ languageCode ] }}
     </view>
   </view>
 
@@ -97,15 +79,6 @@
     </view>
 
   </block>
-
-  <view class="qrcode-wrap" wx:if="{{ groupQrUrl }}">
-    <view class="qrcode-title">
-      {{ localeStrings.enterClass }}
-    </view>
-    <view class="qrcode">
-      <image src="{{ groupQrUrl }}" mode="widthFix" bindtap="previewImage"></image>
-    </view>
-  </view>
 
 </view>
 

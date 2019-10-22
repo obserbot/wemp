@@ -9,6 +9,21 @@
   */
 }
 
+.container .wxParse-p {
+  margin: 46rpx 0;
+}
+
+.wxParse-p text {
+  font-family: Arial, Helvetica, Georgia;
+  font-size: 32rpx;
+  word-spacing: 5rpx;
+}
+
+.page-title-wrap {
+  background: linear-gradient(rgba(244,246,249,0.1),  rgba(255,255,255,0.9)),
+    url("https://weiyishijie.com/en_edu/leaf3.png");
+}
+
 .page-title-wrap .course-title {
   font-size: 36rpx;
   font-weight: 300;

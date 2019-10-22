@@ -39,6 +39,7 @@ Page({
 
     bookTitle: {},
     chapterTitle: {},
+    chapterDesc: {},
     theAudio: {},
   },
 
@@ -82,11 +83,13 @@ Page({
         */
 
         const chapterTitle = data.chapter_title
+        const chapterDesc = data.descp
         const bookTitle = data.book_title
 
         that.setData({
           bookTitle,
           chapterTitle,
+          chapterDesc,
           theAudio,
         })
       }
@@ -174,8 +177,8 @@ Page({
       })
 
       // Mupltiple description
-      const descp = that.data.lessonDesc[lang_code][0];
-      WxParse.wxParse('lesson_desc', 'md', descp, that)
+      const descp = that.data.chapterDesc[lang_code][0];
+      WxParse.wxParse('chapter_desc', 'md', descp, that)
     }).catch(er => {
       console.log('error', er)
     })
