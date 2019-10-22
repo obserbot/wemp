@@ -17,7 +17,22 @@
 <view class="container">
 
   <view class="courses-wrap">
-    <view wx:for="{{ allCourses }}" wx:key="{{ item.nid }}"
+    <view wx:for="{{ audiobooks }}" wx:key="{{ item.nid }}" wx:if="{{ which == 0 }}"
+      class="one-course-wrap" catchtap="gotoAudiobook" data-nid="{{ item.nid }}"
+      style="background-image:url({{ item.cover }});"
+    >
+      <view class="tutor-wrap">
+        <view class="course-info">
+          <view class="course-title">
+            {{ item.title[ languageCode ] }}
+          </view>
+        </view>
+        <view class="dr-avatar">
+          <image src="{{ item.author.avatar }}"></image>
+        </view>
+      </view>
+    </view>
+    <view wx:for="{{ allCourses }}" wx:key="{{ item.nid }}" wx:if="{{ which == 1 }}"
       class="one-course-wrap" catchtap="gotoCourse" data-nid="{{ item.nid }}"
       style="background-image:url({{ item.course_cover }});"
     >

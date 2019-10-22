@@ -1,0 +1,37 @@
+<import src="/wxParse/wxParse.wxml" />
+
+<view class="container">
+
+  <view class="page-title-wrap">
+    <view class="course-title">
+      <text>{{ theBook.title[localeCode] }}</text>
+    </view>
+  </view>
+
+  <view class="syllabus-wrap">
+
+    <!-- 课程介绍 -->
+
+    <view class="syllabus-label">
+      {{ localeStrings.courseIntroduction }}
+    </view>
+    <view class="course-description">
+      <template is="wxParse" data="{{ wxParseData:course_desc.nodes }}" />
+    </view>
+
+    <view class="curriculum-wrap" wx:if="{{ theBook.chapters.length > 0 }}">
+      <view class="lesson-wrap"
+        wx:for="{{ theBook.chapters }}" wx:key="{{ index }}"
+        data-nid="{{ item.nid }}" bindtap="gotoChapter"
+      >
+        <view class="lesson-title">
+          {{ item.title[localeCode] }}
+        </view>
+        <view class="go">＞</view>
+      </view>
+    </view>
+<!--
+-->
+  </view> <!-- End of syllabus -->
+
+</view>

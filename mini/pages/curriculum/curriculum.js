@@ -15,6 +15,8 @@ Page({
 
     localeStrings: {},
     allCourses: [],
+
+    audiobooks:[],
   },
 
   onLoad (options) {
@@ -31,7 +33,11 @@ Page({
     //event.on("languageChanged", this, this.setLocaleDarens)   // Content
 
     const allCourses = app.globalData.allCourses
-    this.setData({ allCourses })
+    const audiobooks = app.globalData.allAudiobooks
+    this.setData({
+      allCourses,
+      audiobooks,
+    })
   },
 
   onShow () {
@@ -68,6 +74,13 @@ Page({
       })
   },
 
+  gotoAudiobook (ev) {
+    let nid = ev.currentTarget.dataset.nid
+    wx.navigateTo({
+      url: `/pages/audiobook/book?nid=${nid}`,
+    })
+  },
+
   gotoCourse (ev) {
     let nid = ev.currentTarget.dataset.nid
     wx.navigateTo({
@@ -86,23 +99,6 @@ Page({
       sliderOffset,
       which,
     });
-
-    //this.setLocaleCourses()
   },
 
-  /*
-  setLocaleDarens(initDarens = false) {
-
-    let darens = initDarens ? initDarens : this.data.darens
-    const lang_code = wx.T.getLanguageCode()
-    const localeCountryNames = utils.getCountryNames()
-    for (let ix in darens) {
-      darens[ix].nationality = localeCountryNames[ darens[ix].iso2 ][ lang_code ]
-    }
-
-    this.setData({
-      darens
-    })
-  },
-  */
 })
