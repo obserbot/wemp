@@ -23,40 +23,31 @@
   </view>
 </view>
 
-
 <view class="container">
 
     <view class="course-item" hover-class="hover-class"
-      wx:if='{{ tabNow === "LESSONS" }}'
-      wx:for="{{ lessons_now }}" wx:key="{{ index }}" data-nid="{{ item.nid }}"
-      catchtap="toLessonDetail"
+      wx:for="{{ promotes }}" wx:key="{{ index }}" data-nid="{{ item.nid }}" data-type="{{ item.type }}"
+      catchtap="gotoDetail"
     >
-
       <view class="header">
-        <block wx:if="{{item.author.name !== 'anonymous'}}">
         <view class="name" data-item="{{ item }}" catchtap="toPersonal">
-          <image class="tutor-avatar" mode="aspectFill" src='{{ item.author.avatar || "/img/default_avatar.png" }}'></image>
+          <block wx:if="{{ item.type == 'lesson' }}">
+            <image class="tutor-avatar" mode="aspectFill" src='{{ item.up_title.teacher.avatar || "/img/default_avatar.png" }}'></image>
+          </block>
+          <block wx:if="{{ item.type == 'chapter' }}">
+            <image class="book-cover" mode="aspectFill" src='{{ item.up_title.cover || "/img/default_avatar.png" }}'></image>
+          </block>
         </view>
-        </block>
       </view>
       <view class="content course-title-wrap">
         <view class="real-course-title">
-          {{ item.course_title[ languageCode ] ? item.course_title[ languageCode ] : '' }}
+          {{ item.up_title[languageCode] }}
         </view>
         <view class="course-title">
-          <view class="title">{{ item.lesson_title[ languageCode ] }}</view>
+          <view class="title">{{ item.title[languageCode] }}</view>
         </view>
       </view>
-
       <view class="price">
-    <!--
-        <view class="course-price" wx:if='{{ item.price === "0" }}'>
-          {{ localeStrings.free }} / {{ item.duration }}
-        </view>
-        <view class="course-price" wx:if='{{ item.price !== "0" }}'>
-          {{ item.price }} / {{ item.duration }}
-        </view>
-      -->
         <view class="course-time" wx:if='{{ item.time1[ languageCode ] }}'>
           {{ item.time1[ languageCode ] }}
         </view>

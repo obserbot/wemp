@@ -29,7 +29,7 @@ Page({
     courses_now: [],
     lessons_now: [],
 
-    isAdmin: false,
+    promotes: [],
   },
 
   onLoad (options) {
@@ -64,11 +64,6 @@ Page({
     initData()
     */
     this.initData()
-
-    const admin = wx.getStorageSync('admin', 'iiii')
-    if (admin === 'hu') {
-      this.setData({ isAdmin: true })
-    }
   },
 
   /**
@@ -98,6 +93,7 @@ Page({
    * Localize lesson info.
    */
   setLocaleLessons () {
+    /*
     const lessons = app.globalData.allLessons.filter((value, index, array) => {
       return value.promote == '1'
     })
@@ -105,16 +101,20 @@ Page({
     const localeCountryNames = utils.getCountryNames()
     let lessons_now = []
     for (let ix in lessons) {
-    /*
-      lessons[ix].nid = lessons[ix]['nid']
-      lessons[ix].title = lessons[ix]['course_title'][lang_code]
-    */
       lessons[ix].author.nationality = localeCountryNames[lessons[ix].author.iso2][lang_code]
       lessons_now.push(lessons[ix])
     }
+    */
 
+
+
+
+    // New promotes
+    const promotes = app.globalData.allPromotes
+    //console.log('pro', promotes)
     this.setData({
-      lessons_now
+      promotes,
+      //lessons_now, // To abandon
     })
   },
 
@@ -168,7 +168,6 @@ Page({
 
     const init = function() {
       if (app.globalData.status === 1) {
-        //that.setLocaleCourses( app.globalData.allCourses )
         that.setLocaleLessons()
       }
       else {
@@ -181,6 +180,25 @@ Page({
       }
     }
     init()
+  },
+
+  /*
+   * detail.
+   */
+  gotoDetail (ev) {
+    const nid = ev.currentTarget.dataset.nid
+    const type = ev.currentTarget.dataset.type
+    if (type == "chapter") {
+      wx.navigateTo({
+        url: `/pages/chapter/chapter?nid=${nid}`,
+      })
+    }
+
+    if (type == "lesson") {
+      wx.navigateTo({
+        url: `/pages/lesson/lesson?nid=${nid}`,
+      })
+    }
   },
 
   /*

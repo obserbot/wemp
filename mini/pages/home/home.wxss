@@ -70,6 +70,13 @@ page {
   height: 80rpx;
 }
 
+.header image.book-cover {
+  border-radius: 10rpx;
+  width: 80rpx;
+  height: 100rpx;
+  border: 1rpx solid #c0c0c0;
+}
+
 .real-course-title {
   font-size: 28rpx;
   font-weight: 300;

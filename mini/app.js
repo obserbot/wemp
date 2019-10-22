@@ -67,16 +67,13 @@ App({
     })
     */
 
+    me.wyLog('onLaunch')
+
     me.wxLoginToGetCode().then(code => {
       if (code === 'error') {
         console.log('error')
         return
       }
-
-      // Request initial data with the CODE
-
-      //if (session3rd.length > 20) {
-        //this.globalData.myStatus = 1
 
         // Login, refresh session, get initial info, create a new user if necessary.
         // Loading...
@@ -85,11 +82,13 @@ App({
           //that.connectSocket(session3rd)
           wx.setStorageSync('wid', data.wid)
           wx.setStorageSync('session3rd', data.session3rd)
-          //console.log('EEE', data)
+          console.log('EEE', data)
 
           // Initiate global data
           //console.log('COURSES', JSON.parse(data.all_courses))
+          that.globalData.allPromotes = JSON.parse(data.promotes)
           that.globalData.allCourses = JSON.parse(data.all_courses)
+          that.globalData.allAudiobooks = JSON.parse(data.all_audiobooks)
           that.globalData.allEnroll = data.enroll_nids
           that.globalData.myUid = data.uid        // Number
           that.globalData.myPoints = data.points  // Number
@@ -98,24 +97,9 @@ App({
             that.globalData.allLessons = lessons_json.lessons
           }
           that.globalData.status = 1
-
-          if (data.uid === 689) {
-            console.log('admin is you')
-            wx.setStorageSync('admin', 'hu')
-          }
-          else {
-            wx.setStorageSync('admin', 'kkkhu')
-          }
         }).catch( all_courses => {
           wx.setStorageSync('session3rd', '')
         })
-      /*
-      }
-      else {
-        that.globalData.myStatus = 0
-        that.loginWechat()
-      }
-      */
     }).catch( err => {
       // Todo: Repeat requiring several times.
       // Todo: Check network connecting.
@@ -250,6 +234,7 @@ App({
   globalData:
   {
     status: 0,
+    allPromotes: [],
     allCourses: [],
     allLessons: [],
     allEnroll: [],
