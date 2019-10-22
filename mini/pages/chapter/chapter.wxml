@@ -1,0 +1,145 @@
+<import src="/wxParse/wxParse.wxml" />
+
+<view class="container">
+
+  <view class="page-title-wrap">
+    <view class="course-title">
+      <text>{{ bookTitle[localeCode] }}</text>
+    </view>
+    <view class="lesson-title">
+      <text>{{ chapterTitle[localeCode] }}</text>
+    </view>
+  </view>
+
+  <view class="syllabus-wrap">
+
+    <!-- 课程介绍 -->
+
+    <!--
+    <view class="syllabus-label" wx:if="{{ lessonDesc[localeCode] }}">
+      {{ localeStrings.courseIntroduction }}
+    </view>
+    -->
+    <view class="course-description" wx:if="{{ lessonDesc[localeCode] }}">
+      <template is="wxParse" data="{{ wxParseData:lesson_desc.nodes }}" />
+    </view>
+
+    <!-- 课程文本 -->
+
+    <view class="course-description">
+      <template is="wxParse" data="{{ wxParseData:content_text.nodes }}" />
+    </view>
+
+    <!-- 课程内容 if exists -->
+    <view class="lesson-content-wrap">
+      <view class="paras-wrap">
+        <view class="para-mp3">
+          <view class="voice" bindtap="switchPlaying">
+            <view class="bg {{ item.play }}"></view>
+           </view>
+          <view class="pause-wrap" wx:if="{{ item.pause }}" data-index="{{ index }}" bindtap="switchPlaying">
+            <image class="pause-icon" src="/img/pause.png"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="time-wrap" wx:if="{{ time1[languageCode] || time2[languageCode] || time3[languageCode] }}">
+    <view class="time-item time-label">{{ localeStrings.time }}</view>:
+    <view class="time-item time1" wx:if="{{ time1[ languageCode ] }}">
+      {{ time1[ languageCode ] }}
+    </view>
+    <view class="time-item time2" wx:if="{{ time2[ languageCode ] }}">
+      ({{ time2[ languageCode ] }})
+    </view>
+    <view class="time-item time3" wx:if="{{ time3[ languageCode ] }}">
+      {{ time3[ languageCode ] }}
+    </view>
+  </view>
+
+  <block wx:if="{{ courseType }}">
+
+    <view class="enroll-users-wrap" wx:if="{{ enrolledUsers.length > 0 }}">
+      <view class="enroll-user" wx:for="{{ enrolledUsers }}" wx:key="{{ index }}">
+        <view class="personal-image-outside">
+          <image class="enroll-avatar" src="{{ item.avatar_url }}"></image>
+        </view>
+      </view>
+    </view>
+
+    <view class="enroll-button-wrap" wx:if="{{ enableEnroll }}">
+      <block wx:if="{{ isLogged && isEnrolled }}">
+        <view class="personal-image-outside button-sp-area">
+          <button bindtap="modalRemoveEnroll" class="weui-btn" type="warn" disabled="{{ ! enableEnroll }}">
+            {{ localeStrings.unenroll }}
+          </button>
+        </view>
+      </block>
+
+      <block wx:elif="{{ isLogged }}">
+        <view class="button-sp-area">
+          <button bindtap="onModalEnroll" class="weui-btn" type="primary" disabled="{{ ! enableEnroll }}">
+            {{ localeStrings.enroll }}
+          </button>
+        </view>
+      </block>
+
+      <block wx:else>
+        <view class="button-sp-area">
+          <button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" class="weui-btn" type="primary"
+            disabled="{{ ! enableEnroll }}"
+          >
+            {{ localeStrings.enroll }}
+          </button>
+        </view>
+      </block>
+    </view>
+
+  </block>
+
+  <view class="qrcode-wrap" wx:if="{{ groupQrUrl }}">
+    <view class="qrcode-title">
+      {{ localeStrings.enterClass }}
+    </view>
+    <view class="qrcode">
+      <image src="{{ groupQrUrl }}" mode="widthFix" bindtap="previewImage"></image>
+    </view>
+  </view>
+
+</view>
+
+
+
+<!-- Modal 1. Enroll -->
+
+<modal title="{{ localeStrings.titleConfirmEnroll }}"
+  confirm-text="{{ localeStrings.confirm }}" cancel-text="{{ localeStrings.cancel }}"
+  hidden="{{ modalEnrollHidden }}"
+  bindconfirm="modalEnrollConfirm" bindcancel="modalEnrollCancel"
+>
+  <text>{{ localeStrings.textConsume5Points }}</text>
+</modal>
+
+<!-- Modal 2. Remove Enroll -->
+
+<modal title="{{ localeStrings.titleRemoveEnroll }}"
+  confirm-text="{{ localeStrings.confirm }}" cancel-text="{{ localeStrings.cancel }}"
+  hidden="{{ modalRemoveEnrollHidden }}"
+  bindconfirm="modalRemoveEnrollConfirm" bindcancel="modalRemoveEnrollCancel"
+>
+  <text>{{ localeStrings.textRemoveEnroll }}</text>
+</modal>
+
+<!-- Modal 3. Not enough points -->
+
+<modal title="{{ localeStrings.titleLackPoints }}"
+  confirm-text="{{ localeStrings.contactService }}" cancel-text="{{ localeStrings.cancel }}"
+  hidden="{{ modalLackPointsHidden }}"
+  bindconfirm="modalContactService" bindcancel="modalLackPointsCancel"
+>
+  <text>{{ localeStrings.textLackPoints }}</text>
+</modal>
+
+
+
