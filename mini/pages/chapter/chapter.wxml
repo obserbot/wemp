@@ -19,24 +19,23 @@
     </view>
     -->
 
-    <!-- 课程文本 -->
-
-    <view class="course-description">
-      <template is="wxParse" data="{{ wxParseData:content_text.nodes }}" />
-    </view>
-
-    <!-- 课程内容 if exists -->
+    <!-- 语音 if exists -->
     <view class="lesson-content-wrap">
       <view class="paras-wrap">
         <view class="para-mp3">
           <view class="voice" bindtap="switchPlaying">
-            <view class="bg {{ item.play }}"></view>
+            <view class="bg {{ theAudio.play }}"></view>
            </view>
-          <view class="pause-wrap" wx:if="{{ item.pause }}" data-index="{{ index }}" bindtap="switchPlaying">
+          <view class="pause-wrap" wx:if="{{ theAudio.pause }}" bindtap="switchPlaying">
             <image class="pause-icon" src="/img/pause.png"></image>
           </view>
         </view>
       </view>
+    </view>
+
+    <!-- 文本 -->
+    <view class="course-description">
+      <template is="wxParse" data="{{ wxParseData:content_text.nodes }}" />
     </view>
   </view>
 
