@@ -44,13 +44,19 @@ Page({
 
   onShareAppMessage (res)
   {
+    const lang = wx.getStorageSync('languageIndex') || 0
+    const slogan = lang === 0
+      ? '来自全球的英语教师，带给你不一样的英语课！'
+      : 'Find your favorate English tutors and courses!'
     return {
-      title: '微移英语',
+      title: slogan,
       path: '/pages/daren/daren'
     }
   },
 
-  onPullDownRefresh () {
+
+  onPullDownRefresh ()
+  {
     this.getDarens(true)
   },
 
