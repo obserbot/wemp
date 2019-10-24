@@ -383,11 +383,41 @@ function getLessonDetails (nid) {
 }
 
 /**
- * Buy
+ * Chapter API.
  */
-function buy () {
+function getChapterDetails (nid) {
   return new Promise((resolve, reject) => {
-    //console.log('xxxx')
+      const localeStrings = wx.T.getLanguage()
+      wx.showLoading({ title: localeStrings.isLoading })
+
+      wx.request({
+        url: server_api.getChapterDetails,
+        data: {nid},
+        method: 'POST',
+        header: {'content-type': 'application/x-www-form-urlencoded' },
+        success(res) {
+          resolve(res.data)
+        },
+        fail(res) {
+          utils.showToastError()
+          reject(false)
+        },
+        complete() {
+          wx.hideLoading();
+        }
+      })
+    })
+}
+
+/**
+ * Buy
+ *
+ * @param price 是按照分来算。
+ */
+function buy (price = 0) {
+  return new Promise((resolve, reject) => {
+    if (price < 1) reject(false);
+
     wx.request({
       url: 'https://weiyishijie.com/en_edu/api/v1/payment',
       data:{
@@ -407,19 +437,12 @@ function buy () {
           'signType': 'MD5',
           'paySign': res.data.paySign,
           'success': function (res) {
-            console.log('success');
-            wx.showToast({
-              title: '支付成功',
-              icon: 'success',
-              duration: 3000
-            });
+            console.log('PAY 1. success');
+            resolve(true)
           },
           'fail': function (res) {
-            console.log(res);
+            reject(false)
           },
-          'complete': function (res) {
-            console.log('complete');
-          }
         });
       },
       fail: function (res) {
@@ -440,6 +463,7 @@ module.exports = {
   getUserInfo,
   enrollLesson,
   getLessonDetails,
+  getChapterDetails,
   unenrollLesson,
   buy,
   traceReading,

@@ -35,6 +35,12 @@
         "selectedIconPath": "img/tab_home.png"
       },
       {
+        "pagePath": "pages/daren/daren",
+        "text": "教师",
+        "iconPath": "img/tab_daren_normal.png",
+        "selectedIconPath": "img/tab_daren.png"
+      },
+      {
         "pagePath": "pages/curriculum/curriculum",
         "text": "课程",
         "iconPath": "img/tab_course_normal.png",

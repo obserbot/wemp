@@ -42,6 +42,10 @@
   margin-top: 72rpx;
   display: flex;
   align-items: center;
+/*
+  position: fixed;
+  bottom: 0;
+  */
 }
 
 .page-loading-gif-wrap {
