@@ -19,6 +19,7 @@
     </view>
     -->
 
+   <!-- 语音
         <view class="para-mp3">
           <view class="voice" bindtap="switchPlaying">
             <view class="bg {{ theAudio.play }}"></view>
@@ -27,6 +28,7 @@
             <image class="pause-icon" src="/img/pause.png"></image>
           </view>
         </view>
+    -->
 
     <!-- 文本 -->
     <view class="course-description">
