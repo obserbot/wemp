@@ -29,6 +29,7 @@
   color: #abb4bf;
 }
 
+/*
 .profile .info .text {
   flex: 1;
   min-height: 90rpx;
@@ -37,23 +38,26 @@
 .profile .info .text .line-first {
   display: flex;
   align-items: center;
-  margin-bottom: 20rpx;
 }
+*/
 
 .profile .info .text .line-first .name {
-  font-size: 30rpx;
+  font-size: 32rpx;
   color: #333;
   margin-right: 30rpx;
 }
 
-.profile .info .text .line-first .nationality {
-  color: #abb4bf;
-  text-align: center;
-  font-size: 12px;
-  font-weight: 300;
-  border: 1px solid #dcdcdc;
+.profile .info .text .nationality {
+  margin: 30rpx 0 0;
+}
+
+.profile .info .text .nationality text {
+  border: 1rpx solid #dcdcdc;
   border-radius: 10rpx;
-  padding: 1px 3px;
+  font-size: 24rpx;
+  font-weight: 300;
+  color: #abb4bf;
+  padding: 3rpx 12rpx;
 }
 
 .profile .others {

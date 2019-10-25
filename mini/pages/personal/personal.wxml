@@ -6,9 +6,14 @@
       <view class="text">
         <view class="line-first">
           <view class="name">{{ thirdname }}</view>
-          <view class="nationality">{{ theTutor.nationality[ languageCode ] }}</view>
         </view>
+        <view class="nationality">
+          <text>{{ theTutor.nationality[ languageCode ] }}</text>
+        </view>
+
+        <!--
         <view class="others">{{ briefDesc[ languageCode ] }}</view>
+        -->
       </view>
     </view>
     <view class="bottom">
