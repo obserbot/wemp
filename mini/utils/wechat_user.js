@@ -3,11 +3,13 @@
 const server_api = require('../server.api.js')
 const utils = require('../utils/utils.js')
 
+
 /**
  * wx.login() 调用微信登录
  * 获取登录凭证 code，有效期 5 分钟
  */
-function wxLoginToGetCode () {
+function wxLoginToGetCode ()
+{
   return new Promise((resolve, reject) => {
     wx.login({
       success(res) {
@@ -28,10 +30,12 @@ function wxLoginToGetCode () {
   })
 }
 
+
 /**
  * Try login up to 3 times.
  */
-function weiyiLogin (code) {
+function weiyiLogin (code)
+{
   return new Promise((resolve, reject) => {
       wx.request({
         url: server_api.wxLogin,
@@ -60,12 +64,14 @@ function weiyiLogin (code) {
     })
 }
 
+
 /**
  * 用户初始化信息
  * @param session3rd
  * @param code
  */
-function initInfo(code, session3rd) {
+function initInfo(code, session3rd)
+{
   return new Promise((resolve, reject) => {
     const localeStrings = wx.T.getLanguage()
     wx.showLoading({ title: localeStrings.isLoading })
@@ -89,6 +95,7 @@ function initInfo(code, session3rd) {
     });
   })
 }
+
 
 /**
  * 全局信息：公共信息，个人信息

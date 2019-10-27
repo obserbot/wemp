@@ -22,7 +22,8 @@ App({
   //   scene: 1007,
   //   shareTicket: "<Undefined>"
   // }
-  onLaunch (options) {
+  onLaunch (options)
+  {
     const that = this
 
     // Todo: Language resolvation order:
@@ -75,9 +76,9 @@ App({
         return
       }
 
-        // Login, refresh session, get initial info, create a new user if necessary.
-        // Loading...
-        me.initInfo(code, session3rd).then(data => {
+      // Login, refresh session, get initial info, create a new user if necessary.
+      // Loading...
+      me.initInfo(code, session3rd).then(data => {
           // data.enroll_nids: ["123", "234"]
           //that.connectSocket(session3rd)
           wx.setStorageSync('wid', data.wid)
@@ -97,9 +98,9 @@ App({
             that.globalData.allLessons = lessons_json.lessons
           }
           that.globalData.status = 1
-        }).catch( all_courses => {
-          wx.setStorageSync('session3rd', '')
-        })
+      }).catch( all_courses => {
+        wx.setStorageSync('session3rd', '')
+      })
     }).catch( err => {
       // Todo: Repeat requiring several times.
       // Todo: Check network connecting.
