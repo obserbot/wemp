@@ -19,7 +19,7 @@
 
 <view class="weui-navbar">
   <view class="latest-classes">
-    {{ localeStrings.latestClasses }}
+    {{ localeStrings.latestActivities }}
   </view>
 </view>
 

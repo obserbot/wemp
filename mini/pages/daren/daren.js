@@ -44,10 +44,7 @@ Page({
 
   onShareAppMessage (res)
   {
-    const lang = wx.getStorageSync('languageIndex') || 0
-    const slogan = lang === 0
-      ? '来自全球的英语教师，带给你不一样的英语课！'
-      : 'Find your favorate English tutors and courses!'
+    const slogan = this.data.localeStrings.slogan
     return {
       title: slogan,
       path: '/pages/daren/daren'
@@ -59,6 +56,7 @@ Page({
   {
     this.getDarens(true)
   },
+
 
   /**
    * Goto personal
