@@ -6,11 +6,11 @@ The goal of the project is to create an English community on Wechat. It allows s
 
 Basic 2 steps in the beginning:
 
-1. Present teachers' profiles, and
+1. Present teachers' profiles.
 
 It displays your nationality, introdiction, an qr code. For example:
 
-  <img src="/images/profile.png" width="258">
+  <img src="images/profile.png" width="258">
 
 2. Offer English activities(classes) in groups. (optional)
 
