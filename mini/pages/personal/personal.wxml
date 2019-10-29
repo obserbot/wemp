@@ -49,7 +49,10 @@
       wx:for="{{ courses }}" wx:key="{{ index }}"
       bindtap="gotoCourse" data-nid="{{ item.nid }}"
     >
-      {{ item.title[languageCode] }}
+      <view class="lesson-title">
+        {{ item.title[languageCode] }}
+      </view>
+      <view class="go">＞</view>
     </view>
   </view>
 

@@ -7,7 +7,9 @@ const server_api = require('../../server.api.js')
 const app = getApp()
 
 Page({
-  data: {
+
+  data:
+  {
     languageCode: 'zh_hans',
     localeStrings: '',
 
@@ -29,7 +31,9 @@ Page({
     courses: [],
   },
 
-  onLoad (query) {
+
+  onLoad (query)
+  {
     utils.setLocaleStrings(this)
 
     const myInfo = wx.getStorageSync('userInfo') || false
@@ -67,6 +71,7 @@ Page({
     }
   },
 
+
   onShow () {
     /*
     const localeCode = wx.T.getLanguageCode()
@@ -79,7 +84,8 @@ Page({
   /**
    *
    */
-  getDarenInfo (uid) {
+  getDarenInfo (uid)
+  {
     const that = this
     const session3rd = wx.getStorageSync('session3rd') || ''
 
@@ -134,6 +140,7 @@ Page({
       },
     })
   },
+
 
   // 用户点击“微信登陆”按钮，回调函数
   onGotUserInfo: function(res) {

@@ -2,6 +2,7 @@
 
 .wrapper {
   padding-top: 20rpx;
+  padding-bottom: 80rpx;
 }
 
 .profile {
@@ -173,7 +174,14 @@
   background: #fff;
   height: 40rpx;
   line-height: 40rpx;
-  margin: 12rpx 0;
-  padding: 10rpx;
+  margin: 24rpx 0;
+  padding: 10rpx 20rpx;
   border-radius: 6rpx;
+  display: flex;
 }
+
+.course-item .go {
+  margin-left: auto;
+  opacity: 0.3;
+}
+
