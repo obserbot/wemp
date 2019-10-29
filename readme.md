@@ -33,31 +33,3 @@ Scanning the QR code below to open the WEMP:
   <img src="images/wemp-qr.jpg" width="258">
 
 
-## Teachers and profiles
-
-### (Chinese)
-
-<p align="center">
-  <img src="images/teachers-cn.jpeg" width="300">
-  <img src="images/profile-cn.jpeg" width="300">
-</p>
-
-Todo:
-
-- Filters: Nationality, gender, favorites, stars
-
-- Search
-
-- Favorite and stars
-
-
-### (English)
-
-<p align="center">
-  <img src="images/teachers-en.jpeg" width="300">
-  <img src="images/profile-en.jpeg" width="300">
-</p>
-
-
-
-
