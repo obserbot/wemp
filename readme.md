@@ -10,7 +10,7 @@ Basic 2 steps in the beginning:
 
 It displays your nationality, introdiction, an qr code. For example:
 
-  <img src="images/profile.png" width="258">
+  <img src="/images/profile.png" width="258">
 
 2. Offer English activities(classes) in groups. (optional)
 
