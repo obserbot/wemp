@@ -14,11 +14,9 @@ It displays your nationality, introdiction, an qr code. For example:
 
 2. Offer English activities(classes) in groups. (optional)
 
-Activities are varied. You can introduce your courses, talk about travel or food, play English games, do quizzes, read books, tell stories, etc. Point is to make students practise their English skills during the activities.
+Activities are varied. You can introduce your courses, talk about travel or food, play English games, do quizzes, read books, tell stories, etc. The point is to make students practise their English skills during the activities.
 
-Most teachers and students are familiar with video or live classes, which would happen on a specific software. We do not provide such classes currently in the mini program. You can introduce your one on one courses in the community though. Now we focus on **combining the mini program and Wechat groups to create an active English community**.
-
-
+Most teachers and students are familiar with video or live classes, which would happen with a specific software. We do not provide such classes currently in the mini program. You can introduce your one on one courses in the community though. Now we focus on **combining the mini program and Wechat groups to create an active English community on Wechat**.
 
 
 
@@ -28,7 +26,9 @@ Most teachers and students are familiar with video or live classes, which would 
 
 
 
-Scanning the QR code below to open WEMP:
+
+
+Scanning the QR code below to open the WEMP:
 
   <img src="images/wemp-qr.jpg" width="258">
 
