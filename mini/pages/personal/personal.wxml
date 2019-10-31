@@ -1,8 +1,8 @@
 <view class="wrapper">
   <view class="profile">
     <view class="info">
-      <image class="avatar" mode='aspectFill' src='{{ thirdavatar }}' wx:if='{{ thirdavatar }}'></image>
-      <image class="avatar" src='/img/empty_avatar_user.png' wx:else></image>
+      <image class="avatar" mode="aspectFill" src="{{ thirdavatar }}" wx:if="{{ thirdavatar }}"></image>
+      <image class="avatar" src="/img/empty_avatar_user.png" wx:else></image>
       <view class="text">
         <view class="line-first">
           <view class="name">{{ thirdname }}</view>

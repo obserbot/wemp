@@ -6,7 +6,8 @@
       class="one-daren-wrap" catchtap="toPersonal" data-uid="{{ item.uid }}"
     >
       <view class="dr-avatar">
-        <image src="{{ item.avatar }}"></image>
+        <image src="{{ item.avatar }}" wx:if="{{ item.avatar }}"></image>
+        <image class="avatar" src='/img/empty_avatar_user.png' wx:else></image>
       </view>
       <view class="dr-nickname">
         <text>{{ item.name }}</text>
