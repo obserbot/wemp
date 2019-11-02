@@ -19,17 +19,23 @@ Activities are varied. You can introduce your courses, talk about travel or food
 Most teachers and students are familiar with video or live classes, which would happen with a specific software. We do not provide such classes currently in the mini program. You can introduce your one on one courses in the community though. Now we focus on **combining the mini program and Wechat groups to create an active English community on Wechat**.
 
 
+## FAQ
 
+### What are Wechat mini programs?
 
+Wechat mini programs are "sub-applications" within the Wechat ecosystem. They offer functionality similar to apps without download or installation.
 
+### Where to find the mini program?
 
+1. Searh 微移英语 on Wechat, or
 
-
-
-
-
-Scanning the QR code below to open the WEMP:
+2. Scan the QR code below with Wechat:
 
   <img src="images/wemp-qr.jpg" width="258">
+
+### How to upload my profile as a teacher?
+
+It requires your introduction and qr code. Contact Henry (Wechat account: henry334013) for support.
+
 
 
