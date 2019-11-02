@@ -58,6 +58,9 @@
           {{ item.time3[ languageCode ] }}
         </view>
       </view>
+      <view class="level-wrap" wx:if="{{ item.up_title.level > 0 }}">
+        <image class="level-tag" src="{{ '/img/level' + item.up_title.level + '.png' }}"></image>
+      </view>
     </view>
 </view>
 
