@@ -19,6 +19,7 @@ Page({
     lessonNid: 0,
 
     enrolledUsers: [],
+    groupQrUrl: '',
 
     paras: [],
     isLoading: false,
@@ -58,15 +59,17 @@ Page({
 
     const nid = options.nid // string
     me.getLessonDetails(nid).then(data => {
-      console.log('8882wiii', data)
+      console.log('--8882wiii', data)
       const enrolledUsers = data.enroll_users
+
+      const groupQrUrl = data.group_qr
 
       const lang_code = wx.T.getLanguageCode()
       const localeCountryNames = utils.getCountryNames()
       const userInfo = wx.getStorageSync('userInfo')
       const isLogged = userInfo ? true : false
 
-      const my_uid = app.globalData.myUid.toString()
+      const my_uid = app.globalData.myUid ? app.globalData.myUid.toString() : 0
       const myinfoArr = enrolledUsers.filter((value, index, array) => {
         return value.uid === my_uid;
       })
@@ -161,6 +164,7 @@ Page({
 
       that.setData({
         tttShow,
+        groupQrUrl,
        // bookPieces,
 
         lessonNid: nid,
@@ -462,7 +466,7 @@ Page({
   /**
    * Group qr code for the lesson.
    */
-  previewImage (res) {
+  previewGroupQR (res) {
     const url = this.data.groupQrUrl
     wx.previewImage({
       urls: [url]

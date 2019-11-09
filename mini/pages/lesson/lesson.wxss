@@ -9,6 +9,10 @@
   */
 }
 
+.wxParse-h2 {
+  font-size: 38rpx;
+}
+
 .page-title-wrap .course-title {
   font-size: 36rpx;
   font-weight: 300;
@@ -221,8 +225,8 @@
 }
 
 .course-description {
-  line-height: 42rpx;
-  font-size: 29rpx;
+  line-height: 58rpx;
+  font-size: 34rpx;
   font-weight: 400;
   padding: 0;
   margin-bottom: 60rpx;

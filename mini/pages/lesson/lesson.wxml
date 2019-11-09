@@ -99,6 +99,15 @@
 
     <view class="enroll-button-wrap" wx:if="{{ enableEnroll }}">
       <block wx:if="{{ isLogged && isEnrolled }}">
+        <view class="qrcode-wrap" wx:if="{{ groupQrUrl }}">
+          <view class="qrcode-title">
+            {{ localeStrings.enterClass }}
+          </view>
+          <view class="qrcode">
+            <image src="{{ groupQrUrl }}" mode="widthFix" bindtap="previewGroupQR"></image>
+          </view>
+        </view>
+
         <view class="personal-image-outside button-sp-area">
           <button bindtap="modalRemoveEnroll" class="weui-btn" type="warn" disabled="{{ ! enableEnroll }}">
             {{ localeStrings.unenroll }}
@@ -127,14 +136,6 @@
 
   </block>
 
-  <view class="qrcode-wrap" wx:if="{{ groupQrUrl }}">
-    <view class="qrcode-title">
-      {{ localeStrings.enterClass }}
-    </view>
-    <view class="qrcode">
-      <image src="{{ groupQrUrl }}" mode="widthFix" bindtap="previewImage"></image>
-    </view>
-  </view>
 
 </view>
 

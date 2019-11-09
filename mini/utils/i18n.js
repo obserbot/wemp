@@ -60,13 +60,15 @@ T.setTabBarTitles = () =>
       en: 'Home'
     },
     {
-      zh_hans: '教师',
+      zh_hans: '达人',
       en: 'Tutors'
     },
+    /*
     {
       zh_hans: '课程',
       en: 'Courses'
     },
+    */
     {
       zh_hans: '我的',
       en: 'My'
