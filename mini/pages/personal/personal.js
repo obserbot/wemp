@@ -4,6 +4,8 @@ const utils = require('../../utils/utils.js')
 const wechatUser = require('../../utils/wechat_user.js')
 const server_api = require('../../server.api.js')
 
+const WxParse = require('../../wxParse/wxParse.js')
+
 const app = getApp()
 
 Page({
@@ -115,6 +117,11 @@ Page({
         const theTutor = {
           nationality: utils.getCountryNames(res.data.info.iso2),
         }
+
+        const desc_zh = res.data.info.tutor_desc['zh_hans'];
+        const desc_en = res.data.info.tutor_desc['en'];
+        WxParse.wxParse('tutor_desc_zh', 'md', desc_zh, that)
+        WxParse.wxParse('tutor_desc_en', 'md', desc_en, that)
 
         that.setData({
           thirduid,

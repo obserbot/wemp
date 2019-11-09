@@ -1,3 +1,5 @@
+<import src="/wxParse/wxParse.wxml" />
+
 <view class="wrapper">
   <view class="profile">
     <view class="info">
@@ -40,7 +42,12 @@
   </view>
 
   <view class="myself-description" wx:if="{{ tutorDesc[ languageCode ] }}">
-    {{ tutorDesc[ languageCode ] }}
+    <block wx:if="{{ languageCode === 'zh_hans' }}">
+      <template is="wxParse" data="{{ wxParseData:tutor_desc_zh.nodes }}" />
+    </block>
+    <block wx:if="{{ languageCode === 'en' }}">
+      <template is="wxParse" data="{{ wxParseData:tutor_desc_en.nodes }}" />
+    </block>
   </view>
 
   <view class="courses-wrap" wx:if="{{ courses.length > 0 }}">

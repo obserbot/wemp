@@ -1,5 +1,11 @@
 /* personal.wxss */
 
+@import "/wxParse/wxParse.wxss";
+
+.wxParse-p {
+  margin: 40rpx 30rpx;
+}
+
 .wrapper {
   padding-top: 20rpx;
   padding-bottom: 80rpx;
@@ -114,7 +120,6 @@
 .myself-description {
   margin: 60rpx 45rpx;
   background: #fff;
-  padding: 22rpx;
   border-radius: 10rpx;
   font-size: 30rpx;
   font-weight: 300;
