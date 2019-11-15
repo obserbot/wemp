@@ -24,8 +24,6 @@ App({
   // }
   onLaunch (options)
   {
-    const that = this
-
     // Todo: Language resolvation order:
     //
     // 1. url argument 'lang'
@@ -57,7 +55,6 @@ App({
      * Todo：设置本地数据缓存机制，避免频繁请求。
      */
 
-    const session3rd = wx.getStorageSync('session3rd') || '';
 
     // Log system info
     /*
@@ -70,43 +67,13 @@ App({
 
     me.wyLog('onLaunch')
 
-    me.wxLoginToGetCode().then(code => {
-      if (code === 'error') {
-        console.log('error')
-        return
-      }
-
-      // Login, refresh session, get initial info, create a new user if necessary.
-      // Loading...
-      me.initInfo(code, session3rd).then(data => {
-          // data.enroll_nids: ["123", "234"]
-          //that.connectSocket(session3rd)
-          wx.setStorageSync('wid', data.wid)
-          wx.setStorageSync('session3rd', data.session3rd)
-          console.log('EEE', data)
-
-          // Initiate global data
-          //console.log('COURSES', JSON.parse(data.all_courses))
-          that.globalData.allPromotes = JSON.parse(data.promotes)
-          that.globalData.allCourses = JSON.parse(data.all_courses)
-          that.globalData.allAudiobooks = JSON.parse(data.all_audiobooks)
-          that.globalData.allEnroll = data.enroll_nids
-          that.globalData.myUid = data.uid        // Number
-          that.globalData.myPoints = data.points  // Number
-          const lessons_json = JSON.parse(data.all_lessons)
-          if (lessons_json.pstat === 'ok') {
-            that.globalData.allLessons = lessons_json.lessons
-          }
-          that.globalData.status = 1
-      }).catch( all_courses => {
-        wx.setStorageSync('session3rd', '')
-      })
-    }).catch( err => {
-      // Todo: Repeat requiring several times.
-      // Todo: Check network connecting.
-      console.log('Fail to get code', err)
-    })
+    this.isLaunching = true
+    this.initData()
   },
+
+
+  isLaunching: false,
+
 
   /**
    * 服务器登录，用 code 换取 session3rd.
@@ -222,15 +189,71 @@ App({
     */
   },
 
+
+  // 应该在这里刷新全局数据，因为，用户希望每次打开时，内容都是新的。
+  // 而不是每次打开后，不确定是否是新内容，要通过手工刷新来确定。
   onShow ()
   {
-    //me.wysjLog('launch', 'onShow')
+    if (this.isLaunching) {
+      this.isLaunching = false
+    } else {
+      this.initData()
+    }
   },
 
+
+  // 前后台切换
   onHide ()
   {
     //me.wysjLog('launch', 'onHide')
   },
+
+
+  initData ()
+  {
+    me.wyLog('initData')
+    const that = this
+
+    me.wxLoginToGetCode().then(code => {
+      if (code === 'error') {
+        console.log('error')
+        return
+      }
+
+      const session3rd = wx.getStorageSync('session3rd') || '';
+
+      // Login, refresh session, get initial info, create a new user if necessary.
+      // Loading...
+      me.initInfo(code, session3rd).then(data => {
+          // data.enroll_nids: ["123", "234"]
+          //that.connectSocket(session3rd)
+          wx.setStorageSync('wid', data.wid)
+          wx.setStorageSync('session3rd', data.session3rd)
+          //console.log('EEE', data)
+
+          // Initiate global data
+          //console.log('COURSES', JSON.parse(data.all_courses))
+          that.globalData.allPromotes = JSON.parse(data.promotes)
+          that.globalData.allCourses = JSON.parse(data.all_courses)
+          that.globalData.allAudiobooks = JSON.parse(data.all_audiobooks)
+          that.globalData.allEnroll = data.enroll_nids
+          that.globalData.myUid = data.uid        // Number
+          that.globalData.myPoints = data.points  // Number
+          const lessons_json = JSON.parse(data.all_lessons)
+          if (lessons_json.pstat === 'ok') {
+            that.globalData.allLessons = lessons_json.lessons
+          }
+          that.globalData.status = 1
+      }).catch( all_courses => {
+        wx.setStorageSync('session3rd', '')
+      })
+    }).catch( err => {
+      // Todo: Repeat requiring several times.
+      // Todo: Check network connecting.
+      console.log('Fail to get code', err)
+    })
+  },
+
 
   globalData:
   {
