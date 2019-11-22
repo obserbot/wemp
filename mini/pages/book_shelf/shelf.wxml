@@ -1,0 +1,22 @@
+
+<view class="container">
+
+  <view class="courses-wrap">
+    <view wx:for="{{ shelfbooks }}" wx:key="{{ item.nid }}"
+      class="one-course-wrap" catchtap="gotoBook" data-bid="{{ item.book_id }}"
+      style="background-image:url({{ item.cover_url }});"
+    >
+      <view class="tutor-wrap">
+        <view class="course-info">
+          <view class="course-title">
+            {{ item.title[ languageCode ] }}
+          </view>
+        </view>
+        <view class="dr-avatar">
+          <image src="{{ item.author.avatar }}"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>
