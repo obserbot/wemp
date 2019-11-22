@@ -10,13 +10,18 @@
   font-weight: 500;
 }
 
+  /*
 .weui-navbar__slider {
-  /**width: 9.2em;*/
+  width: 9.2em;
   width: 13.4em;
 }
+  */
 
 .container {
+/*
   margin-top: 110rpx;
+  */
+  margin-top: 10rpx;
   padding-bottom: 99rpx;
   position: relative;
 }
@@ -61,20 +66,6 @@
   width: 80rpx;
   height: 80rpx;
   border-radius: 50%;
-}
-.courses-wrap .one-course-wrap .dr-nickname {
-  margin-top: 16rpx;
-}
-.courses-wrap .one-course-wrap .dr-description {
-  margin-top: 24rpx;
-}
-.courses-wrap .one-course-wrap .dr-description text {
-  font-size: 24rpx;
-  font-weight: 300;
-  border: 1rpx solid #dcdcdc;
-  border-radius: 10rpx;
-  padding: 2rpx 6rpx;
-  color: #778899;
 }
 
 

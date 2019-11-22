@@ -1,6 +1,7 @@
 
 
 <!-- 有声书 | 课程 -->
+<!--
 <view class="weui-navbar">
   <view class="weui-navbar__item {{ which == 0 ? 'weui-bar__item_on' : '' }}" data-which="0" bindtap="tabClick" >
     <view class="weui-navbar__title">{{ localeStrings.Audiobooks }}</view>
@@ -13,6 +14,7 @@
   >
   </view>
 </view>
+-->
 
 <view class="container">
 
@@ -32,6 +34,8 @@
         </view>
       </view>
     </view>
+
+    <!--
     <view wx:for="{{ allCourses }}" wx:key="{{ item.nid }}" wx:if="{{ which == 1 }}"
       class="one-course-wrap" catchtap="gotoCourse" data-nid="{{ item.nid }}"
       style="background-image:url({{ item.course_cover }});"
@@ -45,16 +49,10 @@
         <view class="dr-avatar">
           <image src="{{ item.author.avatar }}"></image>
         </view>
-        <!--
-        <view class="dr-nickname">
-          <text>{{ item.author.name }}</text>
-        </view>
-        <view class="dr-description">
-          <text>{{ item.author.nationality }}</text>
-        </view>
-        -->
       </view>
     </view>
+    -->
+
   </view>
 
 </view>
