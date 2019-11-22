@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/home2/home",
+    "pages/book_shelf/shelf",
+    "pages/book_book/book",
+    "pages/book_chapter/chapter",
     "pages/curriculum/curriculum",
     "pages/daren/daren",
     "pages/lesson/lesson",
@@ -41,7 +43,7 @@
         "selectedIconPath": "img/tab_daren.png"
       },
       {
-        "pagePath": "pages/curriculum/curriculum",
+        "pagePath": "pages/book_shelf/shelf",
         "text": "阅读",
         "iconPath": "img/tab_course_normal.png",
         "selectedIconPath": "img/tab_course.png"
