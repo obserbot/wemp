@@ -36,13 +36,13 @@
       },
       {
         "pagePath": "pages/daren/daren",
-        "text": "教师",
+        "text": "达人",
         "iconPath": "img/tab_daren_normal.png",
         "selectedIconPath": "img/tab_daren.png"
       },
       {
         "pagePath": "pages/curriculum/curriculum",
-        "text": "课程",
+        "text": "阅读",
         "iconPath": "img/tab_course_normal.png",
         "selectedIconPath": "img/tab_course.png"
       },
