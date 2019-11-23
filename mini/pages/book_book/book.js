@@ -18,7 +18,7 @@ let book_id = 0
 Page({
 
   data: {
-    localeCode: 'zh_hans',
+    languageCode: 'zh_hans',
     localeStrings: {},
     courseTitle: {},
     courseTutor: {},
@@ -39,6 +39,7 @@ Page({
     const audiobook_nid = options.bid
 
 
+    utils.setLocaleStrings(this)
 
     utils.setLocaleStrings(this, barTitles)
   },
@@ -52,7 +53,7 @@ Page({
       this.data.flagNavigationBarTitle = false
     }
 
-    const localeCode = wx.T.getLanguageCode()
+    //const localeCode = wx.T.getLanguageCode()
 
     const switchs = this.data.switchs
 

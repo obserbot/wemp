@@ -4,7 +4,9 @@
 
   <view class="page-title-wrap">
     <view class="course-title">
-      <text>{{ theBook.title[localeCode] }}</text>
+      <block wx:if="{{ languageCode === 'zh_hans' }}">《</block>
+        <text>{{ theBook.title[languageCode] }}</text>
+      <block wx:if="{{ languageCode === 'zh_hans' }}">》</block>
     </view>
   </view>
 
@@ -19,7 +21,7 @@
         data-cid="{{ item.chapter_id }}" bindtap="gotoChapter"
       >
         <view class="lesson-title">
-          {{ item.title[localeCode] }}
+          {{ item.title[languageCode] }}
         </view>
         <view class="go">＞</view>
       </view>
