@@ -5,11 +5,11 @@
   <view class="page-title-wrap">
     <view class="course-title">
       <block wx:if="{{ languageCode === 'zh_hans' }}">《</block>
-        <text>{{ bookTitle[languageCode] }}</text>
+        <text>{{ theChapter.book_title[languageCode] }}</text>
       <block wx:if="{{ languageCode === 'zh_hans' }}">》</block>
     </view>
     <view class="lesson-title">
-      <text>{{ chapterTitle[languageCode] }}</text>
+      <text>{{ theChapter.title[languageCode] }}</text>
     </view>
   </view>
 

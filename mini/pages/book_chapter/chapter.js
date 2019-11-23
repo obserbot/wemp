@@ -198,9 +198,7 @@ Page({
       .then(data => {
         console.log('77uuuddd:', data)
         const theChapter = data
-        const bookTitle = data.book_title
         this.setData({
-          bookTitle,
           theChapter,
         })
       })
