@@ -1,0 +1,75 @@
+
+<button bindtap="start" class='btn'>开始录音</button>
+<button bindtap="start" class='btn'>开始录音</button>
+<button bindtap="pause" class='btn'>暂停录音</button>
+<button bindtap="stop" class='btn'>停止录音</button>
+<button bindtap="play" class='btn'>播放录音</button>
+<button bindtap="upload" class='btn'>上传录音</button>
+
+
+<view class="weui-navbar">
+  <view class="latest-classes">
+    {{ localeStrings.latestActivities }}
+  </view>
+</view>
+
+<view class="container">
+
+    <view class="course-item" hover-class="hover-class"
+      wx:for="{{ promotes }}" wx:key="{{ index }}" data-nid="{{ item.nid }}" data-type="{{ item.type }}"
+      catchtap="gotoDetail"
+    >
+      <view class="header">
+        <view class="name" data-item="{{ item }}" catchtap="toPersonal">
+          <block wx:if="{{ item.type == 'lesson' }}">
+            <image class="tutor-avatar" mode="aspectFill" src='{{ item.up_title.teacher.avatar || "/img/default_avatar.png" }}'></image>
+          </block>
+          <block wx:if="{{ item.type == 'chapter' }}">
+            <image class="book-cover" mode="aspectFill" src='{{ item.up_title.cover || "/img/default_avatar.png" }}'></image>
+          </block>
+        </view>
+      </view>
+      <view class="content course-title-wrap">
+        <view class="real-course-title">
+          {{ item.up_title[languageCode] }}
+        </view>
+        <view class="course-title">
+          <view class="title">{{ item.title[languageCode] }}</view>
+        </view>
+      </view>
+      <view class="price">
+        <view class="course-time" wx:if='{{ item.time1[ languageCode ] }}'>
+          {{ item.time1[ languageCode ] }}
+        </view>
+        <view class="course-time" wx:if='{{ item.time2[ languageCode ] }}'>
+          {{ item.time2[ languageCode ] }}
+        </view>
+        <view class="course-time" wx:if='{{ item.time3[ languageCode ] }}'>
+          {{ item.time3[ languageCode ] }}
+        </view>
+      </view>
+      <view class="level-wrap" wx:if="{{ item.up_title.level > 0 && item.up_title_level < 4 }}">
+        <image class="level-tag" src="{{ '/img/level' + item.up_title.level + '.png' }}"></image>
+      </view>
+    </view>
+</view>
+
+
+<!--
+<view class='filter-wrap'>
+  <view class='filter-bar'>
+  ..
+  </view>
+
+  <view class="filters-wrap">
+    <view class="filter-type-wrap">
+      <view class="filter-label">{{ localeStrings.type }}</view>
+      <view class="filter-item active">{{ localeStrings.all }}</view>
+      <view class="filter-item active">{{ localeStrings.spokenEnglish }}</view>
+      <view class="filter-item active">{{ localeStrings.examEnglish }}</view>
+      <view class="filter-item active">{{ localeStrings.kidEnglish }}</view>
+    </view>
+  </view>
+
+</view>
+-->
