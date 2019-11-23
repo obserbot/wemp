@@ -64,7 +64,7 @@ T.setTabBarTitles = () =>
       en: 'Tutors'
     },
     {
-      zh_hans: '读书',
+      zh_hans: '朗读',
       en: 'Read'
     },
     /*

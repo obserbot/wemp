@@ -4,6 +4,7 @@
     "pages/book_shelf/shelf",
     "pages/book_book/book",
     "pages/book_chapter/chapter",
+    "pages/book_chunk/chunk",
     "pages/curriculum/curriculum",
     "pages/daren/daren",
     "pages/lesson/lesson",
@@ -44,7 +45,7 @@
       },
       {
         "pagePath": "pages/book_shelf/shelf",
-        "text": "读书",
+        "text": "朗读",
         "iconPath": "img/tab_course_normal.png",
         "selectedIconPath": "img/tab_course.png"
       },
