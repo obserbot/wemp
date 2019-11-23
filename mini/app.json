@@ -44,7 +44,7 @@
       },
       {
         "pagePath": "pages/book_shelf/shelf",
-        "text": "阅读",
+        "text": "读书",
         "iconPath": "img/tab_course_normal.png",
         "selectedIconPath": "img/tab_course.png"
       },
