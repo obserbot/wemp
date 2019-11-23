@@ -39,7 +39,8 @@
     </view>
     -->
 
-    <view wx:for="{{ theChapter.infojson.chunks }}" wx:for-index="indexa" wx:for-item="itema" wx:key="{{ indexa }}"
+    <view wx:for="{{ theChapter.infojson.chunks }}" wx:for-index="indexa" wx:for-item="itema"
+      wx:key="{{ indexa }}" bindtap="gotoChunk" data-ckid="{{ itema.id }}"
       class="chapter-chunk"
     >
       <view wx:for="{{ itema.paras }}" wx:for-index="indexb" wx:for-item="itemb" wx:key="{{ indexb }}"

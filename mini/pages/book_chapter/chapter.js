@@ -310,6 +310,16 @@ Page({
     })
   },
 
+
+  gotoChunk (ev)
+  {
+    const ckid = ev.currentTarget.dataset.ckid
+    wx.navigateTo({
+      url: `/pages/book_chunk/chunk?ckid=${ckid}`,
+    })
+  },
+
+
   /**
    * 用户点击“注册上课”确认按钮。
    */
