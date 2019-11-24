@@ -257,6 +257,11 @@
   min-width: 82rpx;
 }
 
+.chunk-read .avatar {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+}
 
 .button-sp-area .weui-btn {
   width: 260rpx;

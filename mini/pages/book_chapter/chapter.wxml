@@ -22,25 +22,32 @@
     -->
 
     <view wx:for="{{ theChapter.infojson.chunks }}" wx:for-index="indexa" wx:for-item="itema"
-      wx:key="{{ indexa }}" bindlongtap="chunkLongTap" bindtap="gotoChunk"
-      class="chapter-chunk" data-ckid="{{ itema.id }}"
+      wx:key="{{ indexa }}" class="chapter-chunk"
     >
       <view class="chunk-comment-wrap">
-        <view>ooo</view>
         <view wx:for="{{ itema.reads }}" wx:for-index="indexb" wx:for-item="itemb" wx:key="{{ indexb }}"
-          class="chapter-para"
+          class="chunk-read"
         >
           <view class="para-mp3">
+            <view class="voice" bindtap="switchPlaying">
+              <image class="avatar" src="{{ itemb.avatar }}"></image>
+            </view>
+
+<!--
             <view class="voice" bindtap="switchPlaying">
               <view class="bg {{ theAudio.play }}"></view>
              </view>
             <view class="pause-wrap" wx:if="{{ theAudio.pause }}" bindtap="switchPlaying">
               <image class="pause-icon" src="/img/pause.png"></image>
             </view>
+  -->
           </view>
         </view>
       </view>
-      <view class="chunk-text-wrap">
+
+      <view class="chunk-text-wrap" data-ckid="{{ itema.id }}"
+        bindlongtap="chunkLongTap" bindtap="gotoChunk"
+      >
         <view wx:for="{{ itema.paras }}" wx:for-index="indexc" wx:for-item="itemc" wx:key="{{ indexc }}"
           class="chapter-para"
         >
