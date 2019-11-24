@@ -233,11 +233,6 @@
   height: 8px;
 }
 
-.goto-weoa {
-  margin: 10px 20px 30px;
-  color: red;
-  font-size: 32rpx;
-}
 
 .course-description {
   line-height: 42rpx;
@@ -247,32 +242,13 @@
   margin-bottom: 60rpx;
 }
 
-.qrcode-wrap {
-  text-align: center;
-  margin-bottom: 60rpx;
+
+.chapter-para {
+  margin: 30rpx;
+  font-size: 32rpx;
 }
 
-.qrcode-title {
-  font-size: 40rpx;
-  font-weight: 500;
-  margin: 80rpx 0 30rpx;
-}
-.qrcode-wrap image {
-  width: 50%;
-}
 
-.time-wrap {
-  margin: 10px 20px 30px;
-}
-.time-wrap .time-item {
-  display: inline-block;
-}
-.time-wrap .time1,
-.time-wrap .time2,
-.time-wrap .time3 {
-  margin: 0 10rpx;
-  font-weight: 500;
-}
 
 
 .button-sp-area .weui-btn {
@@ -280,17 +256,7 @@
   font-weight: 500;
 }
 
-.time-wrap {
-  background-color: #fff;
-  padding: 28rpx 40rpx;
-  border-radius: 12rpx;
-}
 
-.time-wrap .time1,
-.time-wrap .time2,
-.time-wrap .time3 {
-  color: red;
-}
 
 /* avatar */
 

@@ -75,125 +75,8 @@ Page({
 
 
     utils.setLocaleStrings(this)
-
-    /*
-    const nid = options.nid // string
-    me.getChapterDetails(nid).then(data => {
-      console.log('UUU8882wiii', data)
-      if (data.msg === 'ok') {
-        WxParse.wxParse('content_text', 'md', data.content, that, 5)
-
-        const theAudio = that.data.theAudio
-        theAudio.play = ''
-        theAudio.pause = false
-        theAudio.media = wx.createInnerAudioContext()
-        theAudio.media.src = "https://weiyishijie.com/en_edu/audiobooks/" + data.book_nid + "/" + data.mp3
-
-        const chapterTitle = data.chapter_title
-        const chapterDesc = data.descp
-        const bookTitle = data.book_title
-
-        that.setData({
-          bookTitle,
-          chapterTitle,
-          chapterDesc,
-          theAudio,
-        })
-      }
-
-      const lang_code = wx.T.getLanguageCode()
-
-      // New from postgresql
-      const pg_lesson_id = data.pg_lesson_id
-      if (pg_lesson_id) {
-        me.pgLesson(pg_lesson_id).then( data => {
-          const paras = JSON.parse(data.Lesson)
-          const index_mp3s = []
-          const texts = []
-          let isShow = true
-          let showPointer = 0
-
-          for (let iy  in paras) {
-            //console.log('INDEX: ', iy)
-            //console.log(paras[iy])
-            if (paras[iy].type === 2) { // mp3
-              paras[iy].play = ''
-              paras[iy].pause = false
-              paras[iy].src = "https://weiyishijie.com/en_edu/wmmc/" + paras[iy].content
-              index_mp3s.push(iy)
-
-              if (isShow) {
-                isShow = false
-                showPointer = iy
-              }
-            } else if (paras[iy].type === 1) { // text
-              paras[iy].wxparse_index = texts.length
-              texts.push(paras[iy].content)
-            }
-          }
-
-          // Trigger mp3 downloading
-          if (index_mp3s.length > 0) {
-            paras[index_mp3s[0]].media = wx.createInnerAudioContext()
-            paras[index_mp3s[0]].media.src = paras[index_mp3s[0]].src
-            paras[index_mp3s[0]].media.onEnded(that.soundStop)
-            paras[index_mp3s[0]].media.onCanplay(that.canPlay)
-          }
-          that.index_mp3s = index_mp3s
-
-          // Convert markdown
-          if (texts.length > 0) {
-            for (let iz=0; iz<texts.length; iz++) {
-              WxParse.wxParse('paratext' + iz, 'md', texts[iz], that)
-              if (iz === texts.length - 1) {
-                WxParse.wxParseTemArray('textParaArray', 'paratext', texts.length, that)
-              }
-            }
-          }
-
-          const isLoading = showPointer < paras.length
-
-          that.setData({
-            paras,
-            showPointer,
-            isLoading,
-          })
-        }).catch(err => {
-          console.log('dddaaaddd', err)
-          //utils.showToastError()
-        });
-      }
-
-      that.setData({
-        lessonNid: nid,
-      })
-
-      // Mupltiple description
-      const descp = that.data.chapterDesc[lang_code][0];
-      WxParse.wxParse('chapter_desc', 'md', descp, that)
-    }).catch(er => {
-      console.log('error', er)
-    })
-    */
     utils.setLocaleStrings(this, barTitles)
-  },
 
-
-  onShow ()
-  {
-    if (this.data.flagNavigationBarTitle) {
-      wx.T.setNavigationBarTitle(barTitles)
-      this.data.flagNavigationBarTitle = false
-    }
-
-    const localeCode = wx.T.getLanguageCode()
-
-
-    this.setData({
-      localeCode,
-    })
-
-    console.log('on show', chapter_id)
     me.getChapter(chapter_id)
       .then(data => {
         console.log('77uuuddd:', data)
@@ -204,6 +87,23 @@ Page({
       })
       .catch (er => {
       })
+  },
+
+
+  onShow ()
+  {
+    if (this.data.flagNavigationBarTitle) {
+      wx.T.setNavigationBarTitle(barTitles)
+      this.data.flagNavigationBarTitle = false
+    }
+
+    /*
+    const localeCode = wx.T.getLanguageCode()
+    this.setData({
+      localeCode,
+    })
+    */
+
   },
 
 
