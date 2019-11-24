@@ -54,13 +54,13 @@ E. to come from a particular place, time, situation
 ## 你能说一说下面这些中国的节日吗？
 
 
-1. The Hungry Ghost Festival:
+1. The Hungry Ghost Festival
 
 2. The seventh month of the Chinese lunar calendar
 
-3. The Qing Ming Festival:
+3. The Qing Ming Festival
 
-4. The Chinese Spring Festival:
+4. The Chinese Spring Festival
 
 
 
