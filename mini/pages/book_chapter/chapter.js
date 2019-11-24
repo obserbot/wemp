@@ -14,9 +14,15 @@ const app = getApp()
 
 let chapter_id = 0
 
+let longTap = 0 // 0 not
+                // 1 long tap
+                // 2 tap (follows the long tap in a same action)
+
+
 Page({
 
-  data: {
+  data:
+  {
     isLogged: false,
     isEnrolled: false,
     lessonNid: 0,
@@ -104,6 +110,7 @@ Page({
     })
     */
 
+    longTap = 0
   },
 
 
@@ -211,12 +218,28 @@ Page({
   },
 
 
+  chunkLongTap (ev)
+  {
+    longTap = 1
+  },
+
+
   gotoChunk (ev)
   {
     const ckid = ev.currentTarget.dataset.ckid
-    wx.navigateTo({
-      url: `/pages/book_chunk/chunk?ckid=${ckid}`,
-    })
+    if (ckid && this.data.theChapter.switch === 'on') {
+      if (longTap === 0) {
+        wx.navigateTo({
+          url: `/pages/book_chunk/chunk?ckid=${ckid}`,
+        })
+      }
+      else if (longTap === 1) {
+        longTap = 2
+      }
+      else if (longTap === 2) {
+        longTap = 0
+      }
+    }
   },
 
 

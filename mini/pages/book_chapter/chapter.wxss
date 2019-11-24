@@ -248,7 +248,14 @@
   font-size: 32rpx;
 }
 
+.chapter-chunk {
+  display: flex;
+  align-items: center;
+}
 
+.chapter-chunk .chunk-comment-wrap {
+  min-width: 82rpx;
+}
 
 
 .button-sp-area .weui-btn {
