@@ -4,8 +4,8 @@ const utils = require('../../utils/utils.js')
 const me = require('../../utils/wechat_user.js')
 
 const barTitles = {
-  zh_hans: '课程',
-  en: 'Lesson'
+  zh_hans: '微移英语',
+  en: 'Weiyi English'
 }
 
 const WxParse = require('../../wxParse/wxParse.js')
@@ -92,6 +92,7 @@ Page({
         })
       })
       .catch (er => {
+        console.log('Error 82')
       })
   },
 
@@ -389,10 +390,36 @@ Page({
     })
   },
 
+
   /**
    * Play / Pause
    */
-  switchPlaying (ev) {
+  switchPlaying (ev)
+  {
+    const that = this
+    const ichunk = ev.currentTarget.dataset.ichunk
+    const iread = ev.currentTarget.dataset.iread
+    console.log('ininin is chunk:', ichunk)
+    console.log('ininin is read:', iread)
+
+    const theRead = this.data.theChapter.infojson.chunks[ichunk].reads[iread]
+    if ( ! (theRead && theRead['audio_url'])) {
+      console.log('Error 35')
+      return
+    }
+
+    that.stopAllRead()
+
+    if (theRead.media) {
+    }
+    else {
+      theRead.media = wx.createInnerAudioContext()
+      theRead.media.src = theRead['audio_url']
+      //theRead.media.onCanplay( function() {that.voiceCanPlay(ichunk, iread)})
+    }
+    theRead.media.play()
+    return
+
     //const bookPieces = this.data.bookPieces
     const theAudio = this.data.theAudio
     if (theAudio.play == 'voicePlay') {
@@ -409,6 +436,26 @@ Page({
     this.setData({
       theAudio
     })
+  },
+
+
+  stopAllRead ()
+  {
+    const chunks = this.data.theChapter.infojson.chunks
+    for (let ix in chunks) {
+      for (let iy in chunks[ix].reads) {
+        if (chunks[ix].reads[iy].media) {
+          chunks[ix].reads[iy].media.stop()
+        }
+      }
+    }
+  },
+
+
+  voiceCanPlay (ichunk, iread)
+  {
+    const theRead = this.data.theChapter.infojson.chunks[ichunk].reads[iread]
+    theRead.media.play()
   },
 
 })

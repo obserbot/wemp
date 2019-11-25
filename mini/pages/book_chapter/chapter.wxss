@@ -38,16 +38,6 @@
   padding: 26rpx 20rpx 46rpx;
 }
 
-.para-mp3 {
-  margin-top: 72rpx;
-  display: flex;
-  align-items: center;
-/*
-  position: fixed;
-  bottom: 0;
-  */
-}
-
 .page-loading-gif-wrap {
   margin: 20rpx 0 0;
   text-align: center;
@@ -102,6 +92,7 @@
   border-radius: 50%;
   width: 80rpx;
   height: 80rpx;
+  background: #F4F6F9;
 }
 .name-nationality {
   display: flex;
@@ -254,7 +245,12 @@
 }
 
 .chapter-chunk .chunk-comment-wrap {
-  min-width: 82rpx;
+  min-width: 89rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.chunk-read {
 }
 
 .chunk-read .avatar {
@@ -299,7 +295,6 @@
   height: 70rpx;
   line-height: 70rpx;
   width: 75%;
-  background: #fff;
   border-radius: 14rpx;
 }
 
