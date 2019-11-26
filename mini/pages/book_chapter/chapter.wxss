@@ -255,7 +255,7 @@
 }
 
 .chapter-chunk .chunk-text-wrap.nowchunk {
-  background: #ffffcc;
+  background: #98fb98;
   border-radius: 16rpx;
 }
 
