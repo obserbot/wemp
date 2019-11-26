@@ -29,22 +29,14 @@
           wx:key="{{ iread }}" class="chunk-read"
           bindtap="switchPlaying" data-ichunk="{{ ichunk }}" data-iread="{{ iread }}"
         >
-            <view class="avatar-wrap">
-              <image class="avatar" src="{{ itemread.avatar }}"></image>
-            </view>
-
-<!--
-            <view class="voice" bindtap="switchPlaying">
-              <view class="bg {{ theAudio.play }}"></view>
-             </view>
-            <view class="pause-wrap" wx:if="{{ theAudio.pause }}" bindtap="switchPlaying">
-              <image class="pause-icon" src="/img/pause.png"></image>
-            </view>
-  -->
+          <view class="avatar-wrap">
+            <image class="avatar" src="{{ itemread.avatar }}"></image>
+          </view>
+          <view class="bg voicePlay" wx:if="{{ itemread.isPlaying }}"></view>
         </view>
       </view>
 
-      <view class="chunk-text-wrap" data-ckid="{{ itemchunk.id }}"
+      <view class="chunk-text-wrap {{ itemchunk.nowchunk }}" data-ckid="{{ itemchunk.id }}"
         bindlongtap="chunkLongTap" bindtap="gotoChunk"
       >
         <view wx:for="{{ itemchunk.paras }}" wx:for-index="indexc" wx:for-item="itemc" wx:key="{{ indexc }}"

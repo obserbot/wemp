@@ -116,8 +116,9 @@ Page({
 
 
   onUnload () {
-    this.data.theAudio.media.stop()
+    this.stopAllRead()
   },
+
 
   /*
   onShareAppMessage (res) {
@@ -399,12 +400,16 @@ Page({
     const that = this
     const ichunk = ev.currentTarget.dataset.ichunk
     const iread = ev.currentTarget.dataset.iread
-    console.log('ininin is chunk:', ichunk)
-    console.log('ininin is read:', iread)
 
-    const theRead = this.data.theChapter.infojson.chunks[ichunk].reads[iread]
+    const theChapter = this.data.theChapter
+    const theRead = theChapter.infojson.chunks[ichunk].reads[iread]
     if ( ! (theRead && theRead['audio_url'])) {
       console.log('Error 35')
+      return
+    }
+
+    if (theRead.isPlaying) {
+      that.stopAllRead()
       return
     }
 
@@ -415,10 +420,20 @@ Page({
     else {
       theRead.media = wx.createInnerAudioContext()
       theRead.media.src = theRead['audio_url']
+      theRead.media.onEnded(that.voiceStop)
       //theRead.media.onCanplay( function() {that.voiceCanPlay(ichunk, iread)})
     }
     theRead.media.play()
+    theRead.isPlaying = true
+
+    theChapter.infojson.chunks[ichunk].nowchunk = 'nowchunk'
+
+    this.setData({
+      theChapter,
+    })
     return
+
+
 
     //const bookPieces = this.data.bookPieces
     const theAudio = this.data.theAudio
@@ -441,14 +456,27 @@ Page({
 
   stopAllRead ()
   {
-    const chunks = this.data.theChapter.infojson.chunks
+    const theChapter = this.data.theChapter
+    const chunks = theChapter.infojson.chunks
     for (let ix in chunks) {
+      chunks[ix].nowchunk = ''
       for (let iy in chunks[ix].reads) {
         if (chunks[ix].reads[iy].media) {
           chunks[ix].reads[iy].media.stop()
+          chunks[ix].reads[iy].isPlaying = false
         }
       }
     }
+
+    this.setData({
+      theChapter,
+    })
+  },
+
+
+  voiceStop ()
+  {
+    this.stopAllRead()
   },
 
 
