@@ -120,103 +120,17 @@ Page({
   },
 
 
-  /*
-  onShareAppMessage (res) {
-    const nid = this.data.lessonNid
-    const title = this.data.localeStrings.lesson
+  onShareAppMessage (res)
+  {
+    const shelf_id = this.data.theChapter.shelf_id
+    const chapter_id = this.data.theChapter.chapter_id
+    const brief = this.data.theChapter.infojson.brief
+    const languageCode = this.data.languageCode
 
     return {
-      title: title,
-      path: `/pages/lesson/lesson?nid=${nid}`
+      title: brief[languageCode],
+      path: `/pages/book_shelf/shelf?shelf_id=${shelf_id}&chapter_id=${chapter_id}`
     }
-  },
-  */
-
-  /*
-   * 用户点击“注册上课”按钮（实际是登录按钮），回调函数，获取登录用户信息，并注册上课（如果尚未注册）。
-   */
-  onGotUserInfo (res) {
-    const that = this
-    const userInfo = res.detail.userInfo
-    if (userInfo === undefined) { //拒绝授权
-      // res.detail: errMsg:"getUserInfo:fail auth deny"
-    } else {
-      me.getUserInfo(userInfo, that.data.lessonNid).then(res => {
-        const my_uid = res.data.uid
-        const enrolledUsers = that.data.enrolledUsers
-        enrolledUsers.push({
-          uid: my_uid,
-          avatar_url: userInfo.avatarUrl,
-        })
-
-        that.setData({
-          enrolledUsers,
-          userInfo,
-          isEnrolled: true,
-          isLogged: true
-        });
-      }).catch(err => {
-        utils.showToastError()
-      });
-    }
-  },
-
-  /**
-   * Show modal Enroll.
-   */
-  onModalEnroll () {
-    const myPoints = app.globalData.myPoints
-    if (myPoints >= 5) {
-      this.setData({
-        modalEnrollHidden: false,
-      })
-    } else {
-      this.setData({
-        modalLackPointsHidden: false,
-      })
-    }
-  },
-
-  /**
-   * Cancel enroll.
-   */
-  modalEnrollCancel () {
-    this.setData({
-      modalEnrollHidden: true,
-    })
-  },
-
-  /**
-   * Confirm enroll
-   */
-  modalEnrollConfirm () {
-    this.onEnroll()
-    this.setData({
-      modalEnrollHidden: true,
-    })
-  },
-
-  /**
-   * Cancel enroll.
-   */
-  modalLackPointsCancel () {
-    this.setData({
-      modalLackPointsHidden: true,
-    })
-  },
-
-  /**
-   * Contact service for points.
-   */
-  modalContactService () {
-    // Todo: log
-    this.setData({
-      modalLackPointsHidden: true,
-    })
-
-    wx.navigateTo({
-      url: '/pages/my/contact/contact'
-    })
   },
 
 
@@ -430,26 +344,6 @@ Page({
 
     this.setData({
       theChapter,
-    })
-    return
-
-
-
-    //const bookPieces = this.data.bookPieces
-    const theAudio = this.data.theAudio
-    if (theAudio.play == 'voicePlay') {
-      theAudio.play = ''
-      theAudio.pause = true
-      theAudio.media.pause()
-    }
-    else {
-      theAudio.play = 'voicePlay'
-      theAudio.pause = false
-      theAudio.media.play()
-    }
-
-    this.setData({
-      theAudio
     })
   },
 
