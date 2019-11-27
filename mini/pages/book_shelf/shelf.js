@@ -8,39 +8,37 @@ import event from '../../utils/event'
 const app = getApp()
 
 Page({
-  data: {
-    navTabs: [],
-    sliderOffset: 0,
 
+  data:
+  {
     localeStrings: {},
-
     shelfbooks: [],
   },
 
 
   onLoad (options)
   {
-    // Clicked shared link.
-    const uid = options.thirduid
-    if (uid) {
-      wx.navigateTo({
-        url: `/pages/personal/personal?thirduid=${uid}`
-      })
-    }
-
     utils.setLocaleStrings(this)
     event.on("languageChanged", this, utils.setLocaleStrings) // UI
     //event.on("languageChanged", this, this.setLocaleDarens)   // Content
 
     me.getShelf()
       .then(data => {
-        console.log('ddd:fff:kk', data)
         const shelfbooks = data
         this.setData({
           shelfbooks,
         })
+
+        const shelf_id = options.shelf_id
+        if (shelf_id) {
+          wx.navigateTo({
+            url: `/pages/book_book/book?bid=${shelf_id}`,
+          })
+        }
       })
       .catch (er => {
+        //todo: pop up a modal
+        console.log('network error 11')
       })
   },
 

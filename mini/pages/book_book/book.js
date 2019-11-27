@@ -13,11 +13,11 @@ const WxParse = require('../../wxParse/wxParse.js')
 
 const app = getApp()
 
-let book_id = 0
 
 Page({
 
-  data: {
+  data:
+  {
     languageCode: 'zh_hans',
     localeStrings: {},
     courseTitle: {},
@@ -25,23 +25,35 @@ Page({
     courseDesc: {},
     tutorDesc: {},
     coursePrice: 0,
-
-    switchs: {
-      hasDescription: false,
-      hasObjectiveItems: false,
-    },
   },
 
 
   onLoad (options)
   {
-    book_id = options.bid
-    const audiobook_nid = options.bid
-
-
     utils.setLocaleStrings(this)
-
     utils.setLocaleStrings(this, barTitles)
+
+    const book_id = options.bid
+    if (book_id) {
+      me.getShelf(book_id)
+        .then(data => {
+          //console.log('uuuddd:', data)
+          const theBook = data
+          this.setData({
+            theBook,
+          })
+
+          const chapter_id = options.chapter_id
+          if (chapter_id) {
+            wx.navigateTo({
+              url: `/pages/book_chapter/chapter?cid=${chapter_id}`,
+            })
+          }
+        })
+        .catch (er => {
+          console.log('network error 12')
+        })
+    }
   },
 
 
@@ -55,22 +67,11 @@ Page({
 
     //const localeCode = wx.T.getLanguageCode()
 
-    const switchs = this.data.switchs
 
     // Mupltiple description
     //const descp = this.data.theBook.desc[localeCode];
     //WxParse.wxParse('course_desc', 'md', descp, that)
 
-    me.getShelf(book_id)
-      .then(data => {
-        console.log('uuuddd:', data)
-        const theBook = data
-        this.setData({
-          theBook,
-        })
-      })
-      .catch (er => {
-      })
   },
 
 
