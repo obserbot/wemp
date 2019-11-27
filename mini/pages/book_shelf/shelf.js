@@ -30,9 +30,10 @@ Page({
         })
 
         const shelf_id = options.shelf_id
-        if (shelf_id) {
+        const chapter_id = options.chapter_id
+        if (shelf_id && chapter_id) {
           wx.navigateTo({
-            url: `/pages/book_book/book?bid=${shelf_id}`,
+            url: `/pages/book_book/book?bid=${shelf_id}&chapter_id=${chapter_id}`,
           })
         }
       })

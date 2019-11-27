@@ -98,6 +98,7 @@ Page({
     that.stopAllRead()
 
     if (theRead.media) {
+      theRead.media.onEnded(that.voiceStop)
     }
     else {
       theRead.media = wx.createInnerAudioContext()
