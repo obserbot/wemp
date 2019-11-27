@@ -280,6 +280,9 @@
   font-weight: 500;
 }
 
+.hover-class {
+  opacity: 0.4;
+}
 
 
 /* avatar */

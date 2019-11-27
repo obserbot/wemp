@@ -133,6 +133,7 @@ Page({
     const ckid = ev.currentTarget.dataset.ckid
     if (ckid) {
     //if (ckid && this.data.theChapter.switch === 'on') {
+      this.stopAllRead()
       wx.navigateTo({
         url: `/pages/book_chunk/chunk?ckid=${ckid}`,
       })

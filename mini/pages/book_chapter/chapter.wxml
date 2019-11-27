@@ -29,13 +29,13 @@
           wx:key="{{ iread }}" class="chunk-read"
           bindtap="switchPlaying" data-ichunk="{{ ichunk }}" data-iread="{{ iread }}"
         >
-          <view class="avatar-wrap">
+          <view class="avatar-wrap {{ itemread.isPlaying ? 'hover-class' : '' }}">
             <image class="avatar" src="{{ itemread.avatar }}"></image>
           </view>
           <view class="bg voicePlay" wx:if="{{ itemread.isPlaying }}"></view>
         </view>
 
-        <view class="more-wrap" bindtap="gotoChunk" data-ckid="{{ itemchunk.id }}">
+        <view class="more-wrap" hover-class="hover-class" bindtap="gotoChunk" data-ckid="{{ itemchunk.id }}">
           <image class="avatar" src="/img/more.png"></image>
         </view>
       </view>
