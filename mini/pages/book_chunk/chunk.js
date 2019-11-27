@@ -38,7 +38,8 @@ Page({
     localeStrings: {},
     languageCode: 'zh_hans',
 
-    theChunk: {},
+    chunk_id: 0,
+    theChapter: {},
   },
 
 
@@ -48,18 +49,14 @@ Page({
     utils.setLocaleStrings(this, barTitles)
     event.on("languageChanged", this, utils.setLocaleStrings) // UI
 
+    const chunk_id = options.ckid
     const pages = getCurrentPages()
     const prevPage = pages[pages.length - 2]
     const theChapter = prevPage.data.theChapter
-
-    const ckid = options.ckid
-    if (ckid) {
-      const theChunk = theChapter.infojson.chunks[ckid]
-      this.setData({
-        theChunk,
-      })
-    }
-    console.log('the chat:', theChapter)
+    this.setData({
+      chunk_id,
+      theChapter,
+    })
   },
 
 
@@ -72,6 +69,77 @@ Page({
   },
 
 
+  onUnload () {
+    this.stopAllRead()
+  },
+
+
+  /**
+   * Play / Pause
+   */
+  switchPlaying (ev)
+  {
+    const that = this
+    const ichunk = this.data.chunk_id
+    const iread = ev.currentTarget.dataset.iread
+
+    const theChapter = this.data.theChapter
+    const theRead = theChapter.infojson.chunks[ichunk].reads[iread]
+    if ( ! (theRead && theRead['audio_url'])) {
+      console.log('Error 35')
+      return
+    }
+
+    if (theRead.isPlaying) {
+      that.stopAllRead()
+      return
+    }
+
+    that.stopAllRead()
+
+    if (theRead.media) {
+    }
+    else {
+      theRead.media = wx.createInnerAudioContext()
+      theRead.media.src = theRead['audio_url']
+      theRead.media.onEnded(that.voiceStop)
+      //theRead.media.onCanplay( function() {that.voiceCanPlay(ichunk, iread)})
+    }
+    theRead.media.play()
+    theRead.isPlaying = true
+
+    theChapter.infojson.chunks[ichunk].nowchunk = 'nowchunk'
+
+    this.setData({
+      theChapter,
+    })
+  },
+
+
+  stopAllRead ()
+  {
+    const theChapter = this.data.theChapter
+    const chunks = theChapter.infojson.chunks
+    for (let ix in chunks) {
+      chunks[ix].nowchunk = ''
+      for (let iy in chunks[ix].reads) {
+        if (chunks[ix].reads[iy].media) {
+          chunks[ix].reads[iy].media.stop()
+          chunks[ix].reads[iy].isPlaying = false
+        }
+      }
+    }
+
+    this.setData({
+      theChapter,
+    })
+  },
+
+
+  voiceStop ()
+  {
+    this.stopAllRead()
+  },
 
 
 
@@ -80,6 +148,8 @@ Page({
   //开始录音的时候
   start: function ()
   {
+    this.stopAllRead()
+
     const options = {
       duration: 90000,//指定录音的时长，单位 ms
       sampleRate: 16000,//采样率
@@ -106,6 +176,8 @@ Page({
   },
   //停止录音
   stop: function () {
+    this.stopAllRead()
+
     recorderManager.stop();
     recorderManager.onStop((res) => {
       this.tempFilePath = res.tempFilePath;
@@ -113,8 +185,12 @@ Page({
       const { tempFilePath } = res
     })
   },
+
   //播放声音
-  play: function () {
+  play: function ()
+  {
+    this.stopAllRead()
+
     innerAudioContext.autoplay = true
     innerAudioContext.src = this.tempFilePath,
       innerAudioContext.onPlay(() => {

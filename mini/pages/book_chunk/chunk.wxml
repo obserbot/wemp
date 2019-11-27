@@ -1,19 +1,33 @@
 
 <view class="container">
 
-  <view class="chunk-wrap">
-    <view class="para" wx:for="{{ theChunk.paras }}" wx:key="{{ index }}">
+  <view class="text-wrap">
+    <view class="para" wx:for="{{ theChapter.infojson.chunks[chunk_id].paras }}" wx:key="{{ index }}">
       <text>{{ item.text }}</text>
     </view>
   </view>
 
+  <view class="read-wrap">
+    <view wx:for="{{ theChapter.infojson.chunks[chunk_id].reads }}" wx:for-index="iread" wx:for-item="itemread"
+          wx:key="{{ iread }}" class="chunk-read"
+          bindtap="switchPlaying" data-iread="{{ iread }}"
+    >
+      <view class="avatar-wrap {{ itemread.isPlaying ? 'hover-class' : '' }}">
+        <image class="avatar" src="{{ itemread.avatar }}"></image>
+      </view>
+      <view class="bg voicePlay" wx:if="{{ itemread.isPlaying }}"></view>
+    </view>
+  </view>
 
-<button bindtap="start" class='btn'>开始录音</button>
-<button bindtap="start" class='btn'>开始录音</button>
-<button bindtap="pause" class='btn'>暂停录音</button>
-<button bindtap="stop" class='btn'>停止录音</button>
-<button bindtap="play" class='btn'>播放录音</button>
-<button bindtap="upload" class='btn'>上传录音</button>
+  <button bindtap="start" class='btn'>开始录音</button>
+  <!--
+  <button bindtap="pause" class='btn'>暂停录音</button>
+  -->
+  <button bindtap="stop" class='btn'>停止录音</button>
+  <button bindtap="play" class='btn'>播放录音</button>
+  <!--
+  <button bindtap="upload" class='btn'>上传录音</button>
+  -->
 
 </view>
 
