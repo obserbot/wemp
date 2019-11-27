@@ -264,7 +264,11 @@
   align-items: center;
 }
 
-.chunk-read .avatar {
+.chunk-comment-wrap .more-wrap {
+  padding: 8rpx 0;
+}
+
+.chunk-comment-wrap .avatar {
   width: 64rpx;
   height: 64rpx;
   border-radius: 50%;

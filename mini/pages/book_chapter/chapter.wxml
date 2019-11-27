@@ -34,11 +34,13 @@
           </view>
           <view class="bg voicePlay" wx:if="{{ itemread.isPlaying }}"></view>
         </view>
+
+        <view class="more-wrap" bindtap="gotoChunk" data-ckid="{{ itemchunk.id }}">
+          <image class="avatar" src="/img/more.png"></image>
+        </view>
       </view>
 
-      <view class="chunk-text-wrap {{ itemchunk.nowchunk }}" data-ckid="{{ itemchunk.id }}"
-        bindlongtap="chunkLongTap" bindtap="gotoChunk"
-      >
+      <view class="chunk-text-wrap {{ itemchunk.nowchunk }}">
         <view wx:for="{{ itemchunk.paras }}" wx:for-index="indexc" wx:for-item="itemc" wx:key="{{ indexc }}"
           class="chapter-para"
         >

@@ -14,11 +14,6 @@ const app = getApp()
 
 let chapter_id = 0
 
-let longTap = 0 // 0 not
-                // 1 long tap
-                // 2 tap (follows the long tap in a same action)
-
-
 Page({
 
   data:
@@ -111,7 +106,6 @@ Page({
     })
     */
 
-    longTap = 0
   },
 
 
@@ -134,124 +128,17 @@ Page({
   },
 
 
-  chunkLongTap (ev)
-  {
-    longTap = 1
-  },
-
-
   gotoChunk (ev)
   {
     const ckid = ev.currentTarget.dataset.ckid
-    if (ckid && this.data.theChapter.switch === 'on') {
-      if (longTap === 0) {
-        wx.navigateTo({
-          url: `/pages/book_chunk/chunk?ckid=${ckid}`,
-        })
-      }
-      else if (longTap === 1) {
-        longTap = 2
-      }
-      else if (longTap === 2) {
-        longTap = 0
-      }
-    }
-  },
-
-
-  /**
-   * 用户点击“注册上课”确认按钮。
-   */
-  onEnroll () {
-    const that = this
-    const s3rd = wx.getStorageSync('session3rd') || false
-    const userInfo = wx.getStorageSync('userInfo') || false;
-    const nid = this.data.lessonNid
-    if (s3rd && userInfo) {
-      me.enrollLesson(s3rd, nid).then(data => {
-        /*
-        const index = app.globalData.allEnroll.indexOf( nid )
-          if (index == -1) {
-            app.globalData.allEnroll.push(nid)
-          }
-          */
-
-        const my_uid = app.globalData.myUid.toString()
-        const enrolledUsers = that.data.enrolledUsers
-        enrolledUsers.push({
-          uid: my_uid.toString(),
-          avatar_url: userInfo.avatarUrl,
-        })
-
-        app.globalData.myPoints = data.points
-
-        that.setData({
-          enrolledUsers,
-          isEnrolled: true,
-        })
+    if (ckid) {
+    //if (ckid && this.data.theChapter.switch === 'on') {
+      wx.navigateTo({
+        url: `/pages/book_chunk/chunk?ckid=${ckid}`,
       })
-    } else {
-      utils.showToastError()
     }
   },
 
-  /**
-   * Remove enrollment modal.
-   */
-  modalRemoveEnroll () {
-    this.setData({
-      modalRemoveEnrollHidden: false,
-    })
-  },
-
-  /**
-   * 用户点击“取消注册”的确定按钮。
-   */
-  modalRemoveEnrollConfirm () {
-    this.setData({
-      modalRemoveEnrollHidden: true,
-    })
-
-    const that = this
-    const s3rd = wx.getStorageSync('session3rd') || false
-    const nid = this.data.lessonNid
-    if (s3rd) {
-      me.unenrollLesson(s3rd, nid).then(res => {
-        const my_uid = app.globalData.myUid.toString()
-        const enrolledUsers = that.data.enrolledUsers.filter((value, index, array) => {
-          return value.uid !== my_uid;
-        })
-
-        that.setData({
-          isEnrolled: false,
-          enrolledUsers,
-        })
-      }).catch(err => {
-        utils.showToastError()
-      })
-    } else {
-      utils.showToastError()
-    }
-  },
-
-  /**
-   * Remove enrollment modal.
-   */
-  modalRemoveEnrollCancel () {
-    this.setData({
-      modalRemoveEnrollHidden: true,
-    })
-  },
-
-  /**
-   * Group qr code for the lesson.
-   */
-  previewImage (res) {
-    const url = this.data.groupQrUrl
-    wx.previewImage({
-      urls: [url]
-    });
-  },
 
   /**
    * Callback onStop.
