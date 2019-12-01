@@ -22,10 +22,7 @@ const barTitles = {
 
 //录音管理
 const recorderManager = wx.getRecorderManager()
-//音频组件控制
-const innerAudioContext = wx.createInnerAudioContext()
 var tempFilePath;
-
 
 
 
@@ -187,22 +184,24 @@ Page({
     })
   },
 
+
   //播放声音
-  play: function ()
+  play ()
   {
     this.stopAllRead()
 
-    innerAudioContext.autoplay = true
-    innerAudioContext.src = this.tempFilePath,
-      innerAudioContext.onPlay(() => {
-        console.log('开始播放')
-      })
-    innerAudioContext.onError((res) => {
+    const audio = wx.createInnerAudioContext()
+    audio.autoplay = true
+    audio.src = this.tempFilePath
+    audio.onPlay(() => {
+      console.log('开始播放')
+    })
+    audio.onError(res => {
       console.log(res.errMsg)
       console.log(res.errCode)
     })
-
   },
+
 
   upload: function ()
   {

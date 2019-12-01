@@ -46,6 +46,10 @@ button {
   align-items: center;
 }
 
+.chunk-read .reader-name {
+  margin: 0 14rpx 0 10rpx;
+}
+
 .hover-class {
   opacity: 0.4;
   transform: scale(0.9, 0.9);

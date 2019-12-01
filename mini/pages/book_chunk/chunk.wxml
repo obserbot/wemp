@@ -3,7 +3,7 @@
 
   <view class="text-wrap">
     <view class="para" wx:for="{{ theChapter.infojson.chunks[chunk_id].paras }}" wx:key="{{ index }}">
-      <text>{{ item.text }}</text>
+      <text selectable="true">{{ item.text }}</text>
     </view>
   </view>
 
@@ -15,6 +15,7 @@
       <view class="avatar-wrap {{ itemread.isPlaying ? 'hover-class' : '' }}">
         <image class="avatar" src="{{ itemread.avatar }}"></image>
       </view>
+      <view class="reader-name"><text selectable="true">{{ itemread.name }}</text></view>
       <view class="bg voicePlay" wx:if="{{ itemread.isPlaying }}"></view>
     </view>
   </view>
