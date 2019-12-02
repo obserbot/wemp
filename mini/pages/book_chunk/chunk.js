@@ -206,8 +206,6 @@ Page({
   upload: function ()
   {
     me.uploadAudio(this.tempFilePath)
-  /*
-  */
   },
 
 

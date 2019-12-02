@@ -26,9 +26,7 @@
   -->
   <button bindtap="stop" class='btn'>停止录音</button>
   <button bindtap="play" class='btn'>播放录音</button>
-  <!--
   <button bindtap="upload" class='btn'>上传录音</button>
-  -->
 
 </view>
 
