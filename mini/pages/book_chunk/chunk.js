@@ -17,15 +17,9 @@ const barTitles = {
 }
 
 
-
-
-
 //录音管理
 const recorderManager = wx.getRecorderManager()
 var tempFilePath;
-
-
-
 
 
 Page({
@@ -203,9 +197,27 @@ Page({
   },
 
 
-  upload: function ()
+  audioUpload ()
   {
-    me.uploadAudio(this.tempFilePath)
+    if ( ! this.tempFilePath) {
+      utils.showToastError('noVoice')
+      return
+    }
+
+    const theChapter = this.data.theChapter
+    const chunk_id = this.data.theChapter.infojson.chunks[this.data.chunk_id].id
+    const myuid = app.globalData.myUid
+    me.uploadAudio(
+      this.tempFilePath,
+      theChapter.shelf_id,
+      theChapter.chapter_id,
+      chunk_id,
+      myuid,
+    )
+      .then( data => {
+      })
+      .catch( res => {
+      })
   },
 
 

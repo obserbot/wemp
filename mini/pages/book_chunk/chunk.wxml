@@ -8,12 +8,12 @@
   </view>
 
   <view class="read-wrap">
-    <view wx:for="{{ theChapter.infojson.chunks[chunk_id].reads }}" wx:for-index="iread" wx:for-item="itemread"
+    <view wx:for="{{ theChapter.chunks[theChapter.infojson.chunks[chunk_id].id] }}" wx:for-index="iread" wx:for-item="itemread"
           wx:key="{{ iread }}" class="chunk-read"
           bindtap="switchPlaying" data-iread="{{ iread }}"
     >
       <view class="avatar-wrap {{ itemread.isPlaying ? 'hover-class' : '' }}">
-        <image class="avatar" src="{{ itemread.avatar }}"></image>
+        <image class="avatar" src="{{ itemread.r_infojson.avatar }}"></image>
       </view>
       <view class="reader-name"><text selectable="true">{{ itemread.name }}</text></view>
       <view class="bg voicePlay" wx:if="{{ itemread.isPlaying }}"></view>
@@ -26,7 +26,7 @@
   -->
   <button bindtap="stop" class='btn'>停止录音</button>
   <button bindtap="play" class='btn'>播放录音</button>
-  <button bindtap="upload" class='btn'>上传录音</button>
+  <button bindtap="audioUpload" class='btn'>上传录音</button>
 
 </view>
 
