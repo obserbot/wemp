@@ -25,12 +25,12 @@
       wx:key="{{ ichunk }}" class="chapter-chunk"
     >
       <view class="chunk-comment-wrap">
-        <view wx:for="{{ itemchunk.reads }}" wx:for-index="iread" wx:for-item="itemread"
-          wx:key="{{ iread }}" class="chunk-read"
-          bindtap="switchPlaying" data-ichunk="{{ ichunk }}" data-iread="{{ iread }}"
+        <view wx:for="{{ theChapter.chunks[itemchunk.id] }}" wx:for-index="iread" wx:for-item="itemread"
+          wx:key="{{ iread }}" class="chunk-read" wx:if="{{ iread < 3 }}"
+          bindtap="switchPlaying" data-chunkid="{{ itemchunk.id }}" data-ichunk="{{ ichunk }}" data-iread="{{ iread }}"
         >
           <view class="avatar-wrap {{ itemread.isPlaying ? 'hover-class' : '' }}">
-            <image class="avatar" src="{{ itemread.avatar }}"></image>
+            <image class="avatar" src="{{ itemread.r_infojson.avatar }}"></image>
           </view>
           <view class="bg voicePlay" wx:if="{{ itemread.isPlaying }}"></view>
         </view>

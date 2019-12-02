@@ -67,12 +67,8 @@ App({
 
     me.wyLog('onLaunch')
 
-    this.isLaunching = true
     this.initData()
   },
-
-
-  isLaunching: false,
 
 
   /**
@@ -190,15 +186,8 @@ App({
   },
 
 
-  // 应该在这里刷新全局数据，因为，用户希望每次打开时，内容都是新的。
-  // 而不是每次打开后，不确定是否是新内容，要通过手工刷新来确定。
   onShow ()
   {
-    if (this.isLaunching) {
-      this.isLaunching = false
-    } else {
-      this.initData()
-    }
   },
 
 
