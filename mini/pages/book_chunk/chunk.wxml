@@ -20,13 +20,25 @@
     </view>
   </view>
 
-  <button bindtap="start" class='btn'>开始录音</button>
+  <button bindtap="audioStart" class="btn" wx:if="{{ isLogged }}">
+    {{ localeStrings.startRecord }}
+  </button>
+  <button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" class="btn" wx:else >
+    {{ localeStrings.startRecord }}
+  </button>
+
   <!--
-  <button bindtap="pause" class='btn'>暂停录音</button>
+  <button bindtap="pause" class="btn">暂停录音</button>
   -->
-  <button bindtap="stop" class='btn'>停止录音</button>
-  <button bindtap="play" class='btn'>播放录音</button>
-  <button bindtap="audioUpload" class='btn'>上传录音</button>
+  <button bindtap="stop" class="btn">
+    {{ localeStrings.stopRecord }}
+  </button>
+  <button bindtap="play" class="btn">
+    {{ localeStrings.playRecord }}
+  </button>
+  <button bindtap="audioUpload" class="btn">
+    {{ localeStrings.uploadRecord }}
+  </button>
 
 </view>
 

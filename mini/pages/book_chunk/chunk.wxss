@@ -14,7 +14,6 @@ page {
   padding: 18rpx;
   background: #98fb98;
   border-radius: 10rpx;
-  box-shadow: 0 4rpx 4rpx 0 grey;
 }
 
 .text-wrap text {

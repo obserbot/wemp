@@ -26,6 +26,7 @@ Page({
 
   data:
   {
+    isLogged: false,
     localeStrings: {},
     languageCode: 'zh_hans',
 
@@ -44,7 +45,12 @@ Page({
     const pages = getCurrentPages()
     const prevPage = pages[pages.length - 2]
     const theChapter = prevPage.data.theChapter
+
+    const userInfo = wx.getStorageSync('userInfo') || false
+    const isLogged = userInfo ? true : false
+
     this.setData({
+      isLogged,
       chunk_id,
       theChapter,
     })
@@ -138,7 +144,7 @@ Page({
 
 
   //开始录音的时候
-  start: function ()
+  audioStart: function ()
   {
     this.stopAllRead()
 
@@ -161,7 +167,8 @@ Page({
     })
   },
 
- //暂停录音
+
+  //暂停录音
   pause: function () {
     recorderManager.onPause();
     console.log('暂停录音')
@@ -220,6 +227,36 @@ Page({
       })
   },
 
+
+  /*
+   * 用户点击“开始录音”按钮（实际是登录按钮），回调函数，获取登录用户信息，并开始录音。
+   */
+  onGotUserInfo (res)
+  {
+    const that = this
+    const userInfo = res.detail.userInfo
+    if (userInfo === undefined) { //拒绝授权
+      // res.detail: errMsg:"getUserInfo:fail auth deny"
+    } else {
+      me.getUserInfo(userInfo).then(res => {
+        const my_uid = res.data.uid
+        const enrolledUsers = that.data.enrolledUsers
+        /*
+        enrolledUsers.push({
+          uid: my_uid,
+          avatar_url: userInfo.avatarUrl,
+        })
+        */
+
+        that.setData({
+          userInfo,
+          isLogged: true
+        });
+      }).catch(err => {
+        utils.showToastError()
+      });
+    }
+  },
 
 
 
