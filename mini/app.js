@@ -209,32 +209,49 @@ App({
         return
       }
 
-      const session3rd = wx.getStorageSync('session3rd') || '';
-
-      // Login, refresh session, get initial info, create a new user if necessary.
-      // Loading...
-      me.initInfo(code, session3rd).then(data => {
-          // data.enroll_nids: ["123", "234"]
-          //that.connectSocket(session3rd)
-          wx.setStorageSync('wid', data.wid)
-          wx.setStorageSync('session3rd', data.session3rd)
-          //console.log('EEE', data)
-
-          // Initiate global data
-          //console.log('COURSES', JSON.parse(data.all_courses))
-          that.globalData.allPromotes = JSON.parse(data.promotes)
-          that.globalData.allCourses = JSON.parse(data.all_courses)
-          that.globalData.allAudiobooks = JSON.parse(data.all_audiobooks)
-          that.globalData.allEnroll = data.enroll_nids
-          that.globalData.myUid = data.uid        // Number
-          that.globalData.myPoints = data.points  // Number
-          const lessons_json = JSON.parse(data.all_lessons)
-          if (lessons_json.pstat === 'ok') {
-            that.globalData.allLessons = lessons_json.lessons
+      wx.getSetting({
+        success(res) {
+          console.log('setting')
+          console.log(res.authSetting)
+          const has_user_info = res.authSetting['scope.userInfo'] ? true : false
+          if (has_user_info) { //已经授权获取昵称和头像
+            // todo：直接调用 wx.getUserInfo(), 获取头像和昵称
           }
-          that.globalData.status = 1
-      }).catch( all_courses => {
-        wx.setStorageSync('session3rd', '')
+          else {
+            wx.removeStorageSync('userInfo')
+          }
+
+          const session3rd = wx.getStorageSync('session3rd') || '';
+
+          // Login, refresh session, get initial info, create a new user if necessary.
+          // Loading...
+          me.initInfo(code, session3rd).then(data => {
+              // data.enroll_nids: ["123", "234"]
+              //that.connectSocket(session3rd)
+              wx.setStorageSync('wid', data.wid)
+              wx.setStorageSync('session3rd', data.session3rd)
+              //console.log('EEE', data)
+
+              // Initiate global data
+              //console.log('COURSES', JSON.parse(data.all_courses))
+              that.globalData.allPromotes = JSON.parse(data.promotes)
+              that.globalData.allCourses = JSON.parse(data.all_courses)
+              that.globalData.allAudiobooks = JSON.parse(data.all_audiobooks)
+              that.globalData.allEnroll = data.enroll_nids
+              that.globalData.myUid = data.uid        // Number
+              that.globalData.myPoints = data.points  // Number
+              const lessons_json = JSON.parse(data.all_lessons)
+              if (lessons_json.pstat === 'ok') {
+                that.globalData.allLessons = lessons_json.lessons
+              }
+              that.globalData.status = 1
+          }).catch( all_courses => {
+            wx.setStorageSync('session3rd', '')
+          })
+        },
+        fail(res) {
+          console.log('Fail to getSetting')
+        }
       })
     }).catch( err => {
       // Todo: Repeat requiring several times.
