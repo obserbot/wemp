@@ -17,6 +17,7 @@
       </view>
       <view class="reader-name"><text selectable="true">{{ itemread.name }}</text></view>
       <view class="bg voicePlay" wx:if="{{ itemread.isPlaying }}"></view>
+      <view class="delete-audio" wx:if="{{ itemread.myuid === myuid }}" catchtap="deleteAudio" data-iread="{{ iread }}">×</view>
     </view>
   </view>
 
@@ -36,7 +37,7 @@
   <button bindtap="play" class="btn">
     {{ localeStrings.playRecord }}
   </button>
-  <button bindtap="audioUpload" class="btn">
+  <button bindtap="audioUpload" class="btn" wx:if="{{ theChapter.switch === 'on' }}">
     {{ localeStrings.uploadRecord }}
   </button>
 

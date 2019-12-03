@@ -35,7 +35,7 @@
           <view class="bg voicePlay" wx:if="{{ itemread.isPlaying }}"></view>
         </view>
 
-        <view class="more-wrap" hover-class="hover-class" bindtap="gotoChunk" data-ckid="{{ ichunk }}">
+        <view class="more-wrap" hover-class="hover-class" bindtap="gotoChunk" data-ckid="{{ ichunk }}" data-chunkid="{{ itemchunk.id }}">
           <image class="avatar" src="/img/more.png"></image>
         </view>
       </view>

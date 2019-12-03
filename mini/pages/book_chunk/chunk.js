@@ -26,6 +26,7 @@ Page({
 
   data:
   {
+    myuid: '',
     isLogged: false,
     localeStrings: {},
     languageCode: 'zh_hans',
@@ -42,6 +43,7 @@ Page({
     event.on("languageChanged", this, utils.setLocaleStrings) // UI
 
     const chunk_id = options.ckid
+    const chunk_id_real = options.chunkid
     const pages = getCurrentPages()
     const prevPage = pages[pages.length - 2]
     const theChapter = prevPage.data.theChapter
@@ -49,9 +51,13 @@ Page({
     const userInfo = wx.getStorageSync('userInfo') || false
     const isLogged = userInfo ? true : false
 
+    const myuid = app.globalData.myUid
+
     this.setData({
+      myuid,
       isLogged,
       chunk_id,
+      chunk_id_real,
       theChapter,
     })
   },
@@ -78,13 +84,17 @@ Page({
   {
     const that = this
     const ichunk = this.data.chunk_id
+    const ichunk_real = this.data.chunk_id_real
     const iread = ev.currentTarget.dataset.iread
 
     const theChapter = this.data.theChapter
-    const theRead = theChapter.infojson.chunks[ichunk].reads[iread]
-    if ( ! (theRead && theRead['audio_url'])) {
-      console.log('Error 35')
-      return
+    const theRead = theChapter.chunks[ichunk_real][iread]
+    console.log('theread', theRead)
+    //const theRead = theChapter.infojson.chunks[ichunk].reads[iread]
+
+    const root = 'https://weiyien.com/shelf/';
+    if ( ! theRead['audio_url']) { // First play
+      theRead['audio_url'] = root + theChapter.shelf_id + '/' + theChapter.chapter_id + '/' + ichunk_real + '/reads/' + theRead['filename']
     }
 
     if (theRead.isPlaying) {
@@ -117,7 +127,26 @@ Page({
   stopAllRead ()
   {
     const theChapter = this.data.theChapter
-    const chunks = theChapter.infojson.chunks
+    const chunks_info = theChapter.infojson.chunks
+    for (let iz in chunks_info) {
+      chunks_info[iz].nowchunk = ''
+    }
+
+    const chunks = theChapter.chunks
+    for (let ix in chunks) {
+      for (let iy in chunks[ix]) {
+        if (chunks[ix][iy].media) {
+            chunks[ix][iy].media.stop()
+            chunks[ix][iy].isPlaying = false
+            //chunks[ix].reads[iy].media.stop()
+            //chunks[ix].reads[iy].isPlaying = false
+        }
+      }
+    }
+
+    /*
+    const theChapter = this.data.theChapter
+    const chunks = theChapter.chunks
     for (let ix in chunks) {
       chunks[ix].nowchunk = ''
       for (let iy in chunks[ix].reads) {
@@ -127,6 +156,7 @@ Page({
         }
       }
     }
+    */
 
     this.setData({
       theChapter,
@@ -211,19 +241,71 @@ Page({
       return
     }
 
+    const that = this
     const theChapter = this.data.theChapter
     const chunk_id = this.data.theChapter.infojson.chunks[this.data.chunk_id].id
     const myuid = app.globalData.myUid
+    const info = wx.getStorageSync('userInfo')
+    const nickname = info.nickname
+    const avatar = info.avatarUrl
     me.uploadAudio(
       this.tempFilePath,
       theChapter.shelf_id,
       theChapter.chapter_id,
       chunk_id,
       myuid,
+      nickname,
+      avatar,
     )
       .then( data => {
+        me.getChapter(theChapter.chapter_id)
+          .then(data => {
+            console.log('88uuuddd:', data)
+            const theChapter_new = data
+            that.setData({
+              theChapter: theChapter_new,
+            })
+          })
+          .catch (er => {
+            console.log('Error 82')
+          })
       })
       .catch( res => {
+      })
+  },
+
+
+  deleteAudio (ev)
+  {
+    const that = this
+    const iread = ev.currentTarget.dataset.iread
+    const theChapter = this.data.theChapter
+    const book_id = theChapter.shelf_id
+    const chapter_id = theChapter.chapter_id
+    const chunk_id = this.data.theChapter.infojson.chunks[this.data.chunk_id].id
+    const myuid = app.globalData.myUid
+    const filename = theChapter.chunks[chunk_id][iread].filename
+    console.log('cunk_id', chunk_id)
+    console.log('read_id', iread)
+    console.log('myuid', myuid)
+    console.log('filename', filename)
+
+    me.deleteAudio(book_id, chapter_id, chunk_id, myuid, filename)
+      .then(res => {
+        console.log('delete success')
+        me.getChapter(chapter_id)
+          .then(data => {
+            const theChapter_new = data
+            that.setData({
+              theChapter: theChapter_new,
+            })
+          })
+          .catch (er => {
+            console.log('Error 82')
+          })
+      })
+      .catch(er => {
+        console.log('delete error', er)
       })
   },
 
