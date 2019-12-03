@@ -56,6 +56,8 @@ button {
 
 .delete-audio {
   margin-left: auto;
+  padding: 10rpx 30rpx;
+  font-size: 40rpx;
 }
 
 

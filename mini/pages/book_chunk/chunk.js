@@ -176,6 +176,24 @@ Page({
   //开始录音的时候
   audioStart: function ()
   {
+    // Check if exists
+    const myuid = app.globalData.myUid
+    const theChapter = this.data.theChapter
+    const chunk_id = this.data.chunk_id_real
+    let existing = false
+    for (let ix in theChapter.chunks[chunk_id]) {
+      if (myuid == theChapter.chunks[chunk_id][ix].myuid) {
+        existing = true
+        break;
+      }
+    }
+    if (existing) {
+      utils.showToastError('voiceExists')
+      return
+    }
+
+
+
     this.stopAllRead()
 
     const options = {
@@ -260,11 +278,17 @@ Page({
       .then( data => {
         me.getChapter(theChapter.chapter_id)
           .then(data => {
-            console.log('88uuuddd:', data)
+            console.log('KK-88uuuddd:', data)
             const theChapter_new = data
             that.setData({
               theChapter: theChapter_new,
             })
+
+            /*
+            const pages = getCurrentPages()
+            const prevPage = pages[pages.length - 2]
+            prevPage.refreshChapter(theChapter.chapter_id)
+            */
           })
           .catch (er => {
             console.log('Error 82')
@@ -299,6 +323,12 @@ Page({
             that.setData({
               theChapter: theChapter_new,
             })
+
+            /*
+            const pages = getCurrentPages()
+            const prevPage = pages[pages.length - 2]
+            prevPage.refreshChapter(chapter_id)
+            */
           })
           .catch (er => {
             console.log('Error 82')
