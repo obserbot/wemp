@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/home/home",
     "pages/book_shelf/shelf",
+    "pages/home/home",
     "pages/book_book/book",
     "pages/book_chapter/chapter",
     "pages/book_chunk/chunk",
@@ -32,8 +32,8 @@
     "backgroundColor": "#fff",
     "list": [
       {
-        "pagePath": "pages/home/home",
-        "text": "首页",
+        "pagePath": "pages/book_shelf/shelf",
+        "text": "交流",
         "iconPath": "img/tab_home_normal.png",
         "selectedIconPath": "img/tab_home.png"
       },
@@ -42,12 +42,6 @@
         "text": "达人",
         "iconPath": "img/tab_daren_normal.png",
         "selectedIconPath": "img/tab_daren.png"
-      },
-      {
-        "pagePath": "pages/book_shelf/shelf",
-        "text": "朗读",
-        "iconPath": "img/tab_course_normal.png",
-        "selectedIconPath": "img/tab_course.png"
       },
       {
         "pagePath": "pages/my/my",

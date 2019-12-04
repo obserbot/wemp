@@ -55,20 +55,20 @@ T.setNavigationBarTitle = (navigationBarTitles = false) =>
 T.setTabBarTitles = () =>
 {
   const titles = [
+    /*
     {
       zh_hans: '首页',
       en: 'Home'
+    },
+    */
+    {
+      zh_hans: '交流',
+      en: 'Communicate'
     },
     {
       zh_hans: '达人',
       en: 'Tutors'
     },
-    {
-      zh_hans: '朗读',
-      en: 'Read'
-    },
-    /*
-    */
     {
       zh_hans: '我的',
       en: 'My'
