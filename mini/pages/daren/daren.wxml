@@ -3,7 +3,7 @@
 
   <view class="darens-wrap">
     <view wx:for="{{ darens }}" wx:key="{{ item.uid }}"
-      class="one-daren-wrap" catchtap="toPersonal" data-uid="{{ item.uid }}"
+      class="one-daren-wrap" catchtap="gotoPersonal" data-uid="{{ item.uid }}"
     >
       <view class="dr-avatar">
         <image src="{{ item.avatar }}" wx:if="{{ item.avatar }}"></image>

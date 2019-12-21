@@ -1,12 +1,12 @@
 {
   "pages": [
+    "pages/daren/daren",
     "pages/book_shelf/shelf",
     "pages/home/home",
     "pages/book_book/book",
     "pages/book_chapter/chapter",
     "pages/book_chunk/chunk",
     "pages/curriculum/curriculum",
-    "pages/daren/daren",
     "pages/lesson/lesson",
     "pages/chapter/chapter",
     "pages/course/course",
@@ -32,16 +32,16 @@
     "backgroundColor": "#fff",
     "list": [
       {
-        "pagePath": "pages/book_shelf/shelf",
-        "text": "交流",
-        "iconPath": "img/tab_home_normal.png",
-        "selectedIconPath": "img/tab_home.png"
-      },
-      {
         "pagePath": "pages/daren/daren",
         "text": "达人",
         "iconPath": "img/tab_daren_normal.png",
         "selectedIconPath": "img/tab_daren.png"
+      },
+      {
+        "pagePath": "pages/book_shelf/shelf",
+        "text": "交流",
+        "iconPath": "img/tab_home_normal.png",
+        "selectedIconPath": "img/tab_home.png"
       },
       {
         "pagePath": "pages/my/my",

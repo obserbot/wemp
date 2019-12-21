@@ -199,7 +199,7 @@
 }
 
 .syllabus-wrap {
-  margin: 20rpx 20rpx 60rpx;
+  margin: 20rpx 0 60rpx;
   color: #000;
 }
 .syllabus-wrap .syllabus-label {
@@ -240,8 +240,12 @@
 }
 
 .chapter-chunk {
-  display: flex;
   align-items: center;
+  display: flex;
+  padding: 0 18rpx;
+  /*
+  background: #f5ecdb;
+  */
 }
 
 .chapter-chunk .chunk-comment-wrap {

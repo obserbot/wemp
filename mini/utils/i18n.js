@@ -62,12 +62,12 @@ T.setTabBarTitles = () =>
     },
     */
     {
-      zh_hans: '交流',
-      en: 'Communicate'
-    },
-    {
       zh_hans: '达人',
       en: 'Tutors'
+    },
+    {
+      zh_hans: '交流',
+      en: 'Communicate'
     },
     {
       zh_hans: '我的',

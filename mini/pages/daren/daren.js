@@ -58,15 +58,14 @@ Page({
   },
 
 
-  /**
-   * Goto personal
-   */
-  toPersonal (ev) {
-    let uid = ev.currentTarget.dataset.uid
+  gotoPersonal (ev)
+  {
+    const uid = ev.currentTarget.dataset.uid
     wx.navigateTo({
       url: `/pages/personal/personal?thirduid=${uid}`,
     })
   },
+
 
   /**
    * Get teacher list
